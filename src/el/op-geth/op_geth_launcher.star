@@ -190,6 +190,7 @@ def get_config(
         "--rpc.allow-unprotected-txs",
         "--discovery.port={0}".format(discovery_port),
         "--port={0}".format(discovery_port),
+        "--rollup.maxcodesize=49152",
     ]
 
     # configure files
