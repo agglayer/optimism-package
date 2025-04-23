@@ -229,6 +229,12 @@ def deploy_contracts(
                 "op-deployer inspect rollup --workdir /network-data --outfile /network-data/rollup-{0}.json {0}".format(
                     network_id
                 ),
+                "jq '.chain_op_config.eip1559Elasticity = 6 | .chain_op_config.eip1559Denominator = 50 | .chain_op_config.eip1559DenominatorCanyon = 250' /network-data/rollup-{0}.json > /network-data/rollup-{0}.json.modified".format(
+                    network_id
+                ),
+                "mv /network-data/rollup-{0}.json.modified /network-data/rollup-{0}.json".format(
+                    network_id
+                ),
             ]
         )
 
