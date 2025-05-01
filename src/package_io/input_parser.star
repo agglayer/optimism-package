@@ -233,7 +233,8 @@ def input_parser(plan, input_args):
                 ),
                 batcher_params=struct(
                     image=result["batcher_params"]["image"],
-                    extra_params=result["batcher_params"]["extra_params"],
+                    max_channel_duration=result["batcher_params"]["max_channel_duration"],
+                    extra_params=result["batcher_params"].get("extra_params", []),
                 ),
                 challenger_params=struct(
                     enabled=result["challenger_params"]["enabled"],
@@ -250,6 +251,7 @@ def input_parser(plan, input_args):
                     ],
                 ),
                 proposer_params=struct(
+                    enabled=result["proposer_params"]["enabled"],
                     image=result["proposer_params"]["image"],
                     extra_params=result["proposer_params"]["extra_params"],
                     game_type=result["proposer_params"]["game_type"],
@@ -605,6 +607,7 @@ def default_network_params():
 def default_batcher_params():
     return {
         "image": DEFAULT_BATCHER_IMAGES["op-batcher"],
+        "max_channel_duration": 1,
         "extra_params": [],
     }
 
@@ -630,6 +633,7 @@ def default_challenger_params():
 
 def default_proposer_params():
     return {
+        "enabled": True,
         "image": DEFAULT_PROPOSER_IMAGES["op-proposer"],
         "extra_params": [],
         "game_type": 1,
@@ -702,7 +706,7 @@ def default_op_contract_deployer_global_deploy_overrides():
 
 def default_op_contract_deployer_params():
     return {
-        "image": "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-deployer:v0.3.0-rc.5",
+        "image": "xavierromero/op-deployer:20250314",
         "l1_artifacts_locator": "https://storage.googleapis.com/oplabs-contract-artifacts/artifacts-v1-fffcbb0ebf7f83311791534a41e65ef90df47797f9ca8f86941452f597f7128c.tar.gz",
         "l2_artifacts_locator": "https://storage.googleapis.com/oplabs-contract-artifacts/artifacts-v1-fffcbb0ebf7f83311791534a41e65ef90df47797f9ca8f86941452f597f7128c.tar.gz",
         "global_deploy_overrides": default_op_contract_deployer_global_deploy_overrides(),

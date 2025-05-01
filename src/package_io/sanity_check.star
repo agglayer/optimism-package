@@ -151,8 +151,8 @@ SUBCATEGORY_PARAMS = {
         "fund_dev_accounts",
     ],
     "proxyd_params": ["image", "tag", "extra_params"],
-    "batcher_params": ["image", "extra_params"],
-    "proposer_params": ["image", "extra_params", "game_type", "proposal_interval"],
+    "batcher_params": ["image", "extra_params", "max_channel_duration"],
+    "proposer_params": ["image", "extra_params", "game_type", "proposal_interval","enabled"],
     "challenger_params": [
         "enabled",
         "image",
