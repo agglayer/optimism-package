@@ -230,6 +230,9 @@ def input_parser(
             l2_artifacts_locator=results["op_contract_deployer_params"][
                 "l2_artifacts_locator"
             ],
+            locator_local_archive_path=results["op_contract_deployer_params"][
+                "locator_local_archive_path"
+            ],
             overrides=results["op_contract_deployer_params"]["overrides"],
         ),
         global_log_level=results["global_log_level"],
@@ -630,8 +633,9 @@ def default_op_contract_deployer_params(registry):
         # "l2_artifacts_locator": "https://storage.googleapis.com/oplabs-contract-artifacts/artifacts-v1-02024c5a26c16fc1a5c716fff1c46b5bf7f23890d431bb554ddbad60971211d4.tar.gz",
         # Agglayer custom image and artifacts
         "image": "jhkimqd/op-deployer:v0.4.0-rc.2",
-        "l1_artifacts_locator": "https://storage.googleapis.com/oplabs-contract-artifacts/artifacts-v1-02024c5a26c16fc1a5c716fff1c46b5bf7f23890d431bb554ddbad60971211d4.tar.gz",
-        "l2_artifacts_locator": "https://storage.googleapis.com/oplabs-contract-artifacts/artifacts-v1-02024c5a26c16fc1a5c716fff1c46b5bf7f23890d431bb554ddbad60971211d4.tar.gz",
+        "l1_artifacts_locator": "http://file-server:80/artifacts-v1-02024c5a26c16fc1a5c716fff1c46b5bf7f23890d431bb554ddbad60971211d4.tar.gz",
+        "l2_artifacts_locator": "http://file-server:80/artifacts-v1-02024c5a26c16fc1a5c716fff1c46b5bf7f23890d431bb554ddbad60971211d4.tar.gz",
+        "locator_local_archive_path": "static_files/fileserver/artifacts-v1-02024c5a26c16fc1a5c716fff1c46b5bf7f23890d431bb554ddbad60971211d4.tar.gz",
         "overrides": {},
     }
 
