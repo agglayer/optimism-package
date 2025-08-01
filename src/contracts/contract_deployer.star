@@ -38,7 +38,9 @@ def _normalize_artifacts_locator(locator):
     return (None, locator, None)
 
 
-def _normalize_artifacts_locators(plan, l1_locator, l2_locator):
+def _normalize_artifacts_locators(
+    plan, l1_locator, l2_locator, fileserver_enabled=False
+):
     """Normalize artifact locators with specific mount points.
 
     Args:
@@ -67,6 +69,17 @@ def _normalize_artifacts_locators(plan, l1_locator, l2_locator):
         l2_mount_point and l2_mount_point not in extra_files
     ):  # shortcut if both are the same
         extra_files[l2_mount_point] = plan.get_files_artifact(name=l2_artifact_name)
+
+    # Point to the fileserver if configured
+    if fileserver_enabled:
+        l1_artifacts_archive_name = l1_artifacts_locator.split("/")[-1]
+        l1_artifacts_locator = "http://file-server:80/{0}".format(
+            l1_artifacts_archive_name
+        )
+        l2_artifacts_archive_name = l2_artifacts_locator.split("/")[-1]
+        l2_artifacts_locator = "http://file-server:80/{0}".format(
+            l2_artifacts_archive_name
+        )
 
     return l1_artifacts_locator, l2_artifacts_locator, extra_files
 
@@ -109,6 +122,7 @@ def deploy_contracts(
         plan,
         optimism_args.op_contract_deployer_params.l1_artifacts_locator,
         optimism_args.op_contract_deployer_params.l2_artifacts_locator,
+        optimism_args.custom_params.fileserver_enabled,
     )
 
     fund_script_artifact = plan.upload_files(
