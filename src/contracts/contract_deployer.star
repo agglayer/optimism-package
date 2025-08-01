@@ -308,7 +308,7 @@ def deploy_contracts(
         )
 
     custom_files = {}
-    if optimism_args.custom_params.fileserver:
+    if optimism_args.custom_params.predeployed_allocs_enabled:
         allocs_artifact = plan.get_files_artifact(name="predeployed_allocs.json")
         custom_files["/network-data/allocs"] = allocs_artifact
 
