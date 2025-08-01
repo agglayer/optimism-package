@@ -239,6 +239,7 @@ def input_parser(
         global_node_selectors=results["global_node_selectors"],
         global_tolerations=results["global_tolerations"],
         persistent=results["persistent"],
+        fileserver=results["fileserver"],
     )
 
 
@@ -430,6 +431,9 @@ def parse_network_params(plan, registry, input_args):
     results["global_node_selectors"].update(input_args.get("global_node_selectors", {}))
     results["global_tolerations"] = input_args.get("global_tolerations", [])
     results["persistent"] = input_args.get("persistent", False)
+
+    # configure fileserver
+    results["fileserver"] = input_args.get("fileserver", False)
 
     return results
 

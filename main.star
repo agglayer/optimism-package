@@ -56,7 +56,7 @@ def run(plan, args={}):
     observability_params = optimism_args.observability
     observability_helper = observability.make_helper(observability_params)
 
-    if optimism_args.get("fileserver", False):
+    if optimism_args.fileserver:
         plan.print(
             "Deploying fileserver to serve OP artifacts - Should only be used in Antithesis"
         )
