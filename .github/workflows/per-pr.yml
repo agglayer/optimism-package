@@ -12,10 +12,7 @@ jobs:
     name: Run kurtosis with arguments
     strategy:
       matrix:
-        file_name:
-          [
-            "./network_params.yaml"
-          ]
+        file_name: ["./network_params.yaml"]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -41,11 +38,27 @@ jobs:
       - name: Run Starlark
         run: kurtosis run ${{ github.workspace }} --verbosity detailed
 
+  run_custom:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install mise
+        uses: jdx/mise-action@7a111ead46986ccad89a74ad013ba2a7c08c9e67 # v2.2.1
+
+      - name: Create enclave and upload dummy predeployer allocs file
+        run: |
+          kurtosis enclave add test-enclave
+          kurtosis files upload test-enclave --name predeployed_allocs.json '{}'
+
+      - name: Run Starlark
+        run: kurtosis run ${{ github.workspace }} --enclave test-enclave --args-file .github/tests/custom.yml --verbosity detailed
+
   run_k8s_test:
     name: Run k8s tests
     uses: ./.github/workflows/reusable-run-k8s.yml
     secrets: inherit
-  
+
   lint:
     name: Lint
     runs-on: ubuntu-latest
@@ -71,4 +84,3 @@ jobs:
 
       - name: Run unit tests
         run: just test
-

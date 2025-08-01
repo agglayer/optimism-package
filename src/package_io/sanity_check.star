@@ -11,6 +11,12 @@ ROOT_PARAMS = [
     "global_tolerations",
     "persistent",
     "faucet",
+    "custom_params",
+]
+
+CUSTOM_PARAMS = [
+    "predeployed_allocs_enabled",
+    "fileserver_enabled",
 ]
 
 OBSERVABILITY_PARAMS = [
@@ -174,6 +180,7 @@ OP_CONTRACT_DEPLOYER_PARAMS = [
     "image",
     "l1_artifacts_locator",
     "l2_artifacts_locator",
+    "locator_local_archive_path",
     "overrides",
 ]
 
@@ -336,6 +343,14 @@ def sanity_check(plan, optimism_config):
             optimism_config["op_contract_deployer_params"],
             "overrides",
             OP_CONTRACT_DEPLOYER_OVERRIDES,
+        )
+
+    if "custom_params" in optimism_config:
+        validate_params(
+            plan,
+            optimism_config["custom_params"],
+            "custom_params",
+            CUSTOM_PARAMS,
         )
 
     plan.print("Sanity check for OP package passed")

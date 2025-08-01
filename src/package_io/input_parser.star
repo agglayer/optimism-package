@@ -230,12 +230,21 @@ def input_parser(
             l2_artifacts_locator=results["op_contract_deployer_params"][
                 "l2_artifacts_locator"
             ],
+            locator_local_archive_path=results["op_contract_deployer_params"][
+                "locator_local_archive_path"
+            ],
             overrides=results["op_contract_deployer_params"]["overrides"],
         ),
         global_log_level=results["global_log_level"],
         global_node_selectors=results["global_node_selectors"],
         global_tolerations=results["global_tolerations"],
         persistent=results["persistent"],
+        custom_params=struct(
+            predeployed_allocs_enabled=results["custom_params"][
+                "predeployed_allocs_enabled"
+            ],
+            fileserver_enabled=results["custom_params"]["fileserver_enabled"],
+        ),
     )
 
 
@@ -428,6 +437,10 @@ def parse_network_params(plan, registry, input_args):
     results["global_tolerations"] = input_args.get("global_tolerations", [])
     results["persistent"] = input_args.get("persistent", False)
 
+    # configure custom params
+    results["custom_params"] = _default_custom_params()
+    results["custom_params"].update(input_args.get("custom_params", {}))
+
     return results
 
 
@@ -442,6 +455,13 @@ def _default_faucet_params(registry):
     return {
         "enabled": False,
         "image": registry.get(_registry.OP_FAUCET),
+    }
+
+
+def _default_custom_params():
+    return {
+        "predeployed_allocs_enabled": False,
+        "fileserver_enabled": False,
     }
 
 
@@ -626,12 +646,11 @@ def default_op_contract_deployer_params(registry):
     return {
         # OP Labs image and artifacts
         # "image": registry.get(_registry.OP_DEPLOYER),
-        # "l1_artifacts_locator": "https://storage.googleapis.com/oplabs-contract-artifacts/artifacts-v1-02024c5a26c16fc1a5c716fff1c46b5bf7f23890d431bb554ddbad60971211d4.tar.gz",
-        # "l2_artifacts_locator": "https://storage.googleapis.com/oplabs-contract-artifacts/artifacts-v1-02024c5a26c16fc1a5c716fff1c46b5bf7f23890d431bb554ddbad60971211d4.tar.gz",
-        # Agglayer custom image and artifacts
-        "image": "jhkimqd/op-deployer:v0.4.0-rc.2",
         "l1_artifacts_locator": "https://storage.googleapis.com/oplabs-contract-artifacts/artifacts-v1-02024c5a26c16fc1a5c716fff1c46b5bf7f23890d431bb554ddbad60971211d4.tar.gz",
         "l2_artifacts_locator": "https://storage.googleapis.com/oplabs-contract-artifacts/artifacts-v1-02024c5a26c16fc1a5c716fff1c46b5bf7f23890d431bb554ddbad60971211d4.tar.gz",
+        # Agglayer custom image and artifacts
+        "image": "jhkimqd/op-deployer:v0.4.0-rc.2",  # agglayer custom image
+        "locator_local_archive_path": "static_files/fileserver/artifacts-v1-02024c5a26c16fc1a5c716fff1c46b5bf7f23890d431bb554ddbad60971211d4.tar.gz",
         "overrides": {},
     }
 
