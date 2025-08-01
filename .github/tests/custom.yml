@@ -1,0 +1,4 @@
+optimism_package:
+  custom_params:
+    predeployed_allocs_enabled: true
+    fileserver_enabled: true

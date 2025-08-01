@@ -285,9 +285,15 @@ def deploy_contracts(
         ),
     )
 
-    apply_cmds = [
-        "op-deployer apply --l1-rpc-url $L1_RPC_URL --private-key $PRIVATE_KEY --workdir /network-data --predeployed-file /network-data/allocs/predeployed_allocs.json",
-    ]
+    if optimism_args.custom_params.predeployed_allocs_enabled:
+        apply_cmds = [
+            "op-deployer apply --l1-rpc-url $L1_RPC_URL --private-key $PRIVATE_KEY --workdir /network-data --predeployed-file /network-data/allocs/predeployed_allocs.json",
+        ]
+    else:
+        apply_cmds = [
+            "op-deployer apply --l1-rpc-url $L1_RPC_URL --private-key $PRIVATE_KEY --workdir /network-data",
+        ]
+
     for chain in optimism_args.chains:
         network_id = chain.network_params.network_id
         apply_cmds.extend(
@@ -301,7 +307,11 @@ def deploy_contracts(
             ]
         )
 
-    allocs_artifact = plan.get_files_artifact(name="predeployed_allocs.json")
+    custom_files = {}
+    if optimism_args.custom_params.fileserver:
+        allocs_artifact = plan.get_files_artifact(name="predeployed_allocs.json")
+        custom_files["/network-data/allocs"] = allocs_artifact
+
     op_deployer_output = plan.run_sh(
         name="op-deployer-apply",
         description="Apply L2 contract deployments",
@@ -319,9 +329,9 @@ def deploy_contracts(
         ],
         files={
             "/network-data": op_deployer_configure.files_artifacts[0],
-            "/network-data/allocs": allocs_artifact,
         }
-        | contracts_extra_files,
+        | contracts_extra_files
+        | custom_files,
         run=" && ".join(apply_cmds),
     )
 

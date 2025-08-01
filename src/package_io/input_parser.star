@@ -432,8 +432,9 @@ def parse_network_params(plan, registry, input_args):
     results["global_tolerations"] = input_args.get("global_tolerations", [])
     results["persistent"] = input_args.get("persistent", False)
 
-    # configure fileserver
-    results["fileserver"] = input_args.get("fileserver", False)
+    # configure custom params
+    results["custom_params"] = _default_custom_params()
+    results["custom_params"].update(input_args.get("custom_params", {}))
 
     return results
 
@@ -449,6 +450,13 @@ def _default_faucet_params(registry):
     return {
         "enabled": False,
         "image": registry.get(_registry.OP_FAUCET),
+    }
+
+
+def _default_custom_params():
+    return {
+        "predeployed_allocs_enabled": False,
+        "fileserver_enabled": False,
     }
 
 
