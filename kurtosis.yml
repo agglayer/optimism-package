@@ -1,4 +1,5 @@
-name: github.com/agglayer/optimism-package
+# name: github.com/agglayer/optimism-package
+name: github.com/leovct/optimism-package
 description: |
   # Optimism Package
   This is a Kurtosis package for deploying an Optimism Rollup
