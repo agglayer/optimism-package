@@ -239,7 +239,12 @@ def input_parser(
         global_node_selectors=results["global_node_selectors"],
         global_tolerations=results["global_tolerations"],
         persistent=results["persistent"],
-        fileserver=results["fileserver"],
+        custom_params=struct(
+            predeployed_allocs_enabled=results["custom_params"][
+                "predeployed_allocs_enabled"
+            ],
+            fileserver_enabled=results["custom_params"]["fileserver_enabled"],
+        ),
     )
 
 
