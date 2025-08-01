@@ -56,29 +56,31 @@ def run(plan, args={}):
     observability_params = optimism_args.observability
     observability_helper = observability.make_helper(observability_params)
 
-    # Hack introduced to deploy the optimism package inside the Antithesis environment.
-    # Create a file server to serve OP artifacts.
-    nginx_config_artifact = plan.upload_files(
-        src="static_files/fileserver/nginx.conf",
-        name="nginx_config_artifact",
-    )
-    op_artifact = plan.upload_files(
-        src=optimism_args.op_contract_deployer_params.locator_local_archive_path,
-        name="op_artifact",
-    )
-    plan.add_service(
-        name="file-server",
-        config=ServiceConfig(
-            image="nginx:1.27",
-            ports={
-                "http": PortSpec(number=80),
-            },
-            files={
-                "/etc/nginx/conf.d": nginx_config_artifact,
-                "/content": op_artifact,
-            },
-        ),
-    )
+    if optimism_args.fileserver:
+        plan.print(
+            "Deploying fileserver to serve OP artifacts - Should only be used in Antithesis"
+        )
+        nginx_config_artifact = plan.upload_files(
+            src="static_files/fileserver/nginx.conf",
+            name="nginx_config_artifact",
+        )
+        op_artifact = plan.upload_files(
+            src=optimism_args.op_contract_deployer_params.locator_local_archive_path,
+            name="op_artifact",
+        )
+        plan.add_service(
+            name="file-server",
+            config=ServiceConfig(
+                image="nginx:1.27",
+                ports={
+                    "http": PortSpec(number=80),
+                },
+                files={
+                    "/etc/nginx/conf.d": nginx_config_artifact,
+                    "/content": op_artifact,
+                },
+            ),
+        )
 
     # Hack introduced to deploy the fork of the optimism package alone (without kurtosis-cdk).
     # Upload pre-deployed allocs as an artifact in the enclave.

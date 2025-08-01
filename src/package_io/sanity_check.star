@@ -11,6 +11,7 @@ ROOT_PARAMS = [
     "global_tolerations",
     "persistent",
     "faucet",
+    "fileserver",
 ]
 
 OBSERVABILITY_PARAMS = [
