@@ -13,6 +13,7 @@ jobs:
   run_with_args:
     name: Run kurtosis with arguments
     strategy:
+      fail-fast: false
       matrix:
         file_name:
           [
@@ -21,7 +22,6 @@ jobs:
             "./.github/tests/op-deployer-042.yaml",
             "./.github/tests/custom.yaml",
           ]
-        fail-fast: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
