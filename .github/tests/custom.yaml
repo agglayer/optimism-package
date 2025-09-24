@@ -1,0 +1,5 @@
+optimism_package:
+  chains:
+    chain0:
+      batcher_params:
+        max_channel_duration: 10
