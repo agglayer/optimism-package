@@ -21,6 +21,7 @@ jobs:
             "./.github/tests/op-deployer-042.yaml",
             "./.github/tests/custom.yaml",
           ]
+        fail-fast: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
