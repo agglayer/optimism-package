@@ -109,7 +109,7 @@ def test_l2_participant_input_parser_defaults(plan):
                 el=struct(
                     name="node0",
                     type="op-geth",
-                    service_name="op-el-1000-node0-op-geth",
+                    service_name="op-el-1-op-geth-op-node",
                     image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101511.1",
                     labels={
                         "op.kind": "el",
@@ -215,7 +215,7 @@ def test_l2_participant_input_parser_defaults(plan):
                     name="node1",
                     type="op-geth",
                     image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101511.1",
-                    service_name="op-el-1000-node1-op-geth",
+                    service_name="op-el-2-op-geth-op-node",
                     labels={
                         "op.kind": "el",
                         "op.network.id": "1000",
