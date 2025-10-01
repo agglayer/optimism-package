@@ -88,5 +88,5 @@ def test_flashblocks_rpc_input_parser_el_parameters_supported(plan):
     expect.eq(parsed.name, "flashblocks-rpc-do-not-use")
     expect.eq(parsed.type, "flashblocks-rpc")
     expect.eq(
-        parsed.service_name, "op-el-1000-flashblocks-rpc-do-not-use-flashblocks-rpc"
+        parsed.service_name, "op-el-0-flashblocks-rpc-op-node"
     )
