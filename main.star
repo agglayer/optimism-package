@@ -69,6 +69,7 @@ def run(plan, args={}):
         optimism_args.op_contract_deployer_params.locator_local_archive_path
     )
     if locator_local_archive_path:
+        plan.print("Deploying a file server to serve OP artifacts")
         nginx_config_artifact = plan.upload_files(
             src="static_files/fileserver/nginx.conf",
             name="nginx_config_artifact",
