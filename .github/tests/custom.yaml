@@ -9,3 +9,5 @@ optimism_package:
             type: op-node
       batcher_params:
         max_channel_duration: 10
+  observability:
+    enabled: false
