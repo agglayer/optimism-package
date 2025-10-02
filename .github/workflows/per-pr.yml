@@ -21,6 +21,7 @@ jobs:
             # "./.github/tests/kona-node-signer.yaml",
             # "./.github/tests/op-deployer-042.yaml",
             "./.github/tests/custom.yaml",
+            "./.github/tests/custom-fulu.yaml",
           ]
     runs-on: ubuntu-latest
     steps:
