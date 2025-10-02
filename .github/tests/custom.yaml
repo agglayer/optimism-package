@@ -3,7 +3,6 @@ optimism_package:
     "001":
       participants:
         "node1":
-          sequencer: true
           el:
             type: op-geth
           cl:
