@@ -1,8 +1,8 @@
 optimism_package:
   chains:
-    chain0:
+    001:
       participants:
-        node0:
+        node1:
           el:
             type: op-geth
           cl:
