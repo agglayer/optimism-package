@@ -1,8 +1,8 @@
 optimism_package:
   chains:
-    chain0:
+    "001":
       participants:
-        node0:
+        "node1":
           el:
             type: op-geth
           cl:
@@ -10,6 +10,11 @@ optimism_package:
       batcher_params:
         max_channel_duration: 10
   op_contract_deployer_params:
+    # image: europe-west2-docker.pkg.dev/prj-polygonlabs-devtools-dev/public/op-deployer:v0.4.2-cdk
     l1_artifacts_locator: http://file-server:80/artifacts-v1-02024c5a26c16fc1a5c716fff1c46b5bf7f23890d431bb554ddbad60971211d4.tar.gz
     l2_artifacts_locator: http://file-server:80/artifacts-v1-02024c5a26c16fc1a5c716fff1c46b5bf7f23890d431bb554ddbad60971211d4.tar.gz
     locator_local_archive_path: static_files/fileserver/artifacts-v1-02024c5a26c16fc1a5c716fff1c46b5bf7f23890d431bb554ddbad60971211d4.tar.gz
+    # l1_artifacts_locator: tag://op-contracts/v4.0.0
+    # l2_artifacts_locator: tag://op-contracts/v4.0.0
+  observability:
+    enabled: false
