@@ -22,6 +22,7 @@ jobs:
             # "./.github/tests/op-deployer-042.yaml",
             "./.github/tests/custom.yaml",
             "./.github/tests/custom-fulu.yaml",
+            "./.github/tests/custom-antithesis.yaml",
           ]
     runs-on: ubuntu-latest
     steps:
