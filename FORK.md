@@ -28,10 +28,12 @@
 | 02 | ci: run tests when pushing commits to `overlay/main` | ci | Run ci tests when pushing commits to `overlay/main` for validation purposes |
 | 01 | chore: update `kurtosis.yml` | kurtosis | Update `kurtosis.yml` to ensure this package is usable |
 
-Some patches apply only to [Antithesis](https://antithesis.com/) environments.
+Some patches apply only to [Antithesis](https://antithesis.com/) environments:
 
 | # | Title | Scope | Notes |
 |---|-------|-------|-------|
+| 03 | feat: merge `overlay/main`, update contracts and add local artifact server | op artifacts, ci | Merge `overlay/main` changes, update config to use `v4.0.0` contracts and test antithesis-like configs in ci |
 | 02 | ci: run tests on `overlay/antithesis` | ci | Run ci tests when pushing commits to `overlay/antithesis` for validation purposes |
 | 01 | feat: serve op artifacts locally | op artifacts | Serve OP artifacts from a local file server to avoid external pulls |
+
 (*) We also maintain a [fork](https://github.com/leovct/optimism/tree/op-deployer/v0.4.2-cdk) of the optimism monorepo to add support for predeployed filed in the op-deployer (see this [commit](https://github.com/leovct/optimism/commit/61f2b93ea781a12e96c857b0aa08854d35274f88)).
