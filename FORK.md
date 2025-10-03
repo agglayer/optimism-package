@@ -16,7 +16,8 @@
 
 | # | Title | Scope | Notes |
 |---|-------|-------|-------|
-| 09 | docs: document patches | Add `FORK.md` to track fork policy and patches |
+| 10 | feat: upgrade contracts and tooling, fix service naming and metric, support for fusaka hf | contracts, op-deployer, el/cl clients, op-batcher, op-proposer, proxyd, tests, ci | Upgrade op-deployer and contract versions, fix service naming (el/cl clients, op-batcher, op-proposer and proxyd), disable metrics registration, and add support and test configs for Fusaka hardfork |
+| 09 | docs: document patches | docs | Add `FORK.md` to track fork policy and patches |
 | 08 | revert: el/cl client naming | el/cl clients | Revert client renaming to avoid updating references across [kurtosis-cdk](https://github.com/0xPolygon/kurtosis-cdk), [e2e](https://github.com/agglayer/e2e), and other repositories |
 | 07 | fix: ci jobs issues with op-deployer and `predeployed_allocs.json` | op-deployer, ci | Fix default configuration, test configs, and ci workflows related to op-deployer pre-deployed allocs | 
 | 06 | feat: allow to disable proposer | op-proposer | Add ability to disable the op-proposer component |
