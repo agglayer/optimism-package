@@ -23,7 +23,7 @@ runs:
 
     - name: Download OP artifacts (only for custom.yaml)
       shell: bash
-      if: ${{ inputs.args-file == './.github/tests/custom.yaml' }}
+      if: ${{ inputs.args-file == './.github/tests/custom-antithesis.yaml' }}
       run: |
         export OP_LOCATOR_ARCHIVE="https://storage.googleapis.com/oplabs-contract-artifacts/artifacts-v1-44f2b904c73df5d0e54ca6e51d081ada1e4d75ca5b136513b61ea1566459eaa5.tar.gz"
         curl -L "${OP_LOCATOR_ARCHIVE}" -o ./static_files/fileserver/$(basename ${OP_LOCATOR_ARCHIVE})
