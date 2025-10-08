@@ -22,10 +22,11 @@ def test_batcher_input_parser_default_args(plan):
     _default_params = struct(
         image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-batcher:v1.14.0",
         extra_params=[],
+        max_channel_duration=1,
         ports={
             _net.HTTP_PORT_NAME: _net.port(number=8548),
         },
-        service_name="op-batcher-1000-my-l2",
+        service_name="op-batcher-my-l2",
         labels={
             "op.kind": "batcher",
             "op.network.id": "1000",
@@ -69,6 +70,7 @@ def test_batcher_input_parser_custom_params(plan):
         {
             "image": "op-proposer:brightest",
             "extra_params": ["--hola"],
+            "max_channel_duration": 10,
         },
         _default_network_params,
         _default_registry,
@@ -79,10 +81,11 @@ def test_batcher_input_parser_custom_params(plan):
         struct(
             extra_params=["--hola"],
             image="op-proposer:brightest",
+            max_channel_duration=10,
             ports={
                 _net.HTTP_PORT_NAME: _net.port(number=8548),
             },
-            service_name="op-batcher-1000-my-l2",
+            service_name="op-batcher-my-l2",
             labels={
                 "op.kind": "batcher",
                 "op.network.id": "1000",

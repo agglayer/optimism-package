@@ -5,6 +5,7 @@ _registry = import_module("/src/package_io/registry.star")
 _DEFAULT_ARGS = {
     "image": None,
     "extra_params": [],
+    "max_channel_duration": 1,
     "pprof_enabled": False,
 }
 
@@ -29,7 +30,7 @@ def parse(batcher_args, network_params, registry):
     )
 
     # Add the service name
-    batcher_params["service_name"] = "op-batcher-{}-{}".format(network_id, network_name)
+    batcher_params["service_name"] = "op-batcher-{}".format(network_name)
 
     # Add ports
     batcher_params["ports"] = {

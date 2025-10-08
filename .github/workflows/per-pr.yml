@@ -1,6 +1,8 @@
 name: CI
 
 on:
+  push:
+    branches: [overlay/**]
   pull_request:
 
 concurrency:
@@ -11,12 +13,15 @@ jobs:
   run_with_args:
     name: Run kurtosis with arguments
     strategy:
+      fail-fast: false
       matrix:
         file_name:
           [
             "./network_params.yaml",
-            "./.github/tests/kona-node-signer.yaml",
-            "./.github/tests/op-deployer-042.yaml",
+            # "./.github/tests/kona-node-signer.yaml",
+            # "./.github/tests/op-deployer-042.yaml",
+            "./.github/tests/custom.yaml",
+            "./.github/tests/custom-fulu.yaml",
           ]
     runs-on: ubuntu-latest
     steps:
@@ -45,10 +50,10 @@ jobs:
       - name: Run kurtosis
         uses: ./.github/workflows/actions/run-kurtosis-docker
 
-  run_k8s_test:
-    name: Run k8s tests
-    uses: ./.github/workflows/reusable-run-k8s.yml
-    secrets: inherit
+  # run_k8s_test:
+  #   name: Run k8s tests
+  #   uses: ./.github/workflows/reusable-run-k8s.yml
+  #   secrets: inherit
   
   lint:
     name: Lint

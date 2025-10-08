@@ -3,6 +3,7 @@ _net = import_module("/src/util/net.star")
 _registry = import_module("/src/package_io/registry.star")
 
 _DEFAULT_ARGS = {
+    "enabled": True,
     "image": None,
     "extra_params": [],
     "game_type": 1,
@@ -31,9 +32,7 @@ def parse(proposer_args, network_params, registry):
     )
 
     # Add the service name
-    proposer_params["service_name"] = "op-proposer-{}-{}".format(
-        network_id, network_name
-    )
+    proposer_params["service_name"] = "op-proposer-{}".format(network_name)
 
     # Add ports
     proposer_params["ports"] = {

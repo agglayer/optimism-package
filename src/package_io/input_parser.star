@@ -344,6 +344,7 @@ def _default_batcher_params(registry):
     return {
         "image": registry.get(_registry.OP_BATCHER),
         "extra_params": [],
+        "max_channel_duration": 1,
     }
 
 
@@ -356,6 +357,7 @@ def _default_proxyd_params(registry):
 
 def _default_proposer_params(registry):
     return {
+        "enabled": True,
         "image": registry.get(_registry.OP_PROPOSER),
         "extra_params": [],
         "game_type": 1,
