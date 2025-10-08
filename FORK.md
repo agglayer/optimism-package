@@ -16,6 +16,7 @@
 
 | # | Title | Scope | Notes |
 |---|-------|-------|-------|
+| 11 | ci: check for latest, safe and finalized blocks | ci | Add additional checks in ci to ensure the latest, safe and finalized blocks are progressing |
 | 10 | feat: upgrade contracts and tooling, fix service naming and metric, support for fusaka hf | contracts, op-deployer, el/cl clients, op-batcher, op-proposer, proxyd, tests, ci | Upgrade op-deployer and contract versions, fix service naming (el/cl clients, op-batcher, op-proposer and proxyd), disable metrics registration, and add support and test configs for Fusaka hardfork |
 | 09 | docs: document patches | docs | Add `FORK.md` to track fork policy and patches |
 | 08 | revert: el/cl client naming | el/cl clients | Revert client renaming to avoid updating references across [kurtosis-cdk](https://github.com/0xPolygon/kurtosis-cdk), [e2e](https://github.com/agglayer/e2e), and other repositories |
