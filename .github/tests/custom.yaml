@@ -14,7 +14,7 @@ optimism_package:
         max_channel_duration: 10
   op_contract_deployer_params:
     image: europe-west2-docker.pkg.dev/prj-polygonlabs-devtools-dev/public/op-deployer:v0.4.3-cdk
-    l1_artifacts_locator: tag://op-contracts/v4.1.0
-    l2_artifacts_locator: tag://op-contracts/v4.1.0
+    l1_artifacts_locator: embedded
+    l2_artifacts_locator: embedded
   observability:
     enabled: false
