@@ -5,13 +5,16 @@ optimism_package:
         "node1":
           el:
             type: op-geth
+            image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101603.1
           cl:
             type: op-node
+            image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.14.1
       batcher_params:
+        image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-batcher:v1.16.0
         max_channel_duration: 10
   op_contract_deployer_params:
-    image: europe-west2-docker.pkg.dev/prj-polygonlabs-devtools-dev/public/op-deployer:v0.4.2-cdk
-    l1_artifacts_locator: tag://op-contracts/v4.0.0
-    l2_artifacts_locator: tag://op-contracts/v4.0.0
+    image: europe-west2-docker.pkg.dev/prj-polygonlabs-devtools-dev/public/op-deployer:v0.4.3-cdk
+    l1_artifacts_locator: tag://op-contracts/v4.1.0
+    l2_artifacts_locator: tag://op-contracts/v4.1.0
   observability:
     enabled: false
