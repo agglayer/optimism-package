@@ -222,7 +222,7 @@ def get_service_config(
     if len(op_node_version) != 2:
         fail("Could not parse op-node version from image: {}".format(params.image))
 
-    if op_node_version in ["v1.13.4"]:
+    if op_node_version in ["v1.14.1"]:
         l1_genesis_original = plan.get_files_artifact(name="el_cl_genesis_data")
         result = plan.run_sh(
             description="Standardize L1 genesis for op-node",
