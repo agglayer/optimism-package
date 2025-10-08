@@ -168,6 +168,7 @@ def get_service_config(
             _ethereum_package_constants.GENESIS_DATA_MOUNTPOINT_ON_CLIENTS,
             network_params.network_id,
         ),
+        "--rollup.l1-chain-config=/l1/genesis.json",
         "--rpc.addr=0.0.0.0",
         "--rpc.port={0}".format(rpc_port_number),
         "--rpc.enable-admin",
@@ -195,8 +196,24 @@ def get_service_config(
 
     supervisor_params = _filter.first(supervisors_params)
 
-    # configure files
+    # standardize l1 genesis for op-node
+    l1_genesis_original = plan.get_files_artifact(name="el_cl_genesis_data")
+    result = plan.run_sh(
+        description="Standardize L1 genesis for op-node",
+        image=_util.DEPLOYMENT_UTILS_IMAGE,
+        files={
+            "/data": l1_genesis_original,
+        },
+        store=[
+            "/data/genesis.json",
+        ],
+        run="jq 'del(.config.terminalTotalDifficultyPassed)' /data/genesis.json",
+    )
+    if len(result.files_artifacts) != 1:
+        fail("Expected the L1 genesis file to be created")
+    l1_genesis_standardized = result.files_artifacts[0]
 
+    # configure files
     files = {
         _ethereum_package_constants.GENESIS_DATA_MOUNTPOINT_ON_CLIENTS: Directory(
             artifact_names=[
@@ -207,6 +224,7 @@ def get_service_config(
         if supervisor_params
         else deployment_output,
         _ethereum_package_constants.JWT_MOUNTPOINT_ON_CLIENTS: jwt_file,
+        "/l1": l1_genesis_standardized,
     }
 
     if persistent:
