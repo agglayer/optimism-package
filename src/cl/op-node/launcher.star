@@ -207,7 +207,10 @@ def get_service_config(
         store=[
             "/data/genesis.json",
         ],
-        run="jq 'del(.config.terminalTotalDifficultyPassed)' /data/genesis.json",
+        run="&&".join([
+            "jq 'del(.config.terminalTotalDifficultyPassed)' /data/genesis.json > /data/genesis.json.tmp",
+            "mv /data/genesis.json.tmp /data/genesis.json",
+        ]),
     )
     if len(result.files_artifacts) != 1:
         fail("Expected the L1 genesis file to be created")
