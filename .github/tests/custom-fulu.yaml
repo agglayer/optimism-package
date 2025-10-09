@@ -50,4 +50,4 @@ ethereum_package:
     capella_fork_epoch: 0
     deneb_fork_epoch: 0
     electra_fork_epoch: 0
-    fulu_fork_epoch: 0
+    fulu_fork_epoch: 1 # blocks are not finalized if fulu hard fork is activated at genesis
