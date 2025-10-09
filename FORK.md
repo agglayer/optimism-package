@@ -33,7 +33,8 @@ Some patches apply only to [Antithesis](https://antithesis.com/) environments:
 
 | # | Title | Scope | Notes |
 |---|-------|-------|-------|
-| 03 | feat: merge `overlay/main`, update contracts and add local artifact server | op artifacts, ci | Merge `overlay/main` changes, update config to use `v4.0.0` contracts and test antithesis-like configs in ci |
+| 04 | chore: merge `overlay/main` | merge | Merge `overlay/main` changes into `overlay/antithesis` |
+| 03 | feat: merge `overlay/main`, update contracts and add local artifact server | merge, op artifacts, ci | Merge `overlay/main` changes, update config to use `v4.0.0` contracts and test antithesis-like configs in ci |
 | 02 | ci: run tests on `overlay/antithesis` | ci | Run ci tests when pushing commits to `overlay/antithesis` for validation purposes |
 | 01 | feat: serve op artifacts locally | op artifacts | Serve OP artifacts from a local file server to avoid external pulls |
 
