@@ -21,6 +21,13 @@ runs:
         echo '{}' > predeployed_allocs.json # dummy file
         kurtosis files upload --name predeployed_allocs.json ${{ inputs.enclave }} ./predeployed_allocs.json
 
+    - name: Create a custom version of the op-node (only for custom-antithesis.yaml)
+      shell: bash
+      if: ${{ inputs.args-file == './.github/tests/custom-antithesis.yaml' }}
+      run: |
+        docker pull us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.14.1
+        docker tag us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.14.1 us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.14.1-custom
+
     - name: Start enclave ${{ inputs.enclave }}
       shell: bash
       run: kurtosis run . ${{ inputs.args-file && format('--args-file={0}', inputs.args-file) || '' }} --enclave=${{ inputs.enclave }} --verbosity detailed
