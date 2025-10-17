@@ -225,7 +225,7 @@ def get_service_config(
     op_node_version_formatted = op_node_version[1].split("-")[
         0
     ]  # remove any suffixes like -rc0, -beta, -custom etc.
-    if op_node_version_formatted in ["1.14.1"]:
+    if op_node_version_formatted in ["v1.14.1"]:
         l1_genesis_original = plan.get_files_artifact(name="el_cl_genesis_data")
         result = plan.run_sh(
             description="Standardize L1 genesis for op-node",
