@@ -16,6 +16,7 @@
 
 | # | Title | Scope | Notes |
 |---|-------|-------|-------|
+| 14 | fix: enable cell proofs on op-batcher | fusaka hf | Enable cell proofs on op-batcher for fusaka hardfork |
 | 13 | fix: typo in op-node version check and add antithesis-like test config | op-node, ci, antithesis | Fix typo |
 | 12 | fix: op-node version check to allow custom build | op-node | Fix op-node version check to allow custom builds based on v1.14.1 | 
 | 11 | fix: enable block finalization for fusaka env | ci, fusaka hf | Enable block finalization for fusaka environment and add additional checks in ci to ensure safe and finalized blocks are progressing |
