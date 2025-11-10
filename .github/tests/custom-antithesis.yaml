@@ -17,7 +17,7 @@ optimism_package:
           - "--txmgr.enable-cell-proofs"
         max_channel_duration: 10
   op_contract_deployer_params:
-    image: europe-west2-docker.pkg.dev/prj-polygonlabs-devtools-dev/public/op-deployer:v5.0.0-rc.2-cdk
+    image: europe-west2-docker.pkg.dev/prj-polygonlabs-devtools-dev/public/op-deployer:v0.5.0-rc.2-cdk
     l1_artifacts_locator: embedded
     l2_artifacts_locator: embedded
   observability:
