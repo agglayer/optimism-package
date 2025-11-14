@@ -10,8 +10,8 @@ optimism_package:
       batcher_params:
         max_channel_duration: 10
   op_contract_deployer_params:
-    image: europe-west2-docker.pkg.dev/prj-polygonlabs-devtools-dev/public/op-deployer:v0.4.2-cdk
-    l1_artifacts_locator: tag://op-contracts/v4.0.0
-    l2_artifacts_locator: tag://op-contracts/v4.0.0
+    image: europe-west2-docker.pkg.dev/prj-polygonlabs-devtools-dev/public/op-deployer:v0.4.5-cdk
+    l1_artifacts_locator: embedded
+    l2_artifacts_locator: embedded
   observability:
     enabled: false

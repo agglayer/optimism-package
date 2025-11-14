@@ -218,14 +218,25 @@ def get_service_config(
             ],
         )
 
+    # Extract op-node version
     op_node_version = params.image.split(":")
     if len(op_node_version) != 2:
         fail("Could not parse op-node version from image: {}".format(params.image))
+    # Remove "v" suffix and any suffix like -rc0, -beta, -custom etc.
+    op_node_version_formatted = op_node_version[1].removeprefix("v").split("-")[0]
+    # Extract major and minor versions
+    op_node_version_split = op_node_version_formatted.split(".")
+    if len(op_node_version_split) < 3:
+        fail(
+            "Could not parse major, minor, and patch versions from op-node version: {}".format(
+                op_node_version_formatted
+            )
+        )
+    op_node_major_version = int(op_node_version_split[0])
+    op_node_minor_version = int(op_node_version_split[1])
 
-    op_node_version_formatted = op_node_version[1].split("-")[
-        0
-    ]  # remove any suffixes like -rc0, -beta, -custom etc.
-    if op_node_version_formatted in ["v1.14.1"]:
+    # For op-node versions >= 1.14, mount a standardized L1 genesis file
+    if op_node_major_version == 1 and op_node_minor_version >= 14:
         l1_genesis_original = plan.get_files_artifact(name="el_cl_genesis_data")
         result = plan.run_sh(
             description="Standardize L1 genesis for op-node",
