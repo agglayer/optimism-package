@@ -222,8 +222,8 @@ def get_service_config(
     op_node_version = params.image.split(":")
     if len(op_node_version) != 2:
         fail("Could not parse op-node version from image: {}".format(params.image))
-    # Remove any suffixes like -rc0, -beta, -custom etc.
-    op_node_version_formatted = op_node_version[1].split("-")[0]
+    # Remove "v" suffix and any suffix like -rc0, -beta, -custom etc.
+    op_node_version_formatted = op_node_version[1].removeprefix("v").split("-")[0]
     # Extract major and minor versions
     op_node_version_split = op_node_version_formatted.split(".")
     if len(op_node_version_split) < 3:
