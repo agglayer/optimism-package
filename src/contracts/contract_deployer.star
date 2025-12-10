@@ -408,6 +408,7 @@ def deploy_contracts(
         }
         | contracts_extra_files,
         run=" && ".join(apply_cmds),
+        wait="10m",
     )
 
     for chain in optimism_args.chains:
