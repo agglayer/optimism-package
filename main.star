@@ -78,6 +78,7 @@ def run(plan, args={}):
             "CL_RPC_URL": external_l1_args.cl_rpc_url,
             "L1_WS_URL": external_l1_args.el_ws_url,
             "L1_CHAIN_ID": external_l1_args.network_id,
+            "L1_GENESIS_ARTIFACT_NAME": external_l1_args.genesis_artifact_name,
         }
 
         plan.print("Waiting for network to sync")
@@ -250,6 +251,7 @@ def get_l1_config(all_l1_participants, l1_network_params, l1_network_id):
     env_vars["L1_WS_URL"] = str(all_l1_participants[0].el_context.ws_url)
     env_vars["L1_CHAIN_ID"] = str(l1_network_id)
     env_vars["L1_BLOCK_TIME"] = str(l1_network_params.seconds_per_slot)
+    env_vars["L1_GENESIS_ARTIFACT_NAME"] = "el_cl_genesis_data"
     return env_vars
 
 

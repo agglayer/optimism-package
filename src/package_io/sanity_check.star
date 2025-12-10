@@ -92,6 +92,7 @@ EXTERNAL_L1_NETWORK_PARAMS = [
     "el_ws_url",
     "cl_rpc_url",
     "priv_key",
+    "genesis_artifact_name",
 ]
 
 
