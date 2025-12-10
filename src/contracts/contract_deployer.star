@@ -390,6 +390,7 @@ def deploy_contracts(
     op_deployer_output = plan.run_sh(
         name="op-deployer-apply",
         description="Apply L2 contract deployments",
+        wait="10m",
         image=optimism_args.op_contract_deployer_params.image,
         env_vars={
             "PRIVATE_KEY": str(priv_key),
