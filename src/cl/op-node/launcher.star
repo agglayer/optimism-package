@@ -236,7 +236,7 @@ def get_service_config(
     op_node_minor_version = int(op_node_version_split[1])
 
     # For op-node versions >= 1.14, mount a standardized L1 genesis file
-    if op_node_major_version == 1 and op_node_minor_version >= 14:
+    if op_node_major_version == 1 and op_node_minor_version >= 14 and params.deploy_l1:
         l1_genesis_original = plan.get_files_artifact(name="el_cl_genesis_data")
         result = plan.run_sh(
             description="Standardize L1 genesis for op-node",

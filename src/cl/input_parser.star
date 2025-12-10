@@ -18,6 +18,7 @@ _DEFAULT_ARGS = {
     "min_mem": 0,
     "max_mem": 0,
     "pprof_enabled": False,
+    "deploy_l1": False, 
 }
 
 _IMAGE_IDS = {
