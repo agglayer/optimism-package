@@ -25,6 +25,7 @@ def launch(
     tolerations,
     node_selectors,
     observability_helper,
+    deploy_l1,
 ):
     cl = None
 
@@ -90,6 +91,7 @@ def launch(
             tolerations=tolerations,
             node_selectors=node_selectors,
             observability_helper=observability_helper,
+            deploy_l1=deploy_l1,
         )
 
     # Register metrics

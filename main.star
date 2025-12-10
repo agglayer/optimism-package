@@ -152,6 +152,7 @@ def run(plan, args={}):
                 tolerations=global_tolerations,
                 persistent=persistent,
                 registry=registry,
+                deploy_l1=args.get("deploy_l1", False),
             )
         )
 

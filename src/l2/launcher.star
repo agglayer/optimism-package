@@ -23,6 +23,7 @@ def launch(
     node_selectors,
     observability_helper,
     registry,
+    deploy_l1,
 ):
     network_params = params.network_params
     network_name = network_params.name
@@ -173,6 +174,7 @@ def launch(
             bootnode_contexts=bootnode_contexts + [el.context],
             observability_helper=observability_helper,
             log_prefix=participant_log_prefix,
+            deploy_l1=deploy_l1,
         )
 
         #
@@ -206,6 +208,7 @@ def launch(
             tolerations=tolerations,
             node_selectors=node_selectors,
             observability_helper=observability_helper,
+            deploy_l1=deploy_l1,
         )
 
         # Add the EL/CL pair to the list of launched participants
@@ -261,6 +264,7 @@ def _launch_sidecar_maybe(
     bootnode_contexts,
     observability_helper,
     log_prefix,
+    deploy_l1,
 ):
     mev_params = participant_params.mev_params
     if not mev_params:
@@ -354,6 +358,7 @@ def _launch_sidecar_maybe(
             tolerations=tolerations,
             node_selectors=node_selectors,
             observability_helper=observability_helper,
+             deploy_l1=deploy_l1,
         )
     )
 

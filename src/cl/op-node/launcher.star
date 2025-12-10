@@ -51,6 +51,7 @@ def launch(
     cl_contexts,
     l1_config_env_vars,
     observability_helper,
+    deploy_l1,
 ):
     beacon_node_identity_recipe = PostHttpRequestRecipe(
         endpoint="/",
@@ -96,6 +97,7 @@ def launch(
         cl_contexts=cl_contexts,
         l1_config_env_vars=l1_config_env_vars,
         observability_helper=observability_helper,
+        deploy_l1=deploy_l1,
     )
 
     rpc_port = params.ports[_net.RPC_PORT_NAME]
@@ -148,6 +150,7 @@ def get_service_config(
     cl_contexts,
     l1_config_env_vars,
     observability_helper,
+    deploy_l1,
 ):
     ports = _net.ports_to_port_specs(params.ports)
 
@@ -236,7 +239,7 @@ def get_service_config(
     op_node_minor_version = int(op_node_version_split[1])
 
     # For op-node versions >= 1.14, mount a standardized L1 genesis file
-    if op_node_major_version == 1 and op_node_minor_version >= 14 and args.get("deploy_l1"):
+    if op_node_major_version == 1 and op_node_minor_version >= 14 and deploy_l1:
         l1_genesis_original = plan.get_files_artifact(name="el_cl_genesis_data")
         result = plan.run_sh(
             description="Standardize L1 genesis for op-node",
