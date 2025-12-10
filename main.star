@@ -81,8 +81,8 @@ def run(plan, args={}):
             "L1_GENESIS_ARTIFACT_NAME": external_l1_args.genesis_artifact_name,
         }
 
-        plan.print("Waiting for network to sync")
-        wait_for_sync.wait_for_sync(plan, l1_config_env_vars)
+        # plan.print("Waiting for network to sync")
+        # wait_for_sync.wait_for_sync(plan, l1_config_env_vars)
     else:
         plan.print("Deploying a local L1")
         l1 = ethereum_package.run(plan, ethereum_args)
