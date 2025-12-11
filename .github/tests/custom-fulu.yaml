@@ -2,7 +2,7 @@ optimism_package:
   chains:
     001:
       participants:
-        node1:
+        sequencer1:
           sequencer: true
           el:
             type: op-geth
@@ -13,8 +13,8 @@ optimism_package:
             extra_params:
               - "--rollup.l1-chain-config=/l1/genesis.json"
 
-        node2:
-          sequencer: node1
+        rpc1:
+          sequencer: sequencer1
           el:
             type: op-geth
             image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101603.5
