@@ -71,6 +71,7 @@ def run(plan, args={}):
 
         l1_rpc_url = external_l1_args.el_rpc_url
         l1_priv_key = external_l1_args.priv_key
+        l1_genesis_file_path = external_l1_args.genesis_file_path
 
         l1_config_env_vars = {
             "L1_RPC_KIND": external_l1_args.rpc_kind,
@@ -78,8 +79,15 @@ def run(plan, args={}):
             "CL_RPC_URL": external_l1_args.cl_rpc_url,
             "L1_WS_URL": external_l1_args.el_ws_url,
             "L1_CHAIN_ID": external_l1_args.network_id,
-            "L1_GENESIS_ARTIFACT_NAME": external_l1_args.genesis_artifact_name,
+            "L1_GENESIS_FILE_PATH": l1_genesis_file_path,
         }
+
+        plan.print("Uploading L1 genesis artifact")
+        l1_genesis_file = read_file(src=l1_genesis_file_path)
+        genesis_artifact = plan.render_templates(
+            name="l1-genesis",
+            config={"genesis.json": struct(template=l1_genesis_file, data={})},
+        )
 
         # plan.print("Waiting for network to sync")
         # wait_for_sync.wait_for_sync(plan, l1_config_env_vars)
@@ -251,7 +259,7 @@ def get_l1_config(all_l1_participants, l1_network_params, l1_network_id):
     env_vars["L1_WS_URL"] = str(all_l1_participants[0].el_context.ws_url)
     env_vars["L1_CHAIN_ID"] = str(l1_network_id)
     env_vars["L1_BLOCK_TIME"] = str(l1_network_params.seconds_per_slot)
-    env_vars["L1_GENESIS_ARTIFACT_NAME"] = "el_cl_genesis_data"
+    env_vars["L1_GENESIS_FILE_PATH"] = ""
     return env_vars
 
 
