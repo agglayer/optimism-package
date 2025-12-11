@@ -1,8 +1,13 @@
 participants:
   - el_type: geth
+    el_image: ethereum/client-go:v1.16.7
     cl_type: lighthouse
+    cl_image: sigp/lighthouse:v8.0.1
+    supernode: true # required for fulu hf if perfect peerDAS is not enabled
+
 network_params:
   preset: minimal
+  seconds_per_slot: 2
   genesis_delay: 5
   additional_preloaded_contracts: '
     {
@@ -12,5 +17,14 @@ network_params:
         "storage": {},
         "nonce": "1"
       }
-    }
-  '
+    }'
+  
+  # Ethereum hard fork configurations.
+  # Supported fork epochs are documented in `static_files/genesis-generation-config/el-cl/values.env.tmpl` in the
+  # ethereum package repository.
+  altair_fork_epoch: 0
+  bellatrix_fork_epoch: 0
+  capella_fork_epoch: 0
+  deneb_fork_epoch: 0
+  electra_fork_epoch: 0
+  fulu_fork_epoch: 1 # blocks are not finalized if fulu hard fork is activated at genesis
