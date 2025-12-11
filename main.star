@@ -84,9 +84,15 @@ def run(plan, args={}):
 
         plan.print("Uploading L1 genesis artifact")
         l1_genesis_file = read_file(src=l1_genesis_file_path)
-        genesis_artifact = plan.render_templates(
+        plan.render_templates(
             name="l1-genesis",
             config={"genesis.json": struct(template=l1_genesis_file, data={})},
+        )
+
+        plan.print("Uploading dummy allocs file artifact")
+        plan.render_templates(
+            name="predeployed_allocs.json",
+            config={"predeployed_allocs.json": struct(template="{}", data={})},
         )
 
         # plan.print("Waiting for network to sync")
