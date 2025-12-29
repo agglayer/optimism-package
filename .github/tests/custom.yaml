@@ -1,8 +1,8 @@
 optimism_package:
   chains:
-    001:
+    "001":
       participants:
-        node1:
+        "node1":
           el:
             type: op-geth
             image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101604.0
