@@ -16,6 +16,7 @@
 
 | # | Title | Scope | Notes |
 |---|-------|-------|-------|
+| 17 | chore: bump kurtosis and clean up custom test files | ci | Bump kurtosis and clean up custom test files |
 | 16 | chore: bump op-deployer to v5 | op-deployer | Bump op-deployer and contracts to v5 |
 | 15 | fix: op-node l1 genesis logic and bump custom configs | ci | Fix op-node L1 genesis logic and bump custom configs |
 | 14 | fix: enable cell proofs on op-batcher | fusaka hf | Enable cell proofs on op-batcher for fusaka hardfork |
