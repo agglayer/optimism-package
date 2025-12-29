@@ -2,7 +2,7 @@
 
 # Core dependencies
 just = "1.40.0"
-"ubi:leovct/kurtosis-test" = "feat/kurtosis-1_14_1"
+"ubi:leovct/kurtosis-test" = "v0.0.7"
 "ubi:kurtosis-tech/kurtosis-cli-release-artifacts[exe=kurtosis]" = "1.14.1"
 "yq" = "v4.44.3"
 
