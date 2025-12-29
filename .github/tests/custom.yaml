@@ -1,17 +1,53 @@
 optimism_package:
   chains:
-    "001":
+    001:
       participants:
-        "node1":
+        node1:
           el:
             type: op-geth
+            image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101603.5
           cl:
             type: op-node
+            image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.16.3
+            extra_params:
+              - "--rollup.l1-chain-config=/l1/genesis.json"
       batcher_params:
+        image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-batcher:v1.16.2
         max_channel_duration: 10
   op_contract_deployer_params:
-    image: europe-west2-docker.pkg.dev/prj-polygonlabs-devtools-dev/public/op-deployer:v0.4.5-cdk
+    image: europe-west2-docker.pkg.dev/prj-polygonlabs-devtools-dev/public/op-deployer:v0.5.1-cdk
     l1_artifacts_locator: embedded
     l2_artifacts_locator: embedded
   observability:
     enabled: false
+
+ethereum_package:
+  participants:
+    - el_type: geth
+      el_image: ethereum/client-go:v1.16.7
+      cl_type: lighthouse
+      cl_image: sigp/lighthouse:v8.0.1
+      supernode: true # required for fulu hf if perfect peerDAS is not enabled
+  network_params:
+    preset: minimal
+    seconds_per_slot: 2
+    genesis_delay: 5
+    additional_preloaded_contracts: '
+      {
+        "0x4e59b44847b379578588920cA78FbF26c0B4956C": {
+          "balance": "0ETH",
+          "code": "0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe03601600081602082378035828234f58015156039578182fd5b8082525050506014600cf3",
+          "storage": {},
+          "nonce": "1"
+        }
+      }'
+
+    # Ethereum hard fork configurations.
+    # Supported fork epochs are documented in `static_files/genesis-generation-config/el-cl/values.env.tmpl` in the
+    # ethereum package repository.
+    altair_fork_epoch: 0
+    bellatrix_fork_epoch: 0
+    capella_fork_epoch: 0
+    deneb_fork_epoch: 0
+    electra_fork_epoch: 0
+    fulu_fork_epoch: 1 # blocks are not finalized if fulu hard fork is activated at genesis
