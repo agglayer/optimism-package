@@ -44,6 +44,9 @@ def test_l2_participant_cl_launcher_hildr(plan):
                     "node0": {
                         "cl": {
                             "type": "hildr",
+                            "extra_params": [
+                                "--rollup.l1-chain-config=/l1/genesis.json",
+                            ],
                         }
                     }
                 }
@@ -95,10 +98,9 @@ def test_l2_participant_cl_launcher_hildr(plan):
             "--rpc-port=8547",
             "--sync-mode=full",
             "--network=/network-configs/rollup-2151908.json",
-            "--metrics-enable",
-            "--metrics-port=9001",
             "--sequencer-enable",
             "--disc-boot-nodes=enr.001,enr.002",
+            "--rollup.l1-chain-config=/l1/genesis.json",
         ],
     )
     expect.eq(
@@ -136,6 +138,9 @@ def test_l2_participant_cl_launcher_kona_node(plan):
                     "node0": {
                         "cl": {
                             "type": "kona-node",
+                            "extra_params": [
+                                "--rollup.l1-chain-config=/l1/genesis.json",
+                            ],
                         }
                     }
                 }
@@ -183,9 +188,6 @@ def test_l2_participant_cl_launcher_kona_node(plan):
             "--l2-chain-id",
             "2151908",
             "-vvv",
-            "--metrics.enabled",
-            "--metrics.addr=0.0.0.0",
-            "--metrics.port=9001",
             "node",
             "--l1-eth-rpc",
             "http://l1.rpc",
@@ -219,6 +221,7 @@ def test_l2_participant_cl_launcher_kona_node(plan):
             "--p2p.sequencer.key={}".format(sequencer_private_key_mock),
             "--p2p.bootnodes",
             "enr.001,enr.002",
+            "--rollup.l1-chain-config=/l1/genesis.json",
         ],
     )
     expect.eq(
@@ -256,6 +259,9 @@ def test_l2_participant_cl_launcher_kona_node_with_signer(plan):
                     "node0": {
                         "cl": {
                             "type": "kona-node",
+                            "extra_params": [
+                                "--rollup.l1-chain-config=/l1/genesis.json",
+                            ],
                         }
                     }
                 }
@@ -319,9 +325,6 @@ def test_l2_participant_cl_launcher_kona_node_with_signer(plan):
             "--l2-chain-id",
             "2151908",
             "-vvv",
-            "--metrics.enabled",
-            "--metrics.addr=0.0.0.0",
-            "--metrics.port=9001",
             "node",
             "--l1-eth-rpc",
             "http://l1.rpc",
@@ -359,6 +362,7 @@ def test_l2_participant_cl_launcher_kona_node_with_signer(plan):
             "--p2p.signer.address={}".format(sequencer_address_mock),
             "--p2p.bootnodes",
             "enr.001,enr.002",
+            "--rollup.l1-chain-config=/l1/genesis.json",
         ],
     )
     expect.eq(
@@ -396,6 +400,9 @@ def test_l2_participant_cl_launcher_op_node(plan):
                     "node0": {
                         "cl": {
                             "type": "op-node",
+                            "extra_params": [
+                                "--rollup.l1-chain-config=/l1/genesis.json",
+                            ],
                         }
                     }
                 }
@@ -461,13 +468,11 @@ def test_l2_participant_cl_launcher_op_node(plan):
             "--safedb.path=/data/op-node/op-node-beacon-data",
             "--altda.enabled=false",
             "--altda.da-server=",
-            "--metrics.enabled",
-            "--metrics.addr=0.0.0.0",
-            "--metrics.port=9001",
             "--p2p.sequencer.key={}".format(sequencer_private_key_mock),
             "--sequencer.enabled",
             "--sequencer.l1-confs=2",
             "--p2p.bootnodes=enr.001,enr.002",
+            "--rollup.l1-chain-config=/l1/genesis.json",
         ],
     )
     expect.eq(
@@ -510,6 +515,9 @@ def test_l2_participant_cl_launcher_incompatible_conductor(plan):
                     "node0": {
                         "cl": {
                             "type": "hildr",
+                            "extra_params": [
+                                "--rollup.l1-chain-config=/l1/genesis.json",
+                            ],
                         }
                     }
                 }

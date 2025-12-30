@@ -20,6 +20,20 @@ _shared_defaults = {
     "volume_size": 0,
 }
 
+_cl_defaults = {
+    "extra_env_vars": {},
+    "extra_labels": {},
+    "extra_params": ["--rollup.l1-chain-config=/l1/genesis.json"],
+    "log_level": None,
+    "max_cpu": 0,
+    "max_mem": 0,
+    "min_cpu": 0,
+    "min_mem": 0,
+    "node_selectors": {},
+    "tolerations": [],
+    "volume_size": 0,
+}
+
 
 def test_l2_participant_input_parser_empty(plan):
     expect.fails(
@@ -64,7 +78,7 @@ def test_l2_participant_input_parser_defaults(plan):
                 sequencer="node0",
                 cl=struct(
                     type="op-node",
-                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.13.4",
+                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.16.4",
                     name="node0",
                     service_name="op-cl-1-op-node-op-geth-my-l2",
                     labels={
@@ -82,12 +96,12 @@ def test_l2_participant_input_parser_defaults(plan):
                         ),
                     },
                     pprof_enabled=False,
-                    **_shared_defaults,
+                    **_cl_defaults,
                 ),
                 cl_builder=struct(
                     name="node0",
                     type="op-node",
-                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.13.4",
+                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.16.4",
                     service_name="op-clbuilder-1-op-node-op-geth-my-l2",
                     labels={
                         "op.kind": "clbuilder",
@@ -104,13 +118,13 @@ def test_l2_participant_input_parser_defaults(plan):
                         ),
                     },
                     pprof_enabled=False,
-                    **_shared_defaults,
+                    **_cl_defaults,
                 ),
                 el=struct(
                     name="node0",
                     type="op-geth",
                     service_name="op-el-1-op-geth-op-node-my-l2",
-                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101511.1",
+                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101604.0",
                     labels={
                         "op.kind": "el",
                         "op.network.id": "1000",
@@ -134,7 +148,7 @@ def test_l2_participant_input_parser_defaults(plan):
                 el_builder=struct(
                     name="node0",
                     type="op-geth",
-                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101511.1",
+                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101604.0",
                     service_name="op-elbuilder-1-op-geth-op-node-my-l2",
                     labels={
                         "op.kind": "elbuilder",
@@ -170,7 +184,7 @@ def test_l2_participant_input_parser_defaults(plan):
                 cl=struct(
                     name="node1",
                     type="op-node",
-                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.13.4",
+                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.16.4",
                     service_name="op-cl-2-op-node-op-geth-my-l2",
                     labels={
                         "op.kind": "cl",
@@ -187,12 +201,12 @@ def test_l2_participant_input_parser_defaults(plan):
                         ),
                     },
                     pprof_enabled=False,
-                    **_shared_defaults,
+                    **_cl_defaults,
                 ),
                 cl_builder=struct(
                     name="node1",
                     type="op-node",
-                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.13.4",
+                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.16.4",
                     service_name="op-clbuilder-2-op-node-op-geth-my-l2",
                     labels={
                         "op.kind": "clbuilder",
@@ -209,12 +223,12 @@ def test_l2_participant_input_parser_defaults(plan):
                         ),
                     },
                     pprof_enabled=False,
-                    **_shared_defaults,
+                    **_cl_defaults,
                 ),
                 el=struct(
                     name="node1",
                     type="op-geth",
-                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101511.1",
+                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101604.0",
                     service_name="op-el-2-op-geth-op-node-my-l2",
                     labels={
                         "op.kind": "el",
@@ -239,7 +253,7 @@ def test_l2_participant_input_parser_defaults(plan):
                 el_builder=struct(
                     name="node1",
                     type="op-geth",
-                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101511.1",
+                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101604.0",
                     service_name="op-elbuilder-2-op-geth-op-node-my-l2",
                     labels={
                         "op.kind": "elbuilder",
