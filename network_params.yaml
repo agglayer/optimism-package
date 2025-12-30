@@ -9,9 +9,9 @@ optimism_package:
           cl:
             type: op-node
             log_level: debug
-          conductor_params:
-            enabled: true
-            bootstrap: true
+          # conductor_params:
+          #   enabled: true
+          #   bootstrap: true
         node1:
           sequencer: true
           el:
@@ -19,8 +19,8 @@ optimism_package:
           cl:
             type: op-node
             log_level: debug
-          conductor_params:
-            enabled: true
+          # conductor_params:
+          #   enabled: true
         node2:
           sequencer: true
           el:
@@ -28,8 +28,8 @@ optimism_package:
           cl:
             type: op-node
             log_level: debug
-          conductor_params:
-            enabled: true
+          # conductor_params:
+          #   enabled: true
         node3:
           sequencer: "node0"
         node4:
