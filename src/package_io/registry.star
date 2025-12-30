@@ -49,18 +49,18 @@ OP_BLOCKSCOUT_VERIFIER = "op-blockscout-verifier"
 
 _DEFAULT_IMAGES = {
     # EL images
-    OP_GETH: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101511.1",
+    OP_GETH: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101604.0",
     OP_RETH: "ghcr.io/paradigmxyz/op-reth:v1.6.0",
     OP_ERIGON: "testinprod/op-erigon:v2.61.3-0.9.5",
     OP_NETHERMIND: "nethermind/nethermind:1.32.4",
     OP_BESU: "ghcr.io/optimism-java/op-besu:v0.2.2",
     OP_RBUILDER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-rbuilder:sha-0ec0644",
     # CL images
-    OP_NODE: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.13.4",
+    OP_NODE: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.16.4",
     KONA_NODE: "ghcr.io/op-rs/kona/kona-node:1.0.0-rc.1",
     HILDR: "ghcr.io/optimism-java/hildr:v0.4.5",
     # Batching
-    OP_BATCHER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-batcher:v1.14.0",
+    OP_BATCHER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-batcher:v1.16.3",
     # Challenger
     OP_CHALLENGER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-challenger:v1.5.1",
     # op-supervisor
@@ -72,8 +72,7 @@ _DEFAULT_IMAGES = {
     # Conductor
     OP_CONDUCTOR: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-conductor:v0.7.1",
     # deployer
-    # OP_DEPLOYER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-deployer:v0.4.0-rc.2",
-    OP_DEPLOYER: "europe-west2-docker.pkg.dev/prj-polygonlabs-devtools-dev/public/op-deployer:v0.4.0-rc.2-cdk",
+    OP_DEPLOYER: "europe-west2-docker.pkg.dev/prj-polygonlabs-devtools-dev/public/op-deployer:v0.6.0-rc.2-cdk",
     # Faucet
     OP_FAUCET: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-faucet:develop",
     # conductor-ops

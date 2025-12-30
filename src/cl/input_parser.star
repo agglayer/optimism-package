@@ -9,7 +9,9 @@ _DEFAULT_ARGS = {
     "log_level": None,
     "extra_env_vars": {},
     "extra_labels": {},
-    "extra_params": [],
+    "extra_params": [
+        "--rollup.l1-chain-config=/l1/genesis.json",
+    ],
     "node_selectors": {},
     "tolerations": [],
     "volume_size": 0,
