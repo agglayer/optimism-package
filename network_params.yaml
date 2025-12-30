@@ -64,9 +64,9 @@ optimism_package:
       <<: *x-challenger
   superchains:
     superchain0:
-  supervisors:
-    supervisor0: &x-supervisor
-      superchain: superchain0
+  # supervisors:
+  #   supervisor0: &x-supervisor
+  #     superchain: superchain0
   test-sequencers:
     sequencer0:
       enabled: true
