@@ -112,8 +112,5 @@ def test_op_challenger_launch_with_defaults(plan):
             "--private-key=challenger_private_key",
             "--rollup-rpc=http://my-cl:8545",
             "--cannon-prestates-url=https://storage.googleapis.com/oplabs-network-data/proofs/op-program/cannon",
-            "--metrics.enabled",
-            "--metrics.addr=0.0.0.0",
-            "--metrics.port=9001",
         ],
     )

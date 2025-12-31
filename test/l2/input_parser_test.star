@@ -71,7 +71,7 @@ def test_l2_input_parser_defaults(plan):
 
     _default_batcher_params = struct(
         extra_params=[],
-        image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-batcher:v1.14.0",
+        image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-batcher:v1.16.3",
         max_channel_duration=1,
         ports={
             _net.HTTP_PORT_NAME: _net.port(number=8548),

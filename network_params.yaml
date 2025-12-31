@@ -9,9 +9,9 @@ optimism_package:
           cl:
             type: op-node
             log_level: debug
-          conductor_params:
-            enabled: true
-            bootstrap: true
+          # conductor_params:
+          #   enabled: true
+          #   bootstrap: true
         node1:
           sequencer: true
           el:
@@ -19,8 +19,8 @@ optimism_package:
           cl:
             type: op-node
             log_level: debug
-          conductor_params:
-            enabled: true
+          # conductor_params:
+          #   enabled: true
         node2:
           sequencer: true
           el:
@@ -28,8 +28,8 @@ optimism_package:
           cl:
             type: op-node
             log_level: debug
-          conductor_params:
-            enabled: true
+          # conductor_params:
+          #   enabled: true
         node3:
           sequencer: "node0"
         node4:
@@ -52,11 +52,6 @@ optimism_package:
         enabled: true
       tx_fuzzer_params:
         enabled: true
-  op_contract_deployer_params:
-    # image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-deployer:v0.4.2
-    image: europe-west2-docker.pkg.dev/prj-polygonlabs-devtools-dev/public/op-deployer:v0.4.2-cdk
-    l1_artifacts_locator: tag://op-contracts/v4.0.0
-    l2_artifacts_locator: tag://op-contracts/v4.0.0
   global_log_level: "info"
   global_node_selectors: {}
   global_tolerations: []
@@ -69,9 +64,9 @@ optimism_package:
       <<: *x-challenger
   superchains:
     superchain0:
-  supervisors:
-    supervisor0: &x-supervisor
-      superchain: superchain0
+  # supervisors:
+  #   supervisor0: &x-supervisor
+  #     superchain: superchain0
   test-sequencers:
     sequencer0:
       enabled: true

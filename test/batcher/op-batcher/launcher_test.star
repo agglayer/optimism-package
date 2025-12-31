@@ -84,9 +84,6 @@ def test_batcher_launcher_launch_without_conductor(plan):
             "--altda.enabled=false",
             "--altda.da-server=",
             "--altda.da-service",
-            "--metrics.enabled",
-            "--metrics.addr=0.0.0.0",
-            "--metrics.port=9001",
         ],
     )
 
@@ -152,9 +149,6 @@ def test_batcher_launcher_launch_with_conductor(plan):
             "--altda.enabled=false",
             "--altda.da-server=",
             "--altda.da-service",
-            "--metrics.enabled",
-            "--metrics.addr=0.0.0.0",
-            "--metrics.port=9001",
         ],
     )
 
@@ -255,9 +249,5 @@ def test_batcher_launcher_launch_with_signer(plan):
             "--signer.tls.key=tls.key",
             "--signer.endpoint=http://signer-signer-signer:8545",
             "--signer.address={}".format(batcher_address_mock),
-            # And end here
-            "--metrics.enabled",
-            "--metrics.addr=0.0.0.0",
-            "--metrics.port=9001",
         ],
     )

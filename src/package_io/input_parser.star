@@ -245,7 +245,7 @@ def parse_network_params(plan, registry, input_args):
 
 def default_observability_params():
     return {
-        "enabled": True,
+        "enabled": False,
         "enable_k8s_features": False,
     }
 
@@ -368,9 +368,11 @@ def _default_proposer_params(registry):
 def default_op_contract_deployer_params(registry):
     return {
         "image": registry.get(_registry.OP_DEPLOYER),
-        "l1_artifacts_locator": "https://storage.googleapis.com/oplabs-contract-artifacts/artifacts-v1-02024c5a26c16fc1a5c716fff1c46b5bf7f23890d431bb554ddbad60971211d4.tar.gz",
-        "l2_artifacts_locator": "https://storage.googleapis.com/oplabs-contract-artifacts/artifacts-v1-02024c5a26c16fc1a5c716fff1c46b5bf7f23890d431bb554ddbad60971211d4.tar.gz",
-        "overrides": {},
+        "l1_artifacts_locator": "embedded",
+        "l2_artifacts_locator": "embedded",
+        "overrides": {
+            "faultGameAbsolutePrestate": "0x038512e02c4c3f7bdaec27d00edf55b7155e0905301e1a88083e4e0a6764d54c",  # standard canon vm prestate hash
+        },
     }
 
 

@@ -80,9 +80,6 @@ def test_proposer_launcher_launch_without_signer(plan):
             "--game-type=1",
             "--proposal-interval=10m",
             "--wait-node-sync=true",
-            "--metrics.enabled",
-            "--metrics.addr=0.0.0.0",
-            "--metrics.port=9001",
         ],
     )
 
@@ -175,8 +172,5 @@ def test_proposer_launcher_launch_with_signer(plan):
             "--signer.tls.key=tls.key",
             "--signer.endpoint=http://signer-signer-signer:8545",
             "--signer.address=0xbac4e5",
-            "--metrics.enabled",
-            "--metrics.addr=0.0.0.0",
-            "--metrics.port=9001",
         ],
     )
