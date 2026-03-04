@@ -217,7 +217,7 @@ optimism_package:
 
             # The Docker image that should be used for the EL client; leave blank to use the default for the client type
             # Defaults by client:
-            # - op-geth: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101604.0
+            # - op-geth: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101609.1
             # - op-reth: parithoshj/op-reth:latest
             # - op-erigon: testinprod/op-erigon:v2.61.3-0.9.5
             # - op-nethermind: nethermindeth/nethermind:op-c482d56
@@ -282,7 +282,7 @@ optimism_package:
 
             # The Docker image that should be used for the CL client; leave blank to use the default for the client type
             # Defaults by client:
-            # - op-node: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.16.4
+            # - op-node: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.16.7
             # - hildr: ghcr.io/optimism-java/hildr:v0.4.5
             image: ""
 
@@ -345,7 +345,7 @@ optimism_package:
 
             # The Docker image that should be used for the builder EL client; leave blank to use the default for the client type
             # Defaults by client:
-            # - op-geth: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101604.0
+            # - op-geth: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101609.1
             # - op-reth: parithoshj/op-reth:latest
             # - op-rbuilder: ghcr.io/flashbots/op-rbuilder:0.1.2-interop
             image: ""
@@ -363,7 +363,7 @@ optimism_package:
 
             # The Docker image that should be used for the builder CL client; leave blank to use the default for the client type
             # Defaults by client:
-            # - op-node: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.16.4
+            # - op-node: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.16.7
             # - hildr: ghcr.io/optimism-java/hildr:v0.4.5
             image: ""
 
