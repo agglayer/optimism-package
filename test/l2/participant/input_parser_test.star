@@ -78,9 +78,9 @@ def test_l2_participant_input_parser_defaults(plan):
                 sequencer="node0",
                 cl=struct(
                     type="op-node",
-                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.16.7",
+                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.19.3",
                     name="node0",
-                    service_name="op-cl-1-op-node-op-geth-my-l2",
+                    service_name="op-cl-1-op-node-op-reth-my-l2",
                     labels={
                         "op.kind": "cl",
                         "op.network.id": "1000",
@@ -101,8 +101,8 @@ def test_l2_participant_input_parser_defaults(plan):
                 cl_builder=struct(
                     name="node0",
                     type="op-node",
-                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.16.7",
-                    service_name="op-clbuilder-1-op-node-op-geth-my-l2",
+                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.19.3",
+                    service_name="op-clbuilder-1-op-node-op-reth-my-l2",
                     labels={
                         "op.kind": "clbuilder",
                         "op.network.id": "1000",
@@ -122,15 +122,15 @@ def test_l2_participant_input_parser_defaults(plan):
                 ),
                 el=struct(
                     name="node0",
-                    type="op-geth",
-                    service_name="op-el-1-op-geth-op-node-my-l2",
-                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101609.1",
+                    type="op-reth",
+                    service_name="op-el-1-op-reth-op-node-my-l2",
+                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-reth:v2.4.0",
                     labels={
                         "op.kind": "el",
                         "op.network.id": "1000",
                         "op.network.participant.index": "1",
                         "op.network.participant.name": "node0",
-                        "op.el.type": "op-geth",
+                        "op.el.type": "op-reth",
                     },
                     ports={
                         _net.RPC_PORT_NAME: _net.port(number=8545),
@@ -147,15 +147,15 @@ def test_l2_participant_input_parser_defaults(plan):
                 ),
                 el_builder=struct(
                     name="node0",
-                    type="op-geth",
-                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101609.1",
-                    service_name="op-elbuilder-1-op-geth-op-node-my-l2",
+                    type="op-reth",
+                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-reth:v2.4.0",
+                    service_name="op-elbuilder-1-op-reth-op-node-my-l2",
                     labels={
                         "op.kind": "elbuilder",
                         "op.network.id": "1000",
                         "op.network.participant.index": "1",
                         "op.network.participant.name": "node0",
-                        "op.el.type": "op-geth",
+                        "op.el.type": "op-reth",
                     },
                     ports={
                         _net.RPC_PORT_NAME: _net.port(number=8545),
@@ -184,8 +184,8 @@ def test_l2_participant_input_parser_defaults(plan):
                 cl=struct(
                     name="node1",
                     type="op-node",
-                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.16.7",
-                    service_name="op-cl-2-op-node-op-geth-my-l2",
+                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.19.3",
+                    service_name="op-cl-2-op-node-op-reth-my-l2",
                     labels={
                         "op.kind": "cl",
                         "op.network.id": "1000",
@@ -206,8 +206,8 @@ def test_l2_participant_input_parser_defaults(plan):
                 cl_builder=struct(
                     name="node1",
                     type="op-node",
-                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.16.7",
-                    service_name="op-clbuilder-2-op-node-op-geth-my-l2",
+                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.19.3",
+                    service_name="op-clbuilder-2-op-node-op-reth-my-l2",
                     labels={
                         "op.kind": "clbuilder",
                         "op.network.id": "1000",
@@ -227,15 +227,15 @@ def test_l2_participant_input_parser_defaults(plan):
                 ),
                 el=struct(
                     name="node1",
-                    type="op-geth",
-                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101609.1",
-                    service_name="op-el-2-op-geth-op-node-my-l2",
+                    type="op-reth",
+                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-reth:v2.4.0",
+                    service_name="op-el-2-op-reth-op-node-my-l2",
                     labels={
                         "op.kind": "el",
                         "op.network.id": "1000",
                         "op.network.participant.index": "2",
                         "op.network.participant.name": "node1",
-                        "op.el.type": "op-geth",
+                        "op.el.type": "op-reth",
                     },
                     ports={
                         _net.RPC_PORT_NAME: _net.port(number=8545),
@@ -252,15 +252,15 @@ def test_l2_participant_input_parser_defaults(plan):
                 ),
                 el_builder=struct(
                     name="node1",
-                    type="op-geth",
-                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101609.1",
-                    service_name="op-elbuilder-2-op-geth-op-node-my-l2",
+                    type="op-reth",
+                    image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-reth:v2.4.0",
+                    service_name="op-elbuilder-2-op-reth-op-node-my-l2",
                     labels={
                         "op.kind": "elbuilder",
                         "op.network.id": "1000",
                         "op.network.participant.index": "2",
                         "op.network.participant.name": "node1",
-                        "op.el.type": "op-geth",
+                        "op.el.type": "op-reth",
                     },
                     ports={
                         _net.RPC_PORT_NAME: _net.port(number=8545),
@@ -317,7 +317,7 @@ def test_l2_participant_input_parser_defaults_conductor_enabled(plan):
         struct(
             enabled=True,
             extra_params=[],
-            image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-conductor:v0.7.1",
+            image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-conductor:v0.9.4",
             labels={
                 "op.kind": "conductor",
                 "op.network.id": "1000",

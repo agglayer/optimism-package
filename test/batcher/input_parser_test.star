@@ -20,7 +20,7 @@ def test_batcher_input_parser_extra_attrbutes(plan):
 
 def test_batcher_input_parser_default_args(plan):
     _default_params = struct(
-        image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-batcher:v1.16.3",
+        image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-batcher:v1.16.11",
         extra_params=[],
         max_channel_duration=1,
         ports={

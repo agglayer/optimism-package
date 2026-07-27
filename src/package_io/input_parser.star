@@ -201,7 +201,9 @@ def parse_network_params(plan, registry, input_args):
     # configure op-challenger
 
     results["challengers"] = _challenger_input_parser.parse(
-        args=input_args.get("challengers"), l2s_params=results["chains"]
+        args=input_args.get("challengers"),
+        l2s_params=results["chains"],
+        registry=registry,
     )
 
     # configure op-supervisor
