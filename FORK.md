@@ -18,6 +18,7 @@
 
 | # | Title | Scope | Notes |
 |---|-------|-------|-------|
+| 19 | chore: bump op-stack versions and switch default EL to op-reth | el/cl clients, op-batcher, op-challenger, op-proposer, op-conductor, op-deployer, proxyd, rollup-boost, tests, docs | Bump the OP stack to the latest stable releases and default new participants to op-reth, as op-geth has reached [end of support](https://docs.optimism.io/notices/op-geth-deprecation) and the Karst hardfork requires op-reth. Also wire the op-challenger image through the registry — it was hardcoded in its input parser and therefore missed by version bumps (**) |
 | 18 | chore: bump versions and switch to op-reth in custom.yaml | el clients, ci | Bump versions and switch to op-reth in custom.yaml |
 | 17 | chore: bump kurtosis and op components versions | ci | Bump kurtosis and op components versions |
 | 16 | chore: bump op-deployer to v5 | op-deployer | Bump op-deployer and contracts to v5 |
@@ -37,4 +38,6 @@
 | 02 | ci: run tests when pushing commits to `overlay/main` | ci | Run ci tests when pushing commits to `overlay/main` for validation purposes |
 | 01 | chore: update `kurtosis.yml` | kurtosis | Update `kurtosis.yml` to ensure this package is usable |
 
-(*) We also maintain a [fork](https://github.com/leovct/optimism/tree/op-deployer/v0.4.2-cdk) of the optimism monorepo to add support for predeployed filed in the op-deployer (see this [commit](https://github.com/leovct/optimism/commit/61f2b93ea781a12e96c857b0aa08854d35274f88)).
+(*) We also maintain a [fork](https://github.com/leovct/optimism) of the optimism monorepo to add support for predeployed files in the op-deployer (see this [commit](https://github.com/leovct/optimism/commit/61f2b93ea781a12e96c857b0aa08854d35274f88)). The patch is rebased onto each new op-deployer release as an `op-deployer/<version>-cdk` branch, published to `europe-west2-docker.pkg.dev/prj-polygonlabs-devtools-dev/public/op-deployer`. The current branch is [op-deployer/v0.7.1-cdk](https://github.com/leovct/optimism/tree/op-deployer/v0.7.1-cdk). Note that the `--predeployed-file` flag does not exist upstream, so it must be carried forward on every rebase.
+
+(**) Blockscout is intentionally left on `6.8.0`. Version `7.x` changes the `INDEXER_OPTIMISM_*` environment variables and the database schema, which requires a separate validation pass.
