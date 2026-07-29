@@ -84,8 +84,9 @@ def get_service_config(
 ):
     ports = _net.ports_to_port_specs(params.ports)
 
+    # The image entrypoint is the proxyd binary itself, so the command only
+    # carries the config file path.
     cmd = [
-        "proxyd",
         "{0}/{1}".format(_CONFIG_DIRPATH_ON_SERVICE, _CONFIG_FILE_NAME),
     ] + params.extra_params
 
