@@ -1,10 +1,11 @@
 _expansion = import_module("/src/util/expansion.star")
 _filter = import_module("/src/util/filter.star")
 _id = import_module("/src/util/id.star")
+_registry = import_module("/src/package_io/registry.star")
 
 _DEFAULT_ARGS = {
     "enabled": True,
-    "image": "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-challenger:v1.5.1",
+    "image": None,
     "extra_params": [],
     "participants": "*",
     "cannon_prestate_path": "",
@@ -15,16 +16,18 @@ _DEFAULT_ARGS = {
 }
 
 
-def parse(args, l2s_params):
+def parse(args, l2s_params, registry):
     return _filter.remove_none(
         [
-            _parse_instance(challenger_args or {}, challenger_name, l2s_params)
+            _parse_instance(
+                challenger_args or {}, challenger_name, l2s_params, registry
+            )
             for challenger_name, challenger_args in (args or {}).items()
         ]
     )
 
 
-def _parse_instance(challenger_args, challenger_name, l2s_params):
+def _parse_instance(challenger_args, challenger_name, l2s_params, registry):
     # Any extra attributes will cause an error
     _filter.assert_keys(
         challenger_args,
@@ -42,6 +45,11 @@ def _parse_instance(challenger_args, challenger_name, l2s_params):
 
     if not challenger_params["enabled"]:
         return None
+
+    # And default the image to the one in the registry
+    challenger_params["image"] = challenger_params["image"] or registry.get(
+        _registry.OP_CHALLENGER
+    )
 
     # We expand the list of participants since we support a special "*" value to include all networks
     network_ids = [c.network_params.network_id for c in l2s_params]

@@ -213,14 +213,14 @@ optimism_package:
             # op-erigon
             # op-nethermind
             # op-besu
-            type: op-geth
+            type: op-reth
 
             # The Docker image that should be used for the EL client; leave blank to use the default for the client type
             # Defaults by client:
-            # - op-geth: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101609.1
-            # - op-reth: parithoshj/op-reth:latest
+            # - op-geth: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101702.2
+            # - op-reth: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-reth:v2.4.0
             # - op-erigon: testinprod/op-erigon:v2.61.3-0.9.5
-            # - op-nethermind: nethermindeth/nethermind:op-c482d56
+            # - op-nethermind: nethermind/nethermind:1.32.4
             # - op-besu: ghcr.io/optimism-java/op-besu:v0.2.2
             image: ""
 
@@ -345,9 +345,9 @@ optimism_package:
 
             # The Docker image that should be used for the builder EL client; leave blank to use the default for the client type
             # Defaults by client:
-            # - op-geth: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101609.1
-            # - op-reth: parithoshj/op-reth:latest
-            # - op-rbuilder: ghcr.io/flashbots/op-rbuilder:0.1.2-interop
+            # - op-geth: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101702.2
+            # - op-reth: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-reth:v2.4.0
+            # - op-rbuilder: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-rbuilder:sha-0ec0644
             image: ""
 
             # Builder secret key used by op-rbuilder to sign transactions

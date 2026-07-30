@@ -49,40 +49,40 @@ OP_BLOCKSCOUT_VERIFIER = "op-blockscout-verifier"
 
 _DEFAULT_IMAGES = {
     # EL images
-    OP_GETH: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101609.1",
-    OP_RETH: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-reth:v1.11.0",
+    OP_GETH: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101702.2",
+    OP_RETH: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-reth:v2.4.0",
     OP_ERIGON: "testinprod/op-erigon:v2.61.3-0.9.5",
     OP_NETHERMIND: "nethermind/nethermind:1.32.4",
     OP_BESU: "ghcr.io/optimism-java/op-besu:v0.2.2",
     OP_RBUILDER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-rbuilder:sha-0ec0644",
     # CL images
-    OP_NODE: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.16.7",
+    OP_NODE: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.19.3",
     KONA_NODE: "ghcr.io/op-rs/kona/kona-node:1.0.0-rc.1",
     HILDR: "ghcr.io/optimism-java/hildr:v0.4.5",
     # Batching
-    OP_BATCHER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-batcher:v1.16.3",
+    OP_BATCHER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-batcher:v1.16.11",
     # Challenger
-    OP_CHALLENGER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-challenger:v1.5.1",
+    OP_CHALLENGER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-challenger:v1.9.4",
     # op-supervisor
     OP_SUPERVISOR: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-supervisor:v0.3.0-dev.4",
     # kona-supervisor
     KONA_SUPERVISOR: "ghcr.io/op-rs/kona/kona-supervisor@sha256:98afd250010201573fb61490f3eb9ea131186f84d532ef9a0018c6382a1c0b45",
     # Proposer
-    OP_PROPOSER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-proposer:v1.10.0",
+    OP_PROPOSER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-proposer:v1.16.3",
     # Conductor
-    OP_CONDUCTOR: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-conductor:v0.7.1",
+    OP_CONDUCTOR: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-conductor:v0.9.4",
     # deployer
-    OP_DEPLOYER: "europe-west2-docker.pkg.dev/prj-polygonlabs-devtools-dev/public/op-deployer:v0.6.0-rc.2-cdk",
+    OP_DEPLOYER: "europe-west2-docker.pkg.dev/prj-polygonlabs-devtools-dev/public/op-deployer:v0.7.1-cdk",
     # Faucet
     OP_FAUCET: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-faucet:develop",
     # conductor-ops
     OP_CONDUCTOR_OPS: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-conductor-ops:v0.0.2",
     # Interop Monitor
-    OP_INTEROP_MON: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-interop-mon:v0.0.1",
+    OP_INTEROP_MON: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-interop-mon:v0.1.0",
     # Proxyd
-    PROXYD: "us-docker.pkg.dev/oplabs-tools-artifacts/images/proxyd:v4.14.5",
+    PROXYD: "us-docker.pkg.dev/oplabs-tools-artifacts/images/proxyd:v4.29.1",
     # Sidecar
-    ROLLUP_BOOST: "flashbots/rollup-boost:0.7.4",
+    ROLLUP_BOOST: "flashbots/rollup-boost:v0.7.17",
     # DA Server
     DA_SERVER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/da-server:v0.1.0",
     # Tx Fuzzer

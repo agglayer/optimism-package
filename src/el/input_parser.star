@@ -4,7 +4,7 @@ _net = import_module("/src/util/net.star")
 _id = import_module("/src/util/id.star")
 
 _DEFAULT_ARGS = {
-    "type": "op-geth",
+    "type": "op-reth",
     "image": None,
     "log_level": None,
     "extra_env_vars": {},

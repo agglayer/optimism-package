@@ -82,7 +82,7 @@ def _parse(
     # We filter the None values so that we can merge dicts easily
     # and merge the config with the defaults
     cl_params = _DEFAULT_ARGS | _filter.remove_none(cl_args or {})
-    el_params = {"type": "op-geth"} | _filter.remove_none(el_args or {})
+    el_params = {"type": "op-reth"} | _filter.remove_none(el_args or {})
 
     # We default the image to the one in the registry
     #
