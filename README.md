@@ -407,6 +407,16 @@ optimism_package:
         # Offset is in seconds
         jovian_time_offset: ""
 
+        # Karst fork
+        # Defaults to None - not activated - decimal value
+        # Offset is in seconds
+        karst_time_offset: ""
+
+        # Lagoon fork
+        # Defaults to None - not activated - decimal value
+        # Offset is in seconds
+        lagoon_time_offset: ""
+
         # Interop fork
         # Defaults to None - not activated - decimal value
         # Offset is in seconds
