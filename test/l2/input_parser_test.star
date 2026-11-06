@@ -62,6 +62,8 @@ def test_l2_input_parser_defaults(plan):
         holocene_time_offset=None,
         isthmus_time_offset=None,
         jovian_time_offset=None,
+        karst_time_offset=None,
+        lagoon_time_offset=None,
         interop_time_offset=None,
         network="kurtosis",
         network_id=2151908,
@@ -71,7 +73,7 @@ def test_l2_input_parser_defaults(plan):
 
     _default_batcher_params = struct(
         extra_params=[],
-        image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-batcher:v1.16.11",
+        image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-batcher:v1.18.1",
         max_channel_duration=1,
         ports={
             _net.HTTP_PORT_NAME: _net.port(number=8548),
@@ -87,8 +89,8 @@ def test_l2_input_parser_defaults(plan):
     _default_proposer_params = struct(
         enabled=True,
         extra_params=[],
-        game_type=1,
-        image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-proposer:v1.16.3",
+        game_type=0,
+        image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-proposer:v1.17.0",
         ports={
             _net.HTTP_PORT_NAME: _net.port(number=8560),
         },

@@ -13,9 +13,12 @@ optimism_package:
 ethereum_package:
   participants:
     - el_type: geth
-      el_image: ethereum/client-go:v1.17.1
+      el_image: ethereum/client-go:v1.17.10
+      el_extra_params:
+        - --rpc.txfeecap=0 # op-deployer v0.9 deployments exceed the default 1 ETH per-tx fee cap
+        - --rpc.gascap=1000000000 # deployments can exceed the default 50M eth_call gas cap
       cl_type: lighthouse
-      cl_image: sigp/lighthouse:v8.1.1
+      cl_image: sigp/lighthouse:v8.3.2
       supernode: true # required for fulu hf if perfect peerDAS is not enabled
   network_params:
     preset: minimal
@@ -39,4 +42,8 @@ ethereum_package:
     capella_fork_epoch: 0
     deneb_fork_epoch: 0
     electra_fork_epoch: 0
-    fulu_fork_epoch: 1 # blocks are not finalized if fulu hard fork is activated at genesis
+    fulu_fork_epoch: 0 # requires a supernode or perfect PeerDAS to be enabled
+    # Blob parameter only (BPO) forks bump the blob target/max. BPO 3 to 5 stay disabled, as in the ethereum package defaults.
+    bpo_1_epoch: 0
+    bpo_2_epoch: 0
+    gloas_fork_epoch: 0 # Glamsterdam: Gloas (CL) + Amsterdam (EL)

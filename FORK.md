@@ -18,6 +18,7 @@
 
 | # | Title | Scope | Notes |
 |---|-------|-------|-------|
+| 20 | chore: bump op-stack, ethereum-package and tooling versions | el/cl clients, op components, ci | Bump op-node, op-batcher, op-proposer, op-challenger, op-conductor, op-reth, op-deployer (v0.9.0-cdk), ethereum-package, kurtosis and just |
 | 19 | chore: bump op-stack versions and switch default EL to op-reth | el/cl clients, op components | Bump the OP stack to the latest stable releases and default new participants to op-reth, as op-geth has reached [end of support](https://docs.optimism.io/notices/op-geth-deprecation) and the Karst hardfork requires op-reth |
 | 18 | chore: bump versions and switch to op-reth in custom.yaml | el clients, ci | Bump versions and switch to op-reth in custom.yaml |
 | 17 | chore: bump kurtosis and op components versions | ci | Bump kurtosis and op components versions |

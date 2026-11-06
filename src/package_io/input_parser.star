@@ -337,6 +337,8 @@ def default_network_params():
         "holocene_time_offset": None,
         "isthmus_time_offset": None,
         "jovian_time_offset": None,
+        "karst_time_offset": None,
+        "lagoon_time_offset": None,
         "interop_time_offset": None,
         "fund_dev_accounts": True,
     }
@@ -362,7 +364,7 @@ def _default_proposer_params(registry):
         "enabled": True,
         "image": registry.get(_registry.OP_PROPOSER),
         "extra_params": [],
-        "game_type": 1,
+        "game_type": 0,
         "proposal_interval": "10m",
     }
 
@@ -388,6 +390,8 @@ def default_ethereum_package_network_params():
         ],
         "network_params": {
             "preset": "minimal",
+            # Fast L1 blocks keep the op-deployer apply under the 180s exec timeout
+            "seconds_per_slot": 2,
             "genesis_delay": 5,
             # Preload the Arachnid CREATE2 deployer
             "additional_preloaded_contracts": json.encode(

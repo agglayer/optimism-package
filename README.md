@@ -218,7 +218,7 @@ optimism_package:
             # The Docker image that should be used for the EL client; leave blank to use the default for the client type
             # Defaults by client:
             # - op-geth: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101702.2
-            # - op-reth: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-reth:v2.4.0
+            # - op-reth: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-reth:v2.8.1
             # - op-erigon: testinprod/op-erigon:v2.61.3-0.9.5
             # - op-nethermind: nethermind/nethermind:1.32.4
             # - op-besu: ghcr.io/optimism-java/op-besu:v0.2.2
@@ -346,7 +346,7 @@ optimism_package:
             # The Docker image that should be used for the builder EL client; leave blank to use the default for the client type
             # Defaults by client:
             # - op-geth: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101702.2
-            # - op-reth: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-reth:v2.4.0
+            # - op-reth: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-reth:v2.8.1
             # - op-rbuilder: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-rbuilder:sha-0ec0644
             image: ""
 
@@ -407,6 +407,16 @@ optimism_package:
         # Offset is in seconds
         jovian_time_offset: ""
 
+        # Karst fork
+        # Defaults to None - not activated - decimal value
+        # Offset is in seconds
+        karst_time_offset: ""
+
+        # Lagoon fork
+        # Defaults to None - not activated - decimal value
+        # Offset is in seconds
+        lagoon_time_offset: ""
+
         # Interop fork
         # Defaults to None - not activated - decimal value
         # Offset is in seconds
@@ -444,7 +454,7 @@ optimism_package:
         extra_params: []
 
         # Dispute game type to create via the configured DisputeGameFactory
-        game_type: 1
+        game_type: 0
 
         # Interval between submitting L2 output proposals
         proposal_internal: 10m

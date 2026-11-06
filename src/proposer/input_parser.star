@@ -6,7 +6,7 @@ _DEFAULT_ARGS = {
     "enabled": True,
     "image": None,
     "extra_params": [],
-    "game_type": 1,
+    "game_type": 0,
     "proposal_interval": "10m",
     "pprof_enabled": False,
 }
