@@ -23,7 +23,7 @@ def test_proposer_input_parser_default_args(plan):
         enabled=True,
         extra_params=[],
         game_type=1,
-        image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-proposer:v1.16.3",
+        image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-proposer:v1.17.0",
         ports={
             _net.HTTP_PORT_NAME: _net.port(number=8560),
         },

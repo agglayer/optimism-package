@@ -50,29 +50,29 @@ OP_BLOCKSCOUT_VERIFIER = "op-blockscout-verifier"
 _DEFAULT_IMAGES = {
     # EL images
     OP_GETH: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101702.2",
-    OP_RETH: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-reth:v2.4.0",
+    OP_RETH: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-reth:v2.8.1",
     OP_ERIGON: "testinprod/op-erigon:v2.61.3-0.9.5",
     OP_NETHERMIND: "nethermind/nethermind:1.32.4",
     OP_BESU: "ghcr.io/optimism-java/op-besu:v0.2.2",
     OP_RBUILDER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-rbuilder:sha-0ec0644",
     # CL images
-    OP_NODE: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.19.3",
+    OP_NODE: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.20.1",
     KONA_NODE: "ghcr.io/op-rs/kona/kona-node:1.0.0-rc.1",
     HILDR: "ghcr.io/optimism-java/hildr:v0.4.5",
     # Batching
-    OP_BATCHER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-batcher:v1.16.11",
+    OP_BATCHER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-batcher:v1.18.1",
     # Challenger
-    OP_CHALLENGER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-challenger:v1.9.4",
+    OP_CHALLENGER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-challenger:v1.11.0",
     # op-supervisor
     OP_SUPERVISOR: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-supervisor:v0.3.0-dev.4",
     # kona-supervisor
     KONA_SUPERVISOR: "ghcr.io/op-rs/kona/kona-supervisor@sha256:98afd250010201573fb61490f3eb9ea131186f84d532ef9a0018c6382a1c0b45",
     # Proposer
-    OP_PROPOSER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-proposer:v1.16.3",
+    OP_PROPOSER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-proposer:v1.17.0",
     # Conductor
-    OP_CONDUCTOR: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-conductor:v0.9.4",
+    OP_CONDUCTOR: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-conductor:v0.9.6",
     # deployer
-    OP_DEPLOYER: "europe-west2-docker.pkg.dev/prj-polygonlabs-devtools-dev/public/op-deployer:v0.7.1-cdk",
+    OP_DEPLOYER: "europe-west2-docker.pkg.dev/prj-polygonlabs-devtools-dev/public/op-deployer:v0.9.0-cdk",
     # Faucet
     OP_FAUCET: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-faucet:develop",
     # conductor-ops
