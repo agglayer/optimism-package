@@ -390,6 +390,8 @@ def default_ethereum_package_network_params():
         ],
         "network_params": {
             "preset": "minimal",
+            # Fast L1 blocks keep the op-deployer apply under the 180s exec timeout
+            "seconds_per_slot": 2,
             "genesis_delay": 5,
             # Preload the Arachnid CREATE2 deployer
             "additional_preloaded_contracts": json.encode(
