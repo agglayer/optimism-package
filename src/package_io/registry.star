@@ -57,7 +57,7 @@ _DEFAULT_IMAGES = {
     OP_RBUILDER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-rbuilder:sha-0ec0644",
     # CL images
     OP_NODE: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.20.1",
-    KONA_NODE: "ghcr.io/op-rs/kona/kona-node:1.0.0-rc.1",
+    KONA_NODE: "us-docker.pkg.dev/oplabs-tools-artifacts/images/kona-node:v1.10.0",
     HILDR: "ghcr.io/optimism-java/hildr:v0.4.5",
     # Batching
     OP_BATCHER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-batcher:v1.18.1",
