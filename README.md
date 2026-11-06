@@ -444,7 +444,7 @@ optimism_package:
         extra_params: []
 
         # Dispute game type to create via the configured DisputeGameFactory
-        game_type: 1
+        game_type: 0
 
         # Interval between submitting L2 output proposals
         proposal_internal: 10m

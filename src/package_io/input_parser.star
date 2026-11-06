@@ -362,7 +362,7 @@ def _default_proposer_params(registry):
         "enabled": True,
         "image": registry.get(_registry.OP_PROPOSER),
         "extra_params": [],
-        "game_type": 1,
+        "game_type": 0,
         "proposal_interval": "10m",
     }
 
