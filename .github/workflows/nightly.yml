@@ -4,35 +4,89 @@ on:
   schedule:
     - cron: "0 2 * * *" # Runs at 02:00 UTC daily
   workflow_dispatch:
+    inputs:
+      notify:
+        description: Post the summary to Slack, as scheduled runs do.
+        type: boolean
+        default: false
+
+env:
+  DEVTOOLS_SLACK_ALERTS_CHANNEL_ID: C04DS0SG599
 
 jobs:
-  list-yamls:
+  # An upstream release is not a failure of this repo: the job reports the
+  # drift and hands it to bump-version-matrix instead of failing the workflow.
+  check-version-matrix:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    continue-on-error: true
+    permissions:
+      contents: read
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      # Empty when an earlier step failed before the comparison ran.
+      outdated: ${{ steps.check.outputs.outdated }}
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - id: set-matrix
-        # List all yaml files in the .github/tests directory, except for the k8s.yaml file
-        run: echo "matrix=$(ls ./.github/tests/*.yaml | grep -vE 'k8s.yaml$' | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: pip install -r scripts/version-matrix/requirements.txt
+
+      - name: Generate version matrix
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/version-matrix/extract-versions.py
+
+      - name: Generate markdown documentation
+        run: python3 scripts/version-matrix/generate-markdown.py
+
+      - name: Check the committed matrix is up to date
+        id: check
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "outdated=true" >> "$GITHUB_OUTPUT"
+            echo "::warning title=version-matrix::Version matrix is outdated, see scripts/version-matrix/README.md."
+            git diff --stat
+            git diff
+            exit 1
+          fi
+          echo "outdated=false" >> "$GITHUB_OUTPUT"
+          echo "Version matrix is up to date"
+
+  bump-version-matrix:
+    needs: check-version-matrix
+    if: needs.check-version-matrix.outputs.outdated == 'true'
+    permissions:
+      contents: read
+      id-token: write
+      pull-requests: read
+    uses: ./.github/workflows/bump-version-matrix.yml
+    secrets: inherit
 
   run_with_args:
-    needs: list-yamls
     strategy:
+      fail-fast: false
       matrix:
-        file_name: ${{ fromJson(needs.list-yamls.outputs.matrix) }}
+        # Keep in sync with the run_with_args matrix of per-pr.yml.
+        file_name:
+          - ./.github/tests/custom.yaml
+          - ./.github/tests/single_l2.yaml
     runs-on: ubuntu-latest
-    continue-on-error: true  # Prevent the whole job from failing due to one test failure
+    timeout-minutes: 45
     steps:
       - name: Checkout Repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-        
+
       - name: Setup environment
         uses: ./.github/workflows/actions/setup-environment
 
-      - name: Run Starlark
-        run: kurtosis run ${{ github.workspace }} --verbosity detailed --args-file ${{ matrix.file_name }} || echo "TEST_FAILED=true" >> $GITHUB_ENV
-        continue-on-error: true  # Don't fail the entire job
+      - name: Run kurtosis
+        uses: ./.github/workflows/actions/run-kurtosis-docker
+        with:
+          args-file: ${{ matrix.file_name }}
 
       - name: Check if Discord Webhook is Set
         id: check_discord_webhook
@@ -55,7 +109,6 @@ jobs:
 
   run_with_external_l1_args:
     runs-on: ubuntu-latest
-    continue-on-error: true  # Ensure failure here doesn't stop other jobs
     steps:
       - name: Checkout Repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -64,8 +117,104 @@ jobs:
         uses: ./.github/workflows/actions/setup-environment
 
       - name: Deploy L1
-        run: kurtosis run --enclave test --args-file ./.github/tests/external-l1/ethereum.yaml github.com/ethpandaops/ethereum-package
+        # The same L1 as custom.yaml, from the ethereum-package version kurtosis.yml
+        # pins: op-deployer needs its geth flags and short slots to fit the
+        # Kurtosis exec timeout.
+        run: |
+          yq '.ethereum_package' ./.github/tests/custom.yaml > l1.yaml
+          kurtosis run --enclave test --args-file l1.yaml "$(yq '.replace["github.com/ethpandaops/ethereum-package"]' kurtosis.yml)"
+
+      # The contract deployer reads this artifact; run-kurtosis-docker uploads
+      # the same dummy file for the other jobs.
+      - name: Upload the predeployed_allocs.json file
+        run: |
+          echo '{}' > predeployed_allocs.json
+          kurtosis files upload --name predeployed_allocs.json test ./predeployed_allocs.json
 
       - name: Run Starlark
         run: |
           kurtosis run --enclave test --verbosity detailed --args-file ./.github/tests/external-l1/optimism.yaml ${{ github.workspace }}
+
+  workflow-summary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: ${{ always() && (github.event_name == 'schedule' || inputs.notify) }}
+    needs:
+      - check-version-matrix
+      - bump-version-matrix
+      - run_with_args
+      - run_with_external_l1_args
+    permissions:
+      actions: read
+    steps:
+      # bump-version-matrix is skipped whenever the matrix is up to date, so it is
+      # left out of the test status and reported with the matrix instead.
+      - name: Build the Slack message
+        id: message
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NEEDS: ${{ toJSON(needs) }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          JOBS_API: repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }}/jobs
+          OUTDATED: ${{ needs.check-version-matrix.outputs.outdated }}
+          BUMP_RESULT: ${{ needs.bump-version-matrix.result }}
+          PR_OPERATION: ${{ needs.bump-version-matrix.outputs.pr-operation }}
+          PR_URL: ${{ needs.bump-version-matrix.outputs.pr-url }}
+        run: |
+          # Links are a bonus: an API error must not cost the Slack message.
+          jobs=$(gh api --paginate "$JOBS_API" --jq '.jobs[]') || jobs=""
+
+          # Slack link to the first job whose name starts with $1, labelled $2.
+          job_link() {
+            local url
+            url=$(jq -rs --arg p "$1" 'map(select(.name | startswith($p)))[0].html_url // ""' <<< "$jobs")
+            if [[ -n "$url" ]]; then echo "<$url|$2>"; else echo "$2"; fi
+          }
+
+          tests=$(jq -r 'del(.["bump-version-matrix"]) | [.[].result]
+            | if index("failure") then "some tests failed ❌"
+              elif index("cancelled") or index("skipped") then "some tests were skipped ⚠️"
+              else "all tests passed ✅" end' <<< "$NEEDS")
+          # Per matrix leg, so the link lands on the leg that broke.
+          broken=$(jq -rs '[.[] | select(.conclusion == "failure" or .conclusion == "cancelled")
+            | select(.name | test("^(check|bump)-version-matrix") | not)
+            | "<\(.html_url)|\(.name)>"] | join(", ")' <<< "$jobs")
+          [[ -n "$broken" ]] && tests+=" ($broken)"
+
+          pr="<$PR_URL|#${PR_URL##*/}>"
+          if [[ "$OUTDATED" == false ]]; then
+            matrix="up to date ✅"
+          elif [[ "$OUTDATED" != true ]]; then
+            matrix="unknown ⚠️, the $(job_link check-version-matrix 'check job') failed before it could compare the matrix"
+          elif [[ "$PR_OPERATION" == created ]]; then
+            matrix="outdated ❌, bump PR opened: $pr"
+          elif [[ "$PR_OPERATION" == updated ]]; then
+            matrix="outdated ❌, bump PR refreshed: $pr"
+          elif [[ "$BUMP_RESULT" != success ]]; then
+            matrix="outdated ❌, the $(job_link bump-version-matrix 'bump job') failed"
+          elif [[ -n "$PR_URL" ]]; then
+            matrix="outdated ❌, nothing new to bump, $pr is still open"
+          else
+            matrix="outdated ❌, nothing to bump (pinned, pre-release or unpublished), see the $(job_link check-version-matrix drift)"
+          fi
+
+          echo "text=<$RUN_URL|Kurtosis OP Nightly>: $tests | version matrix is $matrix" >> "$GITHUB_OUTPUT"
+
+      - uses: slackapi/slack-github-action@dcb1066f776dd043e64d0e8ba94ca15cc7e1875d # v4.0.0
+        with:
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          method: chat.postMessage
+          payload: |
+            {
+              "channel": ${{ toJSON(env.DEVTOOLS_SLACK_ALERTS_CHANNEL_ID) }},
+              "text": "Kurtosis OP Nightly - Test Summary",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": ${{ toJSON(steps.message.outputs.text) }}
+                  }
+                }
+              ]
+            }

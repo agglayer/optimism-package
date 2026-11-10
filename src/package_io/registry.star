@@ -50,7 +50,7 @@ OP_BLOCKSCOUT_VERIFIER = "op-blockscout-verifier"
 _DEFAULT_IMAGES = {
     # EL images
     OP_GETH: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101702.2",
-    OP_RETH: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-reth:v2.8.1",
+    OP_RETH: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-reth:v2.8.2",
     OP_ERIGON: "testinprod/op-erigon:v2.61.3-0.9.5",
     OP_NETHERMIND: "nethermind/nethermind:1.32.4",
     OP_BESU: "ghcr.io/optimism-java/op-besu:v0.2.2",
@@ -80,7 +80,7 @@ _DEFAULT_IMAGES = {
     # Interop Monitor
     OP_INTEROP_MON: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-interop-mon:v0.1.0",
     # Proxyd
-    PROXYD: "us-docker.pkg.dev/oplabs-tools-artifacts/images/proxyd:v4.29.1",
+    PROXYD: "us-docker.pkg.dev/oplabs-tools-artifacts/images/proxyd:v4.35.3",
     # Sidecar
     ROLLUP_BOOST: "flashbots/rollup-boost:v0.7.17",
     # DA Server

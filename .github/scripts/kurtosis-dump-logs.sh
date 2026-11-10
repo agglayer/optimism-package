@@ -51,7 +51,7 @@ fi
 echo "Got enclave services: $ENCLAVE_SERVICES_NAMES"
 
 # Convert the list into a bash array
-ENCLAVE_SERVICE_NAMES_ARRAY=($ENCLAVE_SERVICES_NAMES)
+read -ra ENCLAVE_SERVICE_NAMES_ARRAY <<< "$ENCLAVE_SERVICES_NAMES"
 
 # Iterate over the names/RPC ports arrays
 for SERVICE_NAME in "${ENCLAVE_SERVICE_NAMES_ARRAY[@]}"; do

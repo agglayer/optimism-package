@@ -1,0 +1,18 @@
+extends: default
+
+ignore: |
+  # Helm templates, not plain YAML.
+  util/ns-authz/templates/
+
+rules:
+  line-length: disable
+  document-start: disable
+  braces: disable
+  # Commented-out blocks of the args files are examples, not misplaced comments.
+  comments-indentation: disable
+  comments:
+    min-spaces-from-content: 1
+  indentation:
+    indent-sequences: whatever
+  truthy:
+    check-keys: false

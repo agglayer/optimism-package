@@ -14,7 +14,7 @@ runs:
     - name: Create enclave ${{ inputs.enclave }}
       shell: bash
       run: kurtosis enclave add --name ${{ inputs.enclave }}
-    
+
     - name: Upload the predeployed_allocs.json file
       shell: bash
       run: |
@@ -54,7 +54,7 @@ runs:
 
     - name: Store kurtosis logs
       if: ${{ always() }}
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
       with:
         name: kurtosis-dump-${{ inputs.enclave }}-${{ steps.create-artifact-key.outputs.artifact-key }}
         path: ./.kurtosis-dump/enclaves/
