@@ -91,11 +91,12 @@ class MarkdownMatrixGenerator:
         skipped = data.get("skipped_images", {})
         if skipped:
             md += "\n### Not tracked\n\n"
-            md += "Images this fork does not keep up to date.\n\n"
-            md += "| Component | Image | Reason |\n"
-            md += "| --- | --- | --- |\n"
+            md += "kurtosis-cdk does not deploy these images through this package, "
+            md += "so this fork does not keep them up to date.\n\n"
+            md += "| Component | Image |\n"
+            md += "| --- | --- |\n"
             for name, entry in sorted(skipped.items()):
-                md += f"| {name} | `{entry['image']}` | {entry['reason']} |\n"
+                md += f"| {name} | `{entry['image']}` |\n"
 
         tools = data.get("tools", {})
         if tools:

@@ -128,8 +128,8 @@ deliberate: a new image should not be able to slip in untracked.
   Monorepo prefixes such as `op-node/v` are resolved from the repo's tag refs,
   the highest stable one winning; `v` and `""` use the latest release, falling
   back to tags.
-- `SKIPPED_IMAGES`: every other image, with the reason. They are listed on the
-  page as "Not tracked".
+- `SKIPPED_IMAGES`: every other image. They are listed on the page as "Not
+  tracked".
 
 ## Pinned versions
 

@@ -78,28 +78,25 @@ COMPONENT_REPOS = {
     "proxyd": (INFRA, "proxyd/v"),
 }
 
-# Images left out of the matrix, with the reason. Keeping this explicit means a
-# newly added image that lands in neither table is a visible gap rather than a
-# silent omission.
-SKIPPED_IMAGES: Dict[str, str] = dict.fromkeys(
-    [
-        # EL
-        "op-geth", "op-erigon", "op-nethermind", "op-besu", "op-rbuilder",
-        # CL
-        "kona-node", "hildr",
-        # OP services
-        "op-challenger", "op-conductor", "op-conductor-ops", "op-faucet",
-        "op-interop-mon", "op-signer", "op-supervisor", "kona-supervisor",
-        "op-test-sequencer", "da-server",
-        # sidecars and utils
-        "rollup-boost", "flashblocks-websocket-proxy", "flashblocks-rpc",
-        "deployment-utils", "openssl", "tx-fuzzer",
-        # observability and explorers
-        "prometheus", "grafana", "loki", "promtail",
-        "op-blockscout", "op-blockscout-verifier",
-    ],
-    "Not deployed by kurtosis-cdk.",
-)
+# Images kurtosis-cdk does not deploy through this package, so left out of the
+# matrix. Keeping this explicit means a newly added image that lands in neither
+# table is a visible gap rather than a silent omission.
+SKIPPED_IMAGES = {
+    # EL
+    "op-geth", "op-erigon", "op-nethermind", "op-besu", "op-rbuilder",
+    # CL
+    "kona-node", "hildr",
+    # OP services
+    "op-challenger", "op-conductor", "op-conductor-ops", "op-faucet",
+    "op-interop-mon", "op-signer", "op-supervisor", "kona-supervisor",
+    "op-test-sequencer", "da-server",
+    # sidecars and utils
+    "rollup-boost", "flashblocks-websocket-proxy", "flashblocks-rpc",
+    "deployment-utils", "openssl", "tx-fuzzer",
+    # observability and explorers
+    "prometheus", "grafana", "loki", "promtail",
+    "op-blockscout", "op-blockscout-verifier",
+}
 
 # L1 clients, read from the ethereum-package participant of
 # .github/tests/custom.yaml. Keys are participant fields.
@@ -661,8 +658,8 @@ class VersionMatrixExtractor:
 
         matrix = {
             "images": {name: asdict(component) for name, component in images.items()},
-            "skipped_images": {key: {"image": registry[key], "reason": reason}
-                               for key, reason in SKIPPED_IMAGES.items() if key in registry},
+            "skipped_images": {key: {"image": registry[key]}
+                               for key in SKIPPED_IMAGES if key in registry},
             "tools": {name: asdict(component) for name, component in tools.items()},
             "packages": {name: asdict(package) for name, package in packages.items()},
             "hard_forks": forks,
