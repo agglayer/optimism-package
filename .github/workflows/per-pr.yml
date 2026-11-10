@@ -18,7 +18,6 @@ jobs:
         # Keep in sync with the run_with_args matrix of nightly.yml.
         file_name:
           - ./.github/tests/custom.yaml
-          - ./.github/tests/op-reth.yaml
           - ./.github/tests/single_l2.yaml
     runs-on: ubuntu-latest
     timeout-minutes: 45
