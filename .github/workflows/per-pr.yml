@@ -15,21 +15,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        # Keep in sync with the run_with_args matrix of nightly.yml.
         file_name:
-          - ./.github/tests/blockscout.yaml
           - ./.github/tests/custom.yaml
-          - ./.github/tests/flashblocks.yaml
-          - ./.github/tests/hildr.yaml
-          - ./.github/tests/multiple_l2s.yaml
-          - ./.github/tests/op-besu.yaml
-          - ./.github/tests/op-erigon.yaml
-          - ./.github/tests/op-geth.yaml
-          - ./.github/tests/op-geth-reth-custom-batcher.yaml
-          - ./.github/tests/op-nethermind.yaml
-          - ./.github/tests/op-node.yaml
           - ./.github/tests/op-reth.yaml
-          - ./.github/tests/rollup-boost.yaml
-          - ./.github/tests/simple.yaml
           - ./.github/tests/single_l2.yaml
     runs-on: ubuntu-latest
     timeout-minutes: 45

@@ -11,4 +11,4 @@ optimism_package:
           el:
             type: op-reth
           cl:
-            type: hildr
+            type: kona-node
