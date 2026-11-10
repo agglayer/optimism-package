@@ -117,7 +117,12 @@ jobs:
         uses: ./.github/workflows/actions/setup-environment
 
       - name: Deploy L1
-        run: kurtosis run --enclave test --args-file ./.github/tests/external-l1/ethereum.yaml github.com/ethpandaops/ethereum-package
+        # The same L1 as custom.yaml, from the ethereum-package version kurtosis.yml
+        # pins: op-deployer needs its geth flags and short slots to fit the
+        # Kurtosis exec timeout.
+        run: |
+          yq '.ethereum_package' ./.github/tests/custom.yaml > l1.yaml
+          kurtosis run --enclave test --args-file l1.yaml "$(yq '.replace["github.com/ethpandaops/ethereum-package"]' kurtosis.yml)"
 
       # The contract deployer reads this artifact; run-kurtosis-docker uploads
       # the same dummy file for the other jobs.
