@@ -5,6 +5,9 @@ on:
     - cron: "0 2 * * *" # Runs at 02:00 UTC daily
   workflow_dispatch:
 
+env:
+  DEVTOOLS_SLACK_ALERTS_CHANNEL_ID: C04DS0SG599
+
 jobs:
   # An upstream release is not a failure of this repo: the job reports the
   # drift and hands it to bump-version-matrix instead of failing the workflow.
@@ -68,7 +71,6 @@ jobs:
           - ./.github/tests/single_l2.yaml
     runs-on: ubuntu-latest
     timeout-minutes: 45
-    continue-on-error: true  # Prevent the whole job from failing due to one test failure
     steps:
       - name: Checkout Repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -102,7 +104,6 @@ jobs:
 
   run_with_external_l1_args:
     runs-on: ubuntu-latest
-    continue-on-error: true  # Ensure failure here doesn't stop other jobs
     steps:
       - name: Checkout Repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -116,3 +117,87 @@ jobs:
       - name: Run Starlark
         run: |
           kurtosis run --enclave test --verbosity detailed --args-file ./.github/tests/external-l1/optimism.yaml ${{ github.workspace }}
+
+  workflow-summary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: ${{ always() && github.event_name == 'schedule' }}
+    needs:
+      - check-version-matrix
+      - bump-version-matrix
+      - run_with_args
+      - run_with_external_l1_args
+    permissions:
+      actions: read
+    steps:
+      # bump-version-matrix is skipped whenever the matrix is up to date, so it is
+      # left out of the test status and reported with the matrix instead.
+      - name: Build the Slack message
+        id: message
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NEEDS: ${{ toJSON(needs) }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          JOBS_API: repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }}/jobs
+          OUTDATED: ${{ needs.check-version-matrix.outputs.outdated }}
+          BUMP_RESULT: ${{ needs.bump-version-matrix.result }}
+          PR_OPERATION: ${{ needs.bump-version-matrix.outputs.pr-operation }}
+          PR_URL: ${{ needs.bump-version-matrix.outputs.pr-url }}
+        run: |
+          # Links are a bonus: an API error must not cost the Slack message.
+          jobs=$(gh api --paginate "$JOBS_API" --jq '.jobs[]') || jobs=""
+
+          # Slack link to the first job whose name starts with $1, labelled $2.
+          job_link() {
+            local url
+            url=$(jq -rs --arg p "$1" 'map(select(.name | startswith($p)))[0].html_url // ""' <<< "$jobs")
+            if [[ -n "$url" ]]; then echo "<$url|$2>"; else echo "$2"; fi
+          }
+
+          tests=$(jq -r 'del(.["bump-version-matrix"]) | [.[].result]
+            | if index("failure") then "some tests failed ❌"
+              elif index("cancelled") or index("skipped") then "some tests were skipped ⚠️"
+              else "all tests passed ✅" end' <<< "$NEEDS")
+          # Per matrix leg, so the link lands on the leg that broke.
+          broken=$(jq -rs '[.[] | select(.conclusion == "failure" or .conclusion == "cancelled")
+            | select(.name | test("^(check|bump)-version-matrix") | not)
+            | "<\(.html_url)|\(.name)>"] | join(", ")' <<< "$jobs")
+          [[ -n "$broken" ]] && tests+=" ($broken)"
+
+          pr="<$PR_URL|#${PR_URL##*/}>"
+          if [[ "$OUTDATED" == false ]]; then
+            matrix="up to date ✅"
+          elif [[ "$OUTDATED" != true ]]; then
+            matrix="unknown ⚠️, the $(job_link check-version-matrix 'check job') failed before it could compare the matrix"
+          elif [[ "$PR_OPERATION" == created ]]; then
+            matrix="outdated ❌, bump PR opened: $pr"
+          elif [[ "$PR_OPERATION" == updated ]]; then
+            matrix="outdated ❌, bump PR refreshed: $pr"
+          elif [[ "$BUMP_RESULT" != success ]]; then
+            matrix="outdated ❌, the $(job_link bump-version-matrix 'bump job') failed"
+          elif [[ -n "$PR_URL" ]]; then
+            matrix="outdated ❌, nothing new to bump, $pr is still open"
+          else
+            matrix="outdated ❌, nothing to bump (pinned, pre-release or unpublished), see the $(job_link check-version-matrix drift)"
+          fi
+
+          echo "text=<$RUN_URL|optimism-package fork (agglayer) Nightly>: $tests | version matrix is $matrix" >> "$GITHUB_OUTPUT"
+
+      - uses: slackapi/slack-github-action@dcb1066f776dd043e64d0e8ba94ca15cc7e1875d # v4.0.0
+        with:
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          method: chat.postMessage
+          payload: |
+            {
+              "channel": ${{ toJSON(env.DEVTOOLS_SLACK_ALERTS_CHANNEL_ID) }},
+              "text": "optimism-package fork (agglayer) Nightly - Test Summary",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": ${{ toJSON(steps.message.outputs.text) }}
+                  }
+                }
+              ]
+            }

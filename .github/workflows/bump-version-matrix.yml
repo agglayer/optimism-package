@@ -6,6 +6,13 @@ name: bump-version-matrix
 
 on:
   workflow_call:
+    outputs:
+      pr-operation:
+        description: created, updated or none; empty when nothing was bumped.
+        value: ${{ jobs.bump.outputs.pr-operation }}
+      pr-url:
+        description: URL of the open bump PR, empty when there is none.
+        value: ${{ jobs.bump.outputs.pr-url }}
   workflow_dispatch:
 
 permissions:
@@ -23,6 +30,9 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    outputs:
+      pr-operation: ${{ steps.pr.outputs.pull-request-operation }}
+      pr-url: ${{ steps.find-pr.outputs.url }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
