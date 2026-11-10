@@ -1,0 +1,6 @@
+requests==2.34.2
+PyYAML==6.0.3
+# generate-markdown.py shells out to `rumdl fmt` to align the tables it writes.
+# checks.yaml lints the docs with this same install, so the generated pages are
+# formatted exactly the way CI expects them.
+rumdl==0.2.79
