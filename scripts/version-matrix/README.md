@@ -5,7 +5,8 @@ the answer as documentation instead of a thing someone has to remember to check.
 
 Four kinds of dependency are covered:
 
-- **Container images**: `_DEFAULT_IMAGES` in `src/package_io/registry.star`.
+- **Container images**: the `_DEFAULT_IMAGES` of `src/package_io/registry.star`
+  that kurtosis-cdk deploys through this package.
 - **L1 clients**: the ethereum-package participant of `.github/tests/custom.yaml`.
   The package itself launches the L1 with the ethereum-package default images.
 - **CI tools**: `mise.toml`, plus foundry in
@@ -122,15 +123,13 @@ Every image in `_DEFAULT_IMAGES` must be listed in exactly one of two tables in
 `extract-versions.py`, otherwise the script exits non-zero and names it. That is
 deliberate: a new image should not be able to slip in untracked.
 
-- `COMPONENT_REPOS`: the image has an upstream GitHub repo that cuts releases.
-  Maps the registry ID to `(org/repo, tag prefix)`. Monorepo prefixes such as
-  `op-node/v` are resolved from the repo's tag refs, the highest stable one
-  winning; `v` and `""` use the latest release, falling back to tags.
-- `SKIPPED_IMAGES`: images with nothing to compare against (commit builds,
-  digests, `develop` builds), with the reason. They are listed on the page as
-  "Not tracked".
-
-Add the registry ID to `CORE_IMAGES` if a `kurtosis run` without args needs it.
+- `COMPONENT_REPOS`: an image kurtosis-cdk deploys through this package, the
+  only ones kept up to date. Maps the registry ID to `(org/repo, tag prefix)`.
+  Monorepo prefixes such as `op-node/v` are resolved from the repo's tag refs,
+  the highest stable one winning; `v` and `""` use the latest release, falling
+  back to tags.
+- `SKIPPED_IMAGES`: every other image, with the reason. They are listed on the
+  page as "Not tracked".
 
 ## Pinned versions
 

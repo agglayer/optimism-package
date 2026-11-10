@@ -7,7 +7,8 @@ description: Bump the image, tool and package pins flagged by the `check-version
 
 Pins live in four places:
 
-- images: `_DEFAULT_IMAGES` in `src/package_io/registry.star`;
+- images: `_DEFAULT_IMAGES` in `src/package_io/registry.star` (only the ones
+  kurtosis-cdk deploys are tracked);
 - L1 clients: the ethereum-package participant of `.github/tests/custom.yaml`;
 - CI tools: `mise.toml`, and foundry in `.github/workflows/actions/setup-environment/action.yaml`;
 - Kurtosis packages: the `replace` block of `kurtosis.yml`.
@@ -29,7 +30,7 @@ rows marked 🚨 (behind). Skip:
 - 📌 `pinned` rows: deliberate holds declared in `PINNED_VERSIONS` in
   `extract-versions.py`, or a release whose image is not published yet.
 - Pre-releases (`rc`, `beta`, `alpha`, `dev`): flag them instead.
-- Major version jumps of a client (op-blockscout 6.x → 12.x, for instance): bump
+- Major version jumps of a client (op-reth 2.x → 3.x, for instance): bump
   only if the release notes show no breaking change in the flags or config the
   package passes; otherwise skip them as `other` and say why.
 - The hard forks page: forks are not versions and never use 🚨. A bump can

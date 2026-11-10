@@ -17,9 +17,9 @@ The package runs the L1 with the ethereum-package default images. These are the 
 | geth       | [1.17.10](https://github.com/ethereum/go-ethereum/releases/tag/v1.17.10) | [1.17.10](https://github.com/ethereum/go-ethereum/releases/tag/v1.17.10) | ✅ up to date |
 | lighthouse | [8.3.3](https://github.com/sigp/lighthouse/releases/tag/v8.3.3)          | [8.3.3](https://github.com/sigp/lighthouse/releases/tag/v8.3.3)          | ✅ up to date |
 
-### Core
+### L2
 
-The default L2 clients, the services every chain gets and the deployer: a `kurtosis run` without args does not start without them.
+What kurtosis-cdk deploys through this package: the default L2 clients, the services every chain gets and the deployer.
 
 | Component   | Deployed version                                                                           | Latest stable version                                                                    | Status        |
 | ----------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- | ------------- |
@@ -30,48 +30,41 @@ The default L2 clients, the services every chain gets and the deployer: a `kurto
 | op-reth     | [2.8.2](https://github.com/ethereum-optimism/optimism/releases/tag/op-reth/v2.8.2)         | [2.8.2](https://github.com/ethereum-optimism/optimism/releases/tag/op-reth/v2.8.2)       | ✅ up to date |
 | proxyd      | [4.35.3](https://github.com/ethereum-optimism/infra/releases/tag/proxyd/v4.35.3)           | [4.35.3](https://github.com/ethereum-optimism/infra/releases/tag/proxyd/v4.35.3)         | ✅ up to date |
 
-### Additional
-
-Alternative clients, optional services, observability and explorers.
-
-| Component                   | Deployed version                                                                                 | Latest stable version                                                                              | Status                                        |
-| --------------------------- | ------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| da-server                   | [0.1.0](https://github.com/ethereum-optimism/optimism/releases/tag/da-server/v0.1.0)             | [0.1.0](https://github.com/ethereum-optimism/optimism/releases/tag/da-server/v0.1.0)               | ✅ up to date                                 |
-| flashblocks-websocket-proxy | [0.7.4](https://github.com/flashbots/rollup-boost/releases/tag/rollup-boost/v0.7.4)              | [0.7.17](https://github.com/flashbots/rollup-boost/releases/tag/rollup-boost/v0.7.17)              | 📌 pinned — No `v0.7.17` image published yet. |
-| grafana                     | [11.5.0](https://github.com/grafana/grafana/releases/tag/v11.5.0)                                | [13.3.0](https://github.com/grafana/grafana/releases/tag/v13.3.0)                                  | 🚨 behind                                     |
-| kona-node                   | [1.10.0](https://github.com/ethereum-optimism/optimism/releases/tag/kona-node/v1.10.0)           | [1.10.0](https://github.com/ethereum-optimism/optimism/releases/tag/kona-node/v1.10.0)             | ✅ up to date                                 |
-| loki                        | [3.3.2](https://github.com/grafana/loki/releases/tag/v3.3.2)                                     | [3.7.9](https://github.com/grafana/loki/releases/tag/v3.7.9)                                       | 🚨 behind                                     |
-| op-blockscout               | [6.8.0](https://github.com/blockscout/blockscout/releases/tag/v6.8.0)                            | [12.0.4](https://github.com/blockscout/blockscout/releases/tag/v12.0.4)                            | 📌 pinned — No `12.0.4` image published yet.  |
-| op-blockscout-verifier      | [1.9.0](https://github.com/blockscout/blockscout-rs/releases/tag/smart-contract-verifier/v1.9.0) | [1.11.2](https://github.com/blockscout/blockscout-rs/releases/tag/smart-contract-verifier/v1.11.2) | 🚨 behind                                     |
-| op-challenger               | [1.11.0](https://github.com/ethereum-optimism/optimism/releases/tag/op-challenger/v1.11.0)       | [1.11.0](https://github.com/ethereum-optimism/optimism/releases/tag/op-challenger/v1.11.0)         | ✅ up to date                                 |
-| op-conductor                | [0.9.6](https://github.com/ethereum-optimism/optimism/releases/tag/op-conductor/v0.9.6)          | [0.9.7](https://github.com/ethereum-optimism/optimism/releases/tag/op-conductor/v0.9.7)            | 🚨 behind                                     |
-| op-conductor-ops            | [0.0.2](https://github.com/ethereum-optimism/infra/releases/tag/op-conductor-ops/v0.0.2)         | [0.1.1](https://github.com/ethereum-optimism/infra/releases/tag/op-conductor-ops/v0.1.1)           | 🚨 behind                                     |
-| op-interop-mon              | [0.1.0](https://github.com/ethereum-optimism/optimism/releases/tag/op-interop-mon/v0.1.0)        | [0.1.3](https://github.com/ethereum-optimism/optimism/releases/tag/op-interop-mon/v0.1.3)          | 🚨 behind                                     |
-| op-signer                   | [1.5.0](https://github.com/ethereum-optimism/infra/releases/tag/op-signer/v1.5.0)                | [1.7.2](https://github.com/ethereum-optimism/infra/releases/tag/op-signer/v1.7.2)                  | 🚨 behind                                     |
-| openssl                     | [3.5.1](https://github.com/openssl/openssl/releases/tag/openssl-3.5.1)                           | [4.1.0](https://github.com/openssl/openssl/releases/tag/openssl-4.1.0)                             | 📌 pinned — No `4.1.0` image published yet.   |
-| prometheus                  | [3.1.0](https://github.com/prometheus/prometheus/releases/tag/v3.1.0)                            | [3.16.0](https://github.com/prometheus/prometheus/releases/tag/v3.16.0)                            | 🚨 behind                                     |
-| promtail                    | [3.3.2](https://github.com/grafana/loki/releases/tag/v3.3.2)                                     | [3.7.9](https://github.com/grafana/loki/releases/tag/v3.7.9)                                       | 📌 pinned — No `3.7.9` image published yet.   |
-| rollup-boost                | [0.7.17](https://github.com/flashbots/rollup-boost/releases/tag/rollup-boost/v0.7.17)            | [0.7.17](https://github.com/flashbots/rollup-boost/releases/tag/rollup-boost/v0.7.17)              | ✅ up to date                                 |
-
 ### Not tracked
 
-Images with no release to compare with.
+Images this fork does not keep up to date.
 
-| Component         | Image                                                                                                        | Reason                                                      |
-| ----------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
-| deployment-utils  | `mslipper/deployment-utils@sha256:4506b112e4261014329152b161997129e7ca577f39c85e59cfdfdcb47ab7b5cf`          | Pinned by digest: no tag to compare with.                   |
-| flashblocks-rpc   | `us-docker.pkg.dev/oplabs-tools-artifacts/images/base-reth-node:sha-b7ac2c1`                                 | Commit build (`sha-…`): no release to compare with.         |
-| hildr             | `ghcr.io/optimism-java/hildr:v0.4.5`                                                                         | Not maintained in this fork.                                |
-| kona-supervisor   | `ghcr.io/op-rs/kona/kona-supervisor@sha256:98afd250010201573fb61490f3eb9ea131186f84d532ef9a0018c6382a1c0b45` | Pinned by digest: no tag to compare with.                   |
-| op-besu           | `ghcr.io/optimism-java/op-besu:v0.2.2`                                                                       | Not maintained in this fork.                                |
-| op-erigon         | `testinprod/op-erigon:v2.61.3-0.9.5`                                                                         | Not maintained in this fork.                                |
-| op-faucet         | `us-docker.pkg.dev/oplabs-tools-artifacts/images/op-faucet:develop`                                          | Tracks the `develop` build: no release cut.                 |
-| op-geth           | `us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101702.2`                                        | Not maintained in this fork.                                |
-| op-nethermind     | `nethermind/nethermind:1.32.4`                                                                               | Not maintained in this fork.                                |
-| op-rbuilder       | `us-docker.pkg.dev/oplabs-tools-artifacts/images/op-rbuilder:sha-0ec0644`                                    | Commit build (`sha-…`): no release to compare with.         |
-| op-supervisor     | `us-docker.pkg.dev/oplabs-tools-artifacts/images/op-supervisor:v0.3.0-dev.4`                                 | Only `-dev` prereleases: no stable release to compare with. |
-| op-test-sequencer | `us-docker.pkg.dev/oplabs-tools-artifacts/images/op-test-sequencer:develop`                                  | Tracks the `develop` build: no release cut.                 |
-| tx-fuzzer         | `ethpandaops/tx-fuzz:master`                                                                                 | Tracks `master`: no release cut.                            |
+| Component                   | Image                                                                                                        | Reason                        |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------- |
+| da-server                   | `us-docker.pkg.dev/oplabs-tools-artifacts/images/da-server:v0.1.0`                                           | Not deployed by kurtosis-cdk. |
+| deployment-utils            | `mslipper/deployment-utils@sha256:4506b112e4261014329152b161997129e7ca577f39c85e59cfdfdcb47ab7b5cf`          | Not deployed by kurtosis-cdk. |
+| flashblocks-rpc             | `us-docker.pkg.dev/oplabs-tools-artifacts/images/base-reth-node:sha-b7ac2c1`                                 | Not deployed by kurtosis-cdk. |
+| flashblocks-websocket-proxy | `us-docker.pkg.dev/oplabs-tools-artifacts/images/flashblocks-websocket-proxy:v0.7.4`                         | Not deployed by kurtosis-cdk. |
+| grafana                     | `grafana/grafana:11.5.0`                                                                                     | Not deployed by kurtosis-cdk. |
+| hildr                       | `ghcr.io/optimism-java/hildr:v0.4.5`                                                                         | Not deployed by kurtosis-cdk. |
+| kona-node                   | `us-docker.pkg.dev/oplabs-tools-artifacts/images/kona-node:v1.10.0`                                          | Not deployed by kurtosis-cdk. |
+| kona-supervisor             | `ghcr.io/op-rs/kona/kona-supervisor@sha256:98afd250010201573fb61490f3eb9ea131186f84d532ef9a0018c6382a1c0b45` | Not deployed by kurtosis-cdk. |
+| loki                        | `grafana/loki:3.3.2`                                                                                         | Not deployed by kurtosis-cdk. |
+| op-besu                     | `ghcr.io/optimism-java/op-besu:v0.2.2`                                                                       | Not deployed by kurtosis-cdk. |
+| op-blockscout               | `blockscout/blockscout-optimism:6.8.0`                                                                       | Not deployed by kurtosis-cdk. |
+| op-blockscout-verifier      | `ghcr.io/blockscout/smart-contract-verifier:v1.9.0`                                                          | Not deployed by kurtosis-cdk. |
+| op-challenger               | `us-docker.pkg.dev/oplabs-tools-artifacts/images/op-challenger:v1.11.0`                                      | Not deployed by kurtosis-cdk. |
+| op-conductor                | `us-docker.pkg.dev/oplabs-tools-artifacts/images/op-conductor:v0.9.6`                                        | Not deployed by kurtosis-cdk. |
+| op-conductor-ops            | `us-docker.pkg.dev/oplabs-tools-artifacts/images/op-conductor-ops:v0.0.2`                                    | Not deployed by kurtosis-cdk. |
+| op-erigon                   | `testinprod/op-erigon:v2.61.3-0.9.5`                                                                         | Not deployed by kurtosis-cdk. |
+| op-faucet                   | `us-docker.pkg.dev/oplabs-tools-artifacts/images/op-faucet:develop`                                          | Not deployed by kurtosis-cdk. |
+| op-geth                     | `us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101702.2`                                        | Not deployed by kurtosis-cdk. |
+| op-interop-mon              | `us-docker.pkg.dev/oplabs-tools-artifacts/images/op-interop-mon:v0.1.0`                                      | Not deployed by kurtosis-cdk. |
+| op-nethermind               | `nethermind/nethermind:1.32.4`                                                                               | Not deployed by kurtosis-cdk. |
+| op-rbuilder                 | `us-docker.pkg.dev/oplabs-tools-artifacts/images/op-rbuilder:sha-0ec0644`                                    | Not deployed by kurtosis-cdk. |
+| op-signer                   | `us-docker.pkg.dev/oplabs-tools-artifacts/images/op-signer:v1.5.0`                                           | Not deployed by kurtosis-cdk. |
+| op-supervisor               | `us-docker.pkg.dev/oplabs-tools-artifacts/images/op-supervisor:v0.3.0-dev.4`                                 | Not deployed by kurtosis-cdk. |
+| op-test-sequencer           | `us-docker.pkg.dev/oplabs-tools-artifacts/images/op-test-sequencer:develop`                                  | Not deployed by kurtosis-cdk. |
+| openssl                     | `alpine/openssl:3.5.1`                                                                                       | Not deployed by kurtosis-cdk. |
+| prometheus                  | `prom/prometheus:v3.1.0`                                                                                     | Not deployed by kurtosis-cdk. |
+| promtail                    | `grafana/promtail:3.3.2`                                                                                     | Not deployed by kurtosis-cdk. |
+| rollup-boost                | `flashbots/rollup-boost:v0.7.17`                                                                             | Not deployed by kurtosis-cdk. |
+| tx-fuzzer                   | `ethpandaops/tx-fuzz:master`                                                                                 | Not deployed by kurtosis-cdk. |
 
 ## CI tools
 

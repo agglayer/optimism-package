@@ -83,18 +83,15 @@ class MarkdownMatrixGenerator:
         md += "The package runs the L1 with the ethereum-package default images. "
         md += f"These are the versions the CI pins in [`{L1_TEST_CONFIG}`]({REPO_URL}/blob/main/{L1_TEST_CONFIG}).\n\n"
         md += self._generate_image_table(self._group(images, "l1"))
-        md += "\n### Core\n\n"
-        md += "The default L2 clients, the services every chain gets and the deployer: "
-        md += "a `kurtosis run` without args does not start without them.\n\n"
-        md += self._generate_image_table(self._group(images, "core"))
-        md += "\n### Additional\n\n"
-        md += "Alternative clients, optional services, observability and explorers.\n\n"
-        md += self._generate_image_table(self._group(images, "additional"))
+        md += "\n### L2\n\n"
+        md += "What kurtosis-cdk deploys through this package: the default L2 clients, "
+        md += "the services every chain gets and the deployer.\n\n"
+        md += self._generate_image_table(self._group(images, "l2"))
 
         skipped = data.get("skipped_images", {})
         if skipped:
             md += "\n### Not tracked\n\n"
-            md += "Images with no release to compare with.\n\n"
+            md += "Images this fork does not keep up to date.\n\n"
             md += "| Component | Image | Reason |\n"
             md += "| --- | --- | --- |\n"
             for name, entry in sorted(skipped.items()):

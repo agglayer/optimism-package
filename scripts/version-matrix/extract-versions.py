@@ -38,8 +38,8 @@ class ComponentVersion:
     latest_version_source_url: Optional[str] = None
     status: Optional[str] = None
     pin_reason: Optional[str] = None
-    # "l1", "core" or "additional" for images, "tool" for CI tools.
-    group: str = "additional"
+    # "l1" or "l2" for images, "tool" for CI tools.
+    group: str = "l2"
 
 
 @dataclass
@@ -63,67 +63,43 @@ INFRA = "ethereum-optimism/infra"
 
 # Images from `_DEFAULT_IMAGES` mapped to the GitHub repo that releases them and
 # the prefix of its release tags. Keys are the registry IDs (`OP_NODE = "op-node"`).
+# Only the images kurtosis-cdk deploys through this package are kept up to date:
+# the default EL and CL, the batcher, the proposer, proxyd and the deployer.
 # Monorepos tag each component as `<component>/vX.Y.Z`; those prefixes are
 # resolved through the tag refs rather than `releases/latest`, which only knows
 # the one release the repo marked as latest. An image absent from this table
 # must be in SKIPPED_IMAGES, otherwise main() fails.
 COMPONENT_REPOS = {
-    # EL
     "op-reth": (OPTIMISM, "op-reth/v"),
-    # CL
     "op-node": (OPTIMISM, "op-node/v"),
-    "kona-node": (OPTIMISM, "kona-node/v"),
-    # OP services
     "op-batcher": (OPTIMISM, "op-batcher/v"),
     "op-proposer": (OPTIMISM, "op-proposer/v"),
-    "op-challenger": (OPTIMISM, "op-challenger/v"),
-    "op-conductor": (OPTIMISM, "op-conductor/v"),
     "op-deployer": (OPTIMISM, "op-deployer/v"),
-    "op-interop-mon": (OPTIMISM, "op-interop-mon/v"),
-    "da-server": (OPTIMISM, "da-server/v"),
-    "op-conductor-ops": (INFRA, "op-conductor-ops/v"),
-    "op-signer": (INFRA, "op-signer/v"),
     "proxyd": (INFRA, "proxyd/v"),
-    # Sidecars: the websocket proxy is released with rollup-boost.
-    "rollup-boost": ("flashbots/rollup-boost", "rollup-boost/v"),
-    "flashblocks-websocket-proxy": ("flashbots/rollup-boost", "rollup-boost/v"),
-    # utils
-    "openssl": ("openssl/openssl", "openssl-"),
-    # observability
-    "prometheus": ("prometheus/prometheus", "v"),
-    "grafana": ("grafana/grafana", "v"),
-    "loki": ("grafana/loki", "v"),
-    "promtail": ("grafana/loki", "v"),
-    # explorers
-    "op-blockscout": ("blockscout/blockscout", "v"),
-    "op-blockscout-verifier": ("blockscout/blockscout-rs", "smart-contract-verifier/v"),
 }
 
-# Images intentionally left out of the matrix, with the reason. Keeping this
-# explicit means a newly added image that lands in neither table is a visible
-# gap rather than a silent omission.
-SKIPPED_IMAGES: Dict[str, str] = {
-    # Alternative clients: no test config this fork deploys uses them.
-    "op-geth": "Not maintained in this fork.",
-    "op-erigon": "Not maintained in this fork.",
-    "op-nethermind": "Not maintained in this fork.",
-    "op-besu": "Not maintained in this fork.",
-    "hildr": "Not maintained in this fork.",
-    "op-rbuilder": "Commit build (`sha-…`): no release to compare with.",
-    "flashblocks-rpc": "Commit build (`sha-…`): no release to compare with.",
-    "kona-supervisor": "Pinned by digest: no tag to compare with.",
-    "deployment-utils": "Pinned by digest: no tag to compare with.",
-    "op-supervisor": "Only `-dev` prereleases: no stable release to compare with.",
-    "op-faucet": "Tracks the `develop` build: no release cut.",
-    "op-test-sequencer": "Tracks the `develop` build: no release cut.",
-    "tx-fuzzer": "Tracks `master`: no release cut.",
-}
-
-# Images a `kurtosis run .` without args cannot do without: the default EL and
-# CL, the services every chain gets and what deploys them. Keys are registry IDs.
-CORE_IMAGES = {
-    "op-reth", "op-node", "op-batcher", "op-proposer", "op-deployer", "proxyd",
-}
+# Images left out of the matrix, with the reason. Keeping this explicit means a
+# newly added image that lands in neither table is a visible gap rather than a
+# silent omission.
+SKIPPED_IMAGES: Dict[str, str] = dict.fromkeys(
+    [
+        # EL
+        "op-geth", "op-erigon", "op-nethermind", "op-besu", "op-rbuilder",
+        # CL
+        "kona-node", "hildr",
+        # OP services
+        "op-challenger", "op-conductor", "op-conductor-ops", "op-faucet",
+        "op-interop-mon", "op-signer", "op-supervisor", "kona-supervisor",
+        "op-test-sequencer", "da-server",
+        # sidecars and utils
+        "rollup-boost", "flashblocks-websocket-proxy", "flashblocks-rpc",
+        "deployment-utils", "openssl", "tx-fuzzer",
+        # observability and explorers
+        "prometheus", "grafana", "loki", "promtail",
+        "op-blockscout", "op-blockscout-verifier",
+    ],
+    "Not deployed by kurtosis-cdk.",
+)
 
 # L1 clients, read from the ethereum-package participant of
 # .github/tests/custom.yaml. Keys are participant fields.
@@ -212,8 +188,7 @@ class VersionMatrixExtractor:
                 unknown_keys.append(key)
                 continue
             repo, tag_prefix = COMPONENT_REPOS[key]
-            group = "core" if key in CORE_IMAGES else "additional"
-            components[key] = self._component(key, image, repo, tag_prefix, group)
+            components[key] = self._component(key, image, repo, tag_prefix, "l2")
         return components, unknown_keys
 
     def extract_l1_images(self) -> Dict[str, ComponentVersion]:
