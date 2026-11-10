@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "0 2 * * *" # Runs at 02:00 UTC daily
   workflow_dispatch:
+    inputs:
+      notify:
+        description: Post the summary to Slack, as scheduled runs do.
+        type: boolean
+        default: false
 
 env:
   DEVTOOLS_SLACK_ALERTS_CHANNEL_ID: C04DS0SG599
@@ -121,7 +126,7 @@ jobs:
   workflow-summary:
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    if: ${{ always() && github.event_name == 'schedule' }}
+    if: ${{ always() && (github.event_name == 'schedule' || inputs.notify) }}
     needs:
       - check-version-matrix
       - bump-version-matrix
