@@ -27,8 +27,8 @@ The default L2 clients, the services every chain gets and the deployer: a `kurto
 | op-deployer | [0.9.0-cdk](https://github.com/ethereum-optimism/optimism/releases/tag/op-deployer/v0.9.0) | [0.9.0](https://github.com/ethereum-optimism/optimism/releases/tag/op-deployer/v0.9.0)   | ✅ up to date |
 | op-node     | [1.20.1](https://github.com/ethereum-optimism/optimism/releases/tag/op-node/v1.20.1)       | [1.20.1](https://github.com/ethereum-optimism/optimism/releases/tag/op-node/v1.20.1)     | ✅ up to date |
 | op-proposer | [1.17.0](https://github.com/ethereum-optimism/optimism/releases/tag/op-proposer/v1.17.0)   | [1.17.0](https://github.com/ethereum-optimism/optimism/releases/tag/op-proposer/v1.17.0) | ✅ up to date |
-| op-reth     | [2.8.1](https://github.com/ethereum-optimism/optimism/releases/tag/op-reth/v2.8.1)         | [2.8.2](https://github.com/ethereum-optimism/optimism/releases/tag/op-reth/v2.8.2)       | 🚨 behind     |
-| proxyd      | [4.29.1](https://github.com/ethereum-optimism/infra/releases/tag/proxyd/v4.29.1)           | [4.35.3](https://github.com/ethereum-optimism/infra/releases/tag/proxyd/v4.35.3)         | 🚨 behind     |
+| op-reth     | [2.8.2](https://github.com/ethereum-optimism/optimism/releases/tag/op-reth/v2.8.2)         | [2.8.2](https://github.com/ethereum-optimism/optimism/releases/tag/op-reth/v2.8.2)       | ✅ up to date |
+| proxyd      | [4.35.3](https://github.com/ethereum-optimism/infra/releases/tag/proxyd/v4.35.3)           | [4.35.3](https://github.com/ethereum-optimism/infra/releases/tag/proxyd/v4.35.3)         | ✅ up to date |
 
 ### Additional
 
@@ -79,12 +79,12 @@ Tools pinned in [`mise.toml`](https://github.com/agglayer/optimism-package/blob/
 
 | Tool          | Pinned version                                                                  | Latest stable version                                                           | Status        |
 | ------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------- |
-| foundry       | [1.3.2](https://github.com/foundry-rs/foundry/releases/tag/v1.3.2)              | [1.9.0](https://github.com/foundry-rs/foundry/releases/tag/v1.9.0)              | 🚨 behind     |
+| foundry       | [1.9.0](https://github.com/foundry-rs/foundry/releases/tag/v1.9.0)              | [1.9.0](https://github.com/foundry-rs/foundry/releases/tag/v1.9.0)              | ✅ up to date |
 | just          | [1.59.0](https://github.com/casey/just/releases/tag/1.59.0)                     | [1.59.0](https://github.com/casey/just/releases/tag/1.59.0)                     | ✅ up to date |
 | kurtosis      | [1.22.2](https://github.com/kurtosis-tech/kurtosis/releases/tag/1.22.2)         | [1.22.2](https://github.com/kurtosis-tech/kurtosis/releases/tag/1.22.2)         | ✅ up to date |
 | kurtosis-lint | [0.0.7](https://github.com/ethereum-optimism/kurtosis-lint/releases/tag/v0.0.7) | [0.0.7](https://github.com/ethereum-optimism/kurtosis-lint/releases/tag/v0.0.7) | ✅ up to date |
-| kurtosis-test | [0.0.9](https://github.com/leovct/kurtosis-test/releases/tag/v0.0.9)            | [0.0.10](https://github.com/leovct/kurtosis-test/releases/tag/v0.0.10)          | 🚨 behind     |
-| yq            | [4.44.3](https://github.com/mikefarah/yq/releases/tag/v4.44.3)                  | [4.54.3](https://github.com/mikefarah/yq/releases/tag/v4.54.3)                  | 🚨 behind     |
+| kurtosis-test | [0.0.10](https://github.com/leovct/kurtosis-test/releases/tag/v0.0.10)          | [0.0.10](https://github.com/leovct/kurtosis-test/releases/tag/v0.0.10)          | ✅ up to date |
+| yq            | [4.54.3](https://github.com/mikefarah/yq/releases/tag/v4.54.3)                  | [4.54.3](https://github.com/mikefarah/yq/releases/tag/v4.54.3)                  | ✅ up to date |
 
 ## Kurtosis packages
 

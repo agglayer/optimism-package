@@ -10,4 +10,4 @@ runs:
     - name: Install Foundry
       uses: foundry-rs/foundry-toolchain@82dee4ba654bd2146511f85f0d013af94670c4de # v1.4.0
       with:
-        version: v1.3.2
+        version: v1.9.0
