@@ -16,20 +16,30 @@ jobs:
       fail-fast: false
       matrix:
         file_name:
-          [
-            # "./network_params.yaml",
-            # "./.github/tests/kona-node-signer.yaml",
-            # "./.github/tests/op-deployer-042.yaml",
-            "./.github/tests/custom.yaml",
-          ]
+          - ./.github/tests/blockscout.yaml
+          - ./.github/tests/custom.yaml
+          - ./.github/tests/flashblocks.yaml
+          - ./.github/tests/hildr.yaml
+          - ./.github/tests/multiple_l2s.yaml
+          - ./.github/tests/op-besu.yaml
+          - ./.github/tests/op-erigon.yaml
+          - ./.github/tests/op-geth.yaml
+          - ./.github/tests/op-geth-reth-custom-batcher.yaml
+          - ./.github/tests/op-nethermind.yaml
+          - ./.github/tests/op-node.yaml
+          - ./.github/tests/op-reth.yaml
+          - ./.github/tests/rollup-boost.yaml
+          - ./.github/tests/simple.yaml
+          - ./.github/tests/single_l2.yaml
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
       - name: Checkout Repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Setup environment
         uses: ./.github/workflows/actions/setup-environment
-      
+
       - name: Run kurtosis
         uses: ./.github/workflows/actions/run-kurtosis-docker
         with:
@@ -53,7 +63,7 @@ jobs:
   #   name: Run k8s tests
   #   uses: ./.github/workflows/reusable-run-k8s.yml
   #   secrets: inherit
-  
+
   lint:
     name: Lint
     runs-on: ubuntu-latest
@@ -79,4 +89,3 @@ jobs:
 
       - name: Run unit tests
         run: just test
-

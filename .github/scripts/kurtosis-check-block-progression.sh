@@ -75,8 +75,8 @@ echo "Got enclave EL services: $ENCLAVE_EL_SERVICE_NAMES"
 echo "Got enclave EL RPC ports: $ENCLAVE_EL_SERVICE_RPC_PORTS"
 
 # Convert the lists into bash arrays
-ENCLAVE_EL_SERVICE_NAMES_ARRAY=($ENCLAVE_EL_SERVICE_NAMES)
-ENCLAVE_EL_SERVICE_RPC_PORTS_ARRAY=($ENCLAVE_EL_SERVICE_RPC_PORTS)
+read -ra ENCLAVE_EL_SERVICE_NAMES_ARRAY <<< "$ENCLAVE_EL_SERVICE_NAMES"
+read -ra ENCLAVE_EL_SERVICE_RPC_PORTS_ARRAY <<< "$ENCLAVE_EL_SERVICE_RPC_PORTS"
 
 # Now check that the clients advance
 for STEP in $(seq 1 $NUM_NAPS); do
@@ -99,8 +99,8 @@ for STEP in $(seq 1 $NUM_NAPS); do
             echo "Target block $TARGET_BLOCK reached for all block types (latest, safe, finalized) for $SERVICE_NAME"
             
             # If so, we remove the service from the array
-            unset ENCLAVE_EL_SERVICE_NAMES_ARRAY[$I]
-            unset ENCLAVE_EL_SERVICE_RPC_PORTS_ARRAY[$I]
+            unset 'ENCLAVE_EL_SERVICE_NAMES_ARRAY[$I]'
+            unset 'ENCLAVE_EL_SERVICE_RPC_PORTS_ARRAY[$I]'
         fi
     done
 

@@ -6,4 +6,4 @@ optimism_package:
           el:
             type: op-geth
       blockscout_params:
-        enabled: True
+        enabled: true
