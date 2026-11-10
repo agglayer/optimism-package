@@ -119,6 +119,13 @@ jobs:
       - name: Deploy L1
         run: kurtosis run --enclave test --args-file ./.github/tests/external-l1/ethereum.yaml github.com/ethpandaops/ethereum-package
 
+      # The contract deployer reads this artifact; run-kurtosis-docker uploads
+      # the same dummy file for the other jobs.
+      - name: Upload the predeployed_allocs.json file
+        run: |
+          echo '{}' > predeployed_allocs.json
+          kurtosis files upload --name predeployed_allocs.json test ./predeployed_allocs.json
+
       - name: Run Starlark
         run: |
           kurtosis run --enclave test --verbosity detailed --args-file ./.github/tests/external-l1/optimism.yaml ${{ github.workspace }}
