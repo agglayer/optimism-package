@@ -143,7 +143,7 @@ reason:
 
 ```python
 PINNED_VERSIONS = {
-    "op-geth": "Only supports op-geth 1.101602.x so far.",
+    "op-reth": "Only supports op-reth 2.8.x so far.",
 }
 ```
 

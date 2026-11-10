@@ -29,7 +29,7 @@ rows marked 🚨 (behind). Skip:
 - 📌 `pinned` rows: deliberate holds declared in `PINNED_VERSIONS` in
   `extract-versions.py`, or a release whose image is not published yet.
 - Pre-releases (`rc`, `beta`, `alpha`, `dev`): flag them instead.
-- Major version jumps of a client (op-nethermind 1.x → 2.x, blockscout): bump
+- Major version jumps of a client (op-blockscout 6.x → 12.x, for instance): bump
   only if the release notes show no breaking change in the flags or config the
   package passes; otherwise skip them as `other` and say why.
 - The hard forks page: forks are not versions and never use 🚨. A bump can

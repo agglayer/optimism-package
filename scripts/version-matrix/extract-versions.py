@@ -69,15 +69,10 @@ INFRA = "ethereum-optimism/infra"
 # must be in SKIPPED_IMAGES, otherwise main() fails.
 COMPONENT_REPOS = {
     # EL
-    "op-geth": ("ethereum-optimism/op-geth", "v"),
     "op-reth": (OPTIMISM, "op-reth/v"),
-    "op-erigon": ("testinprod-io/op-erigon", "v"),
-    "op-nethermind": ("NethermindEth/nethermind", ""),
-    "op-besu": ("optimism-java/op-besu", "v"),
     # CL
     "op-node": (OPTIMISM, "op-node/v"),
     "kona-node": (OPTIMISM, "kona-node/v"),
-    "hildr": ("optimism-java/hildr", "v"),
     # OP services
     "op-batcher": (OPTIMISM, "op-batcher/v"),
     "op-proposer": (OPTIMISM, "op-proposer/v"),
@@ -108,6 +103,12 @@ COMPONENT_REPOS = {
 # explicit means a newly added image that lands in neither table is a visible
 # gap rather than a silent omission.
 SKIPPED_IMAGES: Dict[str, str] = {
+    # Alternative clients: no test config this fork deploys uses them.
+    "op-geth": "Not maintained in this fork.",
+    "op-erigon": "Not maintained in this fork.",
+    "op-nethermind": "Not maintained in this fork.",
+    "op-besu": "Not maintained in this fork.",
+    "hildr": "Not maintained in this fork.",
     "op-rbuilder": "Commit build (`sha-…`): no release to compare with.",
     "flashblocks-rpc": "Commit build (`sha-…`): no release to compare with.",
     "kona-supervisor": "Pinned by digest: no tag to compare with.",
