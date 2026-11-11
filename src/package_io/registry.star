@@ -80,7 +80,7 @@ _DEFAULT_IMAGES = {
     # Interop Monitor
     OP_INTEROP_MON: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-interop-mon:v0.1.0",
     # Proxyd
-    PROXYD: "us-docker.pkg.dev/oplabs-tools-artifacts/images/proxyd:v4.35.3",
+    PROXYD: "us-docker.pkg.dev/oplabs-tools-artifacts/images/proxyd:v4.36.0",
     # Sidecar
     ROLLUP_BOOST: "flashbots/rollup-boost:v0.7.17",
     # DA Server
