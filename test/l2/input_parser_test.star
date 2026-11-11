@@ -104,7 +104,7 @@ def test_l2_input_parser_defaults(plan):
     )
 
     _default_proxyd_params = struct(
-        image="us-docker.pkg.dev/oplabs-tools-artifacts/images/proxyd:v4.35.3",
+        image="us-docker.pkg.dev/oplabs-tools-artifacts/images/proxyd:v4.36.0",
         extra_params=[],
         ports={
             _net.HTTP_PORT_NAME: _net.port(number=8080),

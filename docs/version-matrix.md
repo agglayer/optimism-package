@@ -28,7 +28,7 @@ What kurtosis-cdk deploys through this package: the default L2 clients, the serv
 | op-node     | [1.20.1](https://github.com/ethereum-optimism/optimism/releases/tag/op-node/v1.20.1)       | [1.20.1](https://github.com/ethereum-optimism/optimism/releases/tag/op-node/v1.20.1)     | ✅ up to date |
 | op-proposer | [1.17.0](https://github.com/ethereum-optimism/optimism/releases/tag/op-proposer/v1.17.0)   | [1.17.0](https://github.com/ethereum-optimism/optimism/releases/tag/op-proposer/v1.17.0) | ✅ up to date |
 | op-reth     | [2.8.2](https://github.com/ethereum-optimism/optimism/releases/tag/op-reth/v2.8.2)         | [2.8.2](https://github.com/ethereum-optimism/optimism/releases/tag/op-reth/v2.8.2)       | ✅ up to date |
-| proxyd      | [4.35.3](https://github.com/ethereum-optimism/infra/releases/tag/proxyd/v4.35.3)           | [4.35.3](https://github.com/ethereum-optimism/infra/releases/tag/proxyd/v4.35.3)         | ✅ up to date |
+| proxyd      | [4.36.0](https://github.com/ethereum-optimism/infra/releases/tag/proxyd/v4.36.0)           | [4.36.0](https://github.com/ethereum-optimism/infra/releases/tag/proxyd/v4.36.0)         | ✅ up to date |
 
 ### Not tracked
 
