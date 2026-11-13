@@ -4,8 +4,6 @@ name: Version matrix
 on:
   schedule:
     - cron: "0 4 * * 1" # Runs at 04:00 UTC every Monday
-  push: # TEMP: test run, to revert
-    branches: [ci/weekly-version-matrix]
   workflow_dispatch:
     inputs:
       notify:
@@ -24,7 +22,6 @@ jobs:
   check-version-matrix:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    continue-on-error: true
     permissions:
       contents: read
     outputs:
@@ -56,7 +53,7 @@ jobs:
             echo "::warning title=version-matrix::Version matrix is outdated, see scripts/version-matrix/README.md."
             git diff --stat
             git diff
-            exit 1
+            exit 0
           fi
           echo "outdated=false" >> "$GITHUB_OUTPUT"
           echo "Version matrix is up to date"
