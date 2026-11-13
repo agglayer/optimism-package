@@ -61,14 +61,14 @@ python3 scripts/version-matrix/verify-package-pins.py
 ## CI
 
 - `checks.yaml` runs `verify-package-pins.py` and lints the docs on every PR.
-- `nightly.yml` runs the `check-version-matrix` job. It regenerates the matrix
+- `version-matrix.yml` runs the `check-version-matrix` job every Monday. It regenerates the matrix
   and fails if the committed pages are out of date, which is the signal that a
   dependency has moved.
 - `bump-version-matrix.yml` runs after it: Claude follows
   `.claude/skills/update-version-matrix/SKILL.md` to bump what is behind, and the
   workflow opens or refreshes a PR. Merging stays manual.
 
-Regenerate and commit the docs pages when bumping a dependency, so the nightly
+Regenerate and commit the docs pages when bumping a dependency, so the weekly
 diff stays empty. `matrix.json` is gitignored.
 
 ## Status system
@@ -100,7 +100,7 @@ support:
 Upstream files are read at the refs this repo pins (image tags, the `kurtosis.yml`
 ethereum-package commit, the superchain-registry submodule of the monorepo at the
 op-deployer tag), never at upstream HEAD. A fork that is merely announced
-upstream therefore never makes the nightly diff non-empty. op-deployer activates
+upstream therefore never makes the weekly diff non-empty. op-deployer activates
 at genesis every fork up to the latest one OP Mainnet has scheduled in that
 registry, so a knob left unset reads `✅ enabled — op-deployer default`. A failed
 fetch fails the script instead of rendering a fork as unsupported.
