@@ -4,6 +4,8 @@ name: Version matrix
 on:
   schedule:
     - cron: "0 4 * * 1" # Runs at 04:00 UTC every Monday
+  push: # TEMP: test run, to revert
+    branches: [ci/weekly-version-matrix]
   workflow_dispatch:
     inputs:
       notify:
