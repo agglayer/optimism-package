@@ -87,7 +87,7 @@ External Kurtosis packages the package depends on. Versions are pinned in the [`
 
 | Package                                                                                    | Pinned version                                                                                                | Latest stable version                                                                                                | Status        |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ------------- |
-| [github.com/ethpandaops/ethereum-package](https://github.com/ethpandaops/ethereum-package) | [5795b77e6523](https://github.com/ethpandaops/ethereum-package/tree/5795b77e65235ad223d4d3b413b2739190bf60cc) | [HEAD (5795b77e6523)](https://github.com/ethpandaops/ethereum-package/tree/5795b77e65235ad223d4d3b413b2739190bf60cc) | ✅ up to date |
+| [github.com/ethpandaops/ethereum-package](https://github.com/ethpandaops/ethereum-package) | [6886eac7b858](https://github.com/ethpandaops/ethereum-package/tree/6886eac7b858d8f28dc2f3cf4e7985cbdb926e56) | [HEAD (6886eac7b858)](https://github.com/ethpandaops/ethereum-package/tree/6886eac7b858d8f28dc2f3cf4e7985cbdb926e56) | ✅ up to date |
 
 ### Additional
 
