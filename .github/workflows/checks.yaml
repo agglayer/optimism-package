@@ -13,27 +13,29 @@ concurrency:
   cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
 
 jobs:
-  version-matrix:
+  lint:
+    permissions:
+      contents: read
+    uses: 0xPolygon/kurtosis-workflows/.github/workflows/lint.yml@v0.1.4
+    with:
+      # The Kurtosis and Starlark lints run in per-pr.yml with the versions pinned in mise.toml.
+      kurtosis_version: ""
+      markdown_paths: docs scripts/version-matrix
+      python_paths: scripts/version-matrix
+      typos: false
+      shfmt_version: ""
+
+  package-pins:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
-        with:
-          python-version: "3.13"
-
-      - name: Install dependencies
-        run: pip install -r scripts/version-matrix/requirements.txt ruff==0.14.3
-
-      - name: Lint python
-        run: ruff check scripts/version-matrix
+      - name: Install pyyaml
+        run: pip install PyYAML==6.0.3
 
       - name: Verify external package pins
         run: python3 scripts/version-matrix/verify-package-pins.py
-
-      - name: Lint markdown
-        run: rumdl check docs scripts/version-matrix
 
   shellcheck:
     runs-on: ubuntu-latest
