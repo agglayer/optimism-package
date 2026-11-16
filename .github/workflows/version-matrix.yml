@@ -25,8 +25,6 @@ jobs:
       notify: ${{ github.event_name == 'schedule' || inputs.notify }}
       slack_channel_id: C04DS0SG599
       use_mise: true
-      base_branch: ci/use-shared-version-matrix
-      pr_branch: chore/bump-test
     # `secrets: inherit` does not cross organizations, so the secrets are passed by name.
     secrets:
       claude_api_key: ${{ secrets.CLAUDE_API_KEY }}
