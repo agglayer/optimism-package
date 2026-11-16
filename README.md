@@ -38,7 +38,7 @@ ethereum_package:
 
 ```
 
-Please note, by default your network will be running a `minimal` preset Ethereum network. Click [here](https://github.com/ethereum/consensus-specs/blob/dev/configs/minimal.yaml) to learn more about minimal preset. You can [customize](https://github.com/ethpandaops/ethereum-package) the L1 Ethereum network by modifying the `ethereum_package` configuration.
+Please note, by default your network will be running a `minimal` preset Ethereum network. See the [minimal preset configuration](https://github.com/ethereum/consensus-specs/blob/dev/configs/minimal.yaml) to learn more about minimal preset. You can [customize](https://github.com/ethpandaops/ethereum-package) the L1 Ethereum network by modifying the `ethereum_package` configuration.
 
 You can also completely remove `ethereum_package` from your configuration in which case it will default to a `minimal` preset Ethereum network.
 
@@ -742,22 +742,26 @@ Compile [tx-fuzz](https://github.com/MariusVanDerWijden/tx-fuzz) locally per ins
 #### Run contender to send l2 transactions
 
 Install the latest [contender](https://github.com/flashbots/contender) version via cargo:
+
 ```bash
 cargo install --git https://github.com/flashbots/contender --bin contender --force
 ```
 
 Browse the available [scenarios](https://github.com/flashbots/contender/tree/main/scenarios) and pick one that fits your needs. For example, to download the `stress` scenario:
+
 ```bash
 wget https://raw.githubusercontent.com/flashbots/contender/refs/heads/main/scenarios/stress.toml -O scenario.toml
 ```
 
 In the snippet below, we use Docker to inspect the container named `op-el-1` and dynamically extract the port. You can replace this approach with a specific L2 RPC port if you prefer::
+
 ```bash
 L2_PORT=$(docker inspect --format='{{(index .NetworkSettings.Ports "8545/tcp" 0).HostPort}}' $(docker ps --filter "name=op-el-1" -q)) &&
 contender setup -p 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 scenario.toml http://localhost:$L2_PORT
 ```
 
 Once setup is complete, you can start spamming transactions. In this example, we send 5 transactions per second for 10,000 seconds:
+
 ```bash
 contender spam \
   -p 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 \
@@ -766,6 +770,7 @@ contender spam \
   scenario.toml \
   http://localhost:$L2_PORT
 ```
+
 Note: For more complex scenarios like [spamBundles](https://github.com/flashbots/contender/blob/main/scenarios/spamBundles.toml), you'll need to provide L2 builder URL that supports the `eth_sendBundle` method.
 
 ### Additional configurations
@@ -909,18 +914,17 @@ The tests can be found in `*_test.star` scripts located in the `test` directory.
 
 ### Dev accounts being used
 
-Index| Address | Private Key | In use | Tool
----|---|---|---|---
-0| `0xf39F...2266` | `0xac09...f80` | ✅ | [op-transaction-fuzzer](src/transaction_fuzzer/transaction_fuzzer.star#L33)
-1| `0x7099...79C8` | `0x59c6...690d` | ❌ | ""
-2| `0x3C49...3359` | `0x5de4...365a` | ❌ | ""
-3| `0x90F7...9b906` | `0x7c85...a07a6` | ❌ | ""
-4| `0x15d3...9f1b9` | `0x47e1...9c6` | ❌ | ""
-5| `0x9965...0A4dc` | `0x8b3a...ba` | ❌ | ""
-6| `0x976E...9b906` | `0x92db...64e` | ❌ | ""
-7| `0x14dC...3356` | `0x4bbbf...356` | ❌ | ""
-8| `0x2361...226a` | `0xdbda...b97` | ❌ | ""
-9| `0xa0Ee...720` | `0xa0Ee...c6` | ❌ | ""
+| Index | Address          | Private Key      | In use | Tool                  |
+| ----- | ---------------- | ---------------- | ------ | --------------------- |
+| 0     | `0xf39F...2266`  | `0xac09...f80`   | ✅     | op-transaction-fuzzer |
+| 1     | `0x7099...79C8`  | `0x59c6...690d`  | ❌     | ""                    |
+| 2     | `0x3C49...3359`  | `0x5de4...365a`  | ❌     | ""                    |
+| 3     | `0x90F7...9b906` | `0x7c85...a07a6` | ❌     | ""                    |
+| 4     | `0x15d3...9f1b9` | `0x47e1...9c6`   | ❌     | ""                    |
+| 5     | `0x9965...0A4dc` | `0x8b3a...ba`    | ❌     | ""                    |
+| 6     | `0x976E...9b906` | `0x92db...64e`   | ❌     | ""                    |
+| 7     | `0x14dC...3356`  | `0x4bbbf...356`  | ❌     | ""                    |
+| 8     | `0x2361...226a`  | `0xdbda...b97`   | ❌     | ""                    |
+| 9     | `0xa0Ee...720`   | `0xa0Ee...c6`    | ❌     | ""                    |
 
 mnemonic: `test test test test test test test test test test test junk`
-

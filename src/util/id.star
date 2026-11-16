@@ -19,7 +19,7 @@ def assert_id(id, name="ID"):
 
 # Returns a autoincrementing ID generator function whose first value will be the `initial` argument
 def autoincrement(initial=1):
-    # Starlark does not seem to support mutable variables so we store the couter as the first element of a list
+    # Starlark does not seem to support mutable variables so we store the counter as the first element of a list
     bucket = [initial]
 
     def next():

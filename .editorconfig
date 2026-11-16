@@ -35,3 +35,8 @@ indent_size = 2
 [*.yaml]
 indent_style = space
 indent_size = 2
+
+# These scripts use bash features under a sh shebang and run inside the op-signer image, so shfmt
+# cannot parse them as POSIX shell.
+[src/signer/op-signer/scripts/*.sh]
+ignore = true
