@@ -50,13 +50,13 @@ OP_BLOCKSCOUT_VERIFIER = "op-blockscout-verifier"
 _DEFAULT_IMAGES = {
     # EL images
     OP_GETH: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101702.2",
-    OP_RETH: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-reth:v2.8.2",
+    OP_RETH: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-reth:v2.9.0",
     OP_ERIGON: "testinprod/op-erigon:v2.61.3-0.9.5",
     OP_NETHERMIND: "nethermind/nethermind:1.32.4",
     OP_BESU: "ghcr.io/optimism-java/op-besu:v0.2.2",
     OP_RBUILDER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-rbuilder:sha-0ec0644",
     # CL images
-    OP_NODE: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.20.1",
+    OP_NODE: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.20.2",
     KONA_NODE: "us-docker.pkg.dev/oplabs-tools-artifacts/images/kona-node:v1.10.0",
     HILDR: "ghcr.io/optimism-java/hildr:v0.4.5",
     # Batching
@@ -68,7 +68,7 @@ _DEFAULT_IMAGES = {
     # kona-supervisor
     KONA_SUPERVISOR: "ghcr.io/op-rs/kona/kona-supervisor@sha256:98afd250010201573fb61490f3eb9ea131186f84d532ef9a0018c6382a1c0b45",
     # Proposer
-    OP_PROPOSER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-proposer:v1.17.0",
+    OP_PROPOSER: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-proposer:v1.17.1",
     # Conductor
     OP_CONDUCTOR: "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-conductor:v0.9.6",
     # deployer

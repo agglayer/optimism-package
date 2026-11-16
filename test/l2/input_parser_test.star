@@ -90,7 +90,7 @@ def test_l2_input_parser_defaults(plan):
         enabled=True,
         extra_params=[],
         game_type=0,
-        image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-proposer:v1.17.0",
+        image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-proposer:v1.17.1",
         ports={
             _net.HTTP_PORT_NAME: _net.port(number=8560),
         },

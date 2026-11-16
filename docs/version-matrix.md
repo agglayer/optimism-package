@@ -25,9 +25,9 @@ What kurtosis-cdk deploys through this package: the default L2 clients, the serv
 | ----------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- | ------------- |
 | op-batcher  | [1.18.1](https://github.com/ethereum-optimism/optimism/releases/tag/op-batcher/v1.18.1)    | [1.18.1](https://github.com/ethereum-optimism/optimism/releases/tag/op-batcher/v1.18.1)  | ✅ up to date |
 | op-deployer | [0.9.0-cdk](https://github.com/ethereum-optimism/optimism/releases/tag/op-deployer/v0.9.0) | [0.9.0](https://github.com/ethereum-optimism/optimism/releases/tag/op-deployer/v0.9.0)   | ✅ up to date |
-| op-node     | [1.20.1](https://github.com/ethereum-optimism/optimism/releases/tag/op-node/v1.20.1)       | [1.20.1](https://github.com/ethereum-optimism/optimism/releases/tag/op-node/v1.20.1)     | ✅ up to date |
-| op-proposer | [1.17.0](https://github.com/ethereum-optimism/optimism/releases/tag/op-proposer/v1.17.0)   | [1.17.0](https://github.com/ethereum-optimism/optimism/releases/tag/op-proposer/v1.17.0) | ✅ up to date |
-| op-reth     | [2.8.2](https://github.com/ethereum-optimism/optimism/releases/tag/op-reth/v2.8.2)         | [2.8.2](https://github.com/ethereum-optimism/optimism/releases/tag/op-reth/v2.8.2)       | ✅ up to date |
+| op-node     | [1.20.2](https://github.com/ethereum-optimism/optimism/releases/tag/op-node/v1.20.2)       | [1.20.2](https://github.com/ethereum-optimism/optimism/releases/tag/op-node/v1.20.2)     | ✅ up to date |
+| op-proposer | [1.17.1](https://github.com/ethereum-optimism/optimism/releases/tag/op-proposer/v1.17.1)   | [1.17.1](https://github.com/ethereum-optimism/optimism/releases/tag/op-proposer/v1.17.1) | ✅ up to date |
+| op-reth     | [2.9.0](https://github.com/ethereum-optimism/optimism/releases/tag/op-reth/v2.9.0)         | [2.9.0](https://github.com/ethereum-optimism/optimism/releases/tag/op-reth/v2.9.0)       | ✅ up to date |
 | proxyd      | [4.36.0](https://github.com/ethereum-optimism/infra/releases/tag/proxyd/v4.36.0)           | [4.36.0](https://github.com/ethereum-optimism/infra/releases/tag/proxyd/v4.36.0)         | ✅ up to date |
 
 ### Not tracked
@@ -74,7 +74,7 @@ Tools pinned in [`mise.toml`](https://github.com/agglayer/optimism-package/blob/
 | ------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------- |
 | foundry       | [1.9.0](https://github.com/foundry-rs/foundry/releases/tag/v1.9.0)              | [1.9.0](https://github.com/foundry-rs/foundry/releases/tag/v1.9.0)              | ✅ up to date |
 | just          | [1.59.0](https://github.com/casey/just/releases/tag/1.59.0)                     | [1.59.0](https://github.com/casey/just/releases/tag/1.59.0)                     | ✅ up to date |
-| kurtosis      | [1.22.2](https://github.com/kurtosis-tech/kurtosis/releases/tag/1.22.2)         | [1.22.2](https://github.com/kurtosis-tech/kurtosis/releases/tag/1.22.2)         | ✅ up to date |
+| kurtosis      | [1.23.0](https://github.com/kurtosis-tech/kurtosis/releases/tag/1.23.0)         | [1.23.0](https://github.com/kurtosis-tech/kurtosis/releases/tag/1.23.0)         | ✅ up to date |
 | kurtosis-lint | [0.0.7](https://github.com/ethereum-optimism/kurtosis-lint/releases/tag/v0.0.7) | [0.0.7](https://github.com/ethereum-optimism/kurtosis-lint/releases/tag/v0.0.7) | ✅ up to date |
 | kurtosis-test | [0.0.10](https://github.com/leovct/kurtosis-test/releases/tag/v0.0.10)          | [0.0.10](https://github.com/leovct/kurtosis-test/releases/tag/v0.0.10)          | ✅ up to date |
 | yq            | [4.54.3](https://github.com/mikefarah/yq/releases/tag/v4.54.3)                  | [4.54.3](https://github.com/mikefarah/yq/releases/tag/v4.54.3)                  | ✅ up to date |
@@ -87,7 +87,7 @@ External Kurtosis packages the package depends on. Versions are pinned in the [`
 
 | Package                                                                                    | Pinned version                                                                                                | Latest stable version                                                                                                | Status        |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ------------- |
-| [github.com/ethpandaops/ethereum-package](https://github.com/ethpandaops/ethereum-package) | [6886eac7b858](https://github.com/ethpandaops/ethereum-package/tree/6886eac7b858d8f28dc2f3cf4e7985cbdb926e56) | [HEAD (6886eac7b858)](https://github.com/ethpandaops/ethereum-package/tree/6886eac7b858d8f28dc2f3cf4e7985cbdb926e56) | ✅ up to date |
+| [github.com/ethpandaops/ethereum-package](https://github.com/ethpandaops/ethereum-package) | [74cdb681a14a](https://github.com/ethpandaops/ethereum-package/tree/74cdb681a14a46c7177df17c0ea186f0aa184015) | [HEAD (74cdb681a14a)](https://github.com/ethpandaops/ethereum-package/tree/74cdb681a14a46c7177df17c0ea186f0aa184015) | ✅ up to date |
 
 ### Additional
 
