@@ -35,7 +35,7 @@ def test_supervisor_input_parser_empty(plan):
     )
 
 
-def test_supervisor_input_parser_extra_attrbutes(plan):
+def test_supervisor_input_parser_extra_attributes(plan):
     expect.fails(
         lambda: input_parser.parse(
             {"supervisor0": {"extra": None, "name": "x"}},

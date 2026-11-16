@@ -13,10 +13,13 @@ helm install ns-authz ./ns-authz --namespace kube-system
 ## Usage
 
 1. Create a new namespace:
+
    ```bash
    kubectl create namespace test-ns
    ```
+
 2. Check the watcher pod logs to ensure the new namespace's `default` `ServiceAccount` was granted `cluster-admin` access:
+
    ```bash
    kubectl logs -l app=ns-authz -n kube-system
    ```

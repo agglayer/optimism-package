@@ -17,13 +17,6 @@ jobs:
     permissions:
       contents: read
     uses: 0xPolygon/kurtosis-workflows/.github/workflows/lint.yml@v0.1.4
-    with:
-      # The Kurtosis and Starlark lints run in per-pr.yml with the versions pinned in mise.toml.
-      kurtosis_version: ""
-      markdown_paths: docs scripts/version-matrix
-      python_paths: scripts/version-matrix
-      typos: false
-      shfmt_version: ""
 
   package-pins:
     runs-on: ubuntu-latest

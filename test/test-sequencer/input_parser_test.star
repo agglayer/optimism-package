@@ -29,7 +29,7 @@ def test_test_sequencer_input_parser_empty(plan):
     )
 
 
-def test_test_sequencer_input_parser_extra_attrbutes(plan):
+def test_test_sequencer_input_parser_extra_attributes(plan):
     expect.fails(
         lambda: input_parser.parse(
             {"sequencer": {"extra": None, "name": "x"}},
@@ -76,14 +76,14 @@ def test_test_sequencer_input_parser_custom_params(plan):
     parsed = input_parser.parse(
         {
             "sequencer0": {
-                "image": "op-test-sequencer:lastest",
+                "image": "op-test-sequencer:latest",
                 "extra_params": ["--hey"],
             },
         },
         _default_registry,
     )
 
-    expect.eq(parsed[0].image, "op-test-sequencer:lastest")
+    expect.eq(parsed[0].image, "op-test-sequencer:latest")
     expect.eq(parsed[0].extra_params, ["--hey"])
 
 

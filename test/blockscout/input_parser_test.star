@@ -7,7 +7,7 @@ _default_network_params = struct(network_id=1000, name="my-l2", seconds_per_slot
 _default_registry = _registry.Registry()
 
 
-def test_blockscout_input_parser_extra_attrbutes(plan):
+def test_blockscout_input_parser_extra_attributes(plan):
     expect.fails(
         lambda: _input_parser.parse(
             {"extra": None, "name": "x"},

@@ -72,12 +72,12 @@ diff stays empty. `matrix.json` is gitignored.
 
 ## Status system
 
-| Status     | Icon | Description                                                     |
-| ---------- | ---- | --------------------------------------------------------------- |
-| up to date | ✅   | Running the latest upstream release                             |
-| ahead      | ⚡️   | Ahead of the latest release: a prerelease or a patched build    |
-| behind     | 🚨   | An upstream release is available and should be picked up        |
-| pinned     | 📌   | Deliberately held back, or its image is not published yet       |
+| Status     | Icon | Description                                                  |
+| ---------- | ---- | ------------------------------------------------------------ |
+| up to date | ✅   | Running the latest upstream release                          |
+| ahead      | ⚡️   | Ahead of the latest release: a prerelease or a patched build |
+| behind     | 🚨   | An upstream release is available and should be picked up     |
+| pinned     | 📌   | Deliberately held back, or its image is not published yet    |
 
 An image behind its upstream release is checked against its registry first: if
 the image for the new release is not published yet (same `v` prefix and build
