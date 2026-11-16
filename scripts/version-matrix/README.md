@@ -61,12 +61,11 @@ python3 scripts/version-matrix/verify-package-pins.py
 ## CI
 
 - `checks.yaml` runs `verify-package-pins.py` and lints the docs on every PR.
-- `version-matrix.yml` runs the `check-version-matrix` job every Monday. It regenerates the matrix
-  and fails if the committed pages are out of date, which is the signal that a
-  dependency has moved.
-- `bump-version-matrix.yml` runs after it: Claude follows
-  `.claude/skills/update-version-matrix/SKILL.md` to bump what is behind, and the
-  workflow opens or refreshes a PR. Merging stays manual.
+- `version-matrix.yml` calls the shared `version-matrix` workflow of
+  [0xPolygon/kurtosis-workflows](https://github.com/0xPolygon/kurtosis-workflows) every Monday. It
+  regenerates the matrix, which is the signal that a dependency has moved when the committed pages
+  differ. Claude then follows `.claude/skills/update-version-matrix/SKILL.md` to bump what is
+  behind, and the workflow opens or refreshes a PR. Merging stays manual.
 
 Regenerate and commit the docs pages when bumping a dependency, so the weekly
 diff stays empty. `matrix.json` is gitignored.
