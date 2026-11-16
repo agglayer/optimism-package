@@ -3,7 +3,7 @@
 # Core dependencies
 just = "1.59.0"
 "ubi:leovct/kurtosis-test" = "v0.0.10"
-"ubi:kurtosis-tech/kurtosis-cli-release-artifacts[exe=kurtosis]" = "1.22.2"
+"ubi:kurtosis-tech/kurtosis-cli-release-artifacts[exe=kurtosis]" = "1.23.0"
 "yq" = "v4.54.3"
 
 # lint

@@ -22,7 +22,7 @@ Fork epochs are the ethereum-package `minimal` preset defaults, overridden in th
 
 Checked against:
 
-- [ethereum-package 6886eac7b858](https://github.com/ethpandaops/ethereum-package/blob/6886eac7b858d8f28dc2f3cf4e7985cbdb926e56/src/package_io/input_parser.star)
+- [ethereum-package 74cdb681a14a](https://github.com/ethpandaops/ethereum-package/blob/74cdb681a14a46c7177df17c0ea186f0aa184015/src/package_io/input_parser.star)
 - [geth v1.17.10](https://github.com/ethereum/go-ethereum/blob/v1.17.10/params/config.go)
 - [lighthouse v8.3.3](https://github.com/sigp/lighthouse/blob/v8.3.3/common/eth2_network_config/built_in_network_configs/mainnet/config.yaml)
 
@@ -48,5 +48,5 @@ The OP Mainnet column is the first block at the activation time listed in that r
 Checked against:
 
 - [optimism-package main](https://github.com/agglayer/optimism-package/blob/main/src/l2/input_parser.star)
-- [op-node v1.20.1](https://github.com/ethereum-optimism/optimism/blob/op-node/v1.20.1/op-core/forks/forks.go)
+- [op-node v1.20.2](https://github.com/ethereum-optimism/optimism/blob/op-node/v1.20.2/op-core/forks/forks.go)
 - [superchain-registry (op-deployer v0.9.0-cdk) 08d6a44910d7](https://github.com/ethereum-optimism/superchain-registry/blob/08d6a44910d75e28a5ee1c7c047d3bdd0bbdbdd2/superchain/configs/mainnet/op.toml)
