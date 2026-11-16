@@ -16,6 +16,9 @@
 # Just so that we don't repeat ourselves
 ENCLAVES_API_URL=http://127.0.0.1:9779/api/enclaves
 
+# Since Kurtosis 1.23.0 the engine REST API requires the API auth token the CLI wrote on engine start
+KURTOSIS_API_AUTH_TOKEN=${KURTOSIS_API_AUTH_TOKEN:-$(cat "${XDG_CONFIG_HOME:-$HOME/.config}/kurtosis/api-auth-token" 2>/dev/null)}
+
 # We pass the enclave name and the target block as script arguments
 ENCLAVE_NAME=$1
 if [ -z "$ENCLAVE_NAME" ]; then
@@ -28,7 +31,7 @@ echo "Dumping logs of the OP services for enclave $ENCLAVE_NAME"
 # Get the enclave UUID from the API
 # 
 # The | values at the end of the j1 transformation will convert null to an empty string
-ENCLAVE_ID=$(curl -s $ENCLAVES_API_URL | jq -r 'to_entries | map(select(.value.name == "'$ENCLAVE_NAME'")) | .[0].key | values')
+ENCLAVE_ID=$(curl -s -H "Authorization: Bearer $KURTOSIS_API_AUTH_TOKEN" $ENCLAVES_API_URL | jq -r 'to_entries | map(select(.value.name == "'$ENCLAVE_NAME'")) | .[0].key | values')
 
 # Make sure we got something
 if [ -z "$ENCLAVE_ID" ]; then
@@ -39,7 +42,7 @@ fi
 echo "Got enclave UUID: $ENCLAVE_ID"
 
 # Now get all the service names
-ENCLAVE_SERVICES=$(curl -s $ENCLAVES_API_URL/$ENCLAVE_ID/services)
+ENCLAVE_SERVICES=$(curl -s -H "Authorization: Bearer $KURTOSIS_API_AUTH_TOKEN" $ENCLAVES_API_URL/$ENCLAVE_ID/services)
 ENCLAVE_SERVICES_NAMES=$(echo $ENCLAVE_SERVICES | jq -r 'keys_unsorted | join(" ")')
 
 # Make sure we got something
