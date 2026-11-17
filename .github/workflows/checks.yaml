@@ -23,6 +23,8 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Install pyyaml
         run: pip install PyYAML==6.0.3
@@ -35,6 +37,8 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
 
       # The op-signer scripts are left out: they use bash features under a sh
       # shebang, and run inside the op-signer image.
@@ -46,6 +50,8 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Run yamllint
         run: pipx run --spec yamllint==1.38.0 yamllint --strict .

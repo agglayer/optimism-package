@@ -24,9 +24,13 @@ jobs:
           - ./.github/tests/single_l2.yaml
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    permissions:
+      contents: read
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup environment
         uses: ./.github/workflows/actions/setup-environment
@@ -57,9 +61,14 @@ jobs:
 
   run_with_external_l1_args:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup environment
         uses: ./.github/workflows/actions/setup-environment

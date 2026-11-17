@@ -13,9 +13,14 @@ jobs:
           - { name: "network-params-flashblocks", file: "./.github/tests/flashblocks.yaml" }
       fail-fast: false
     runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: read
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
       - name: Setup minikube
         id: minikube
         uses: medyagh/setup-minikube@e3c7f79eb1e997eabccc536a6cf318a2b0fe19d9 # v0.0.20
