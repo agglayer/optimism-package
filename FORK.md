@@ -8,8 +8,8 @@
 
 ## Policy
 
-- [`main`](https://github.com/agglayer/optimism-package/tree/main): Tracks `upstream/main` exactly, without modifications.
-- [`overlay/main`](https://github.com/agglayer/optimism-package/tree/overlay/main): Contains our patch stack on top of `upstream/main` — this is where all fork-specific changes live.
+- [`main`](https://github.com/agglayer/optimism-package/tree/main): Contains our patch stack on top of `upstream/main` — this is where all fork-specific changes live, through PRs.
+- [`upstream-main`](https://github.com/agglayer/optimism-package/tree/upstream-main): Tracks `upstream/main` at the current sync point, without modifications.
 
 ## Patch Stack
 
@@ -18,7 +18,7 @@
 
 | #   | Title                                                                                     | Scope                                                                                        | Notes                                                                                                                                                                                                                          |
 | --- | ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 21  | feat: add a version matrix and CI checks                                                  | ci                                                                                           | Track pinned versions against upstream releases in `docs/`, bump them nightly, and lint and deploy more test configs on PRs                                                                                                    |
+| 21  | feat: add a version matrix and CI checks                                                  | ci                                                                                           | Track pinned versions against upstream releases in `docs/`, bump them weekly, and lint and deploy more test configs on PRs                                                                                                     |
 | 20  | chore: bump op-stack, ethereum-package and tooling versions                               | el/cl clients, op components, ci                                                             | Bump op-node, op-batcher, op-proposer, op-challenger, op-conductor, op-reth, op-deployer (v0.9.0-cdk), ethereum-package, kurtosis and just                                                                                     |
 | 19  | chore: bump op-stack versions and switch default EL to op-reth                            | el/cl clients, op components                                                                 | Bump the OP stack to the latest stable releases and default new participants to op-reth, as op-geth has reached [end of support](https://docs.optimism.io/notices/op-geth-deprecation) and the Karst hardfork requires op-reth |
 | 18  | chore: bump versions and switch to op-reth in custom.yaml                                 | el clients, ci                                                                               | Bump versions and switch to op-reth in custom.yaml                                                                                                                                                                             |
