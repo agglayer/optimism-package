@@ -13,9 +13,16 @@ concurrency:
   group: "${{ github.workflow_ref }}-${{ github.head_ref }}"
   cancel-in-progress: true
 
+permissions: {}
+
 jobs:
   title_check:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+    # pull_request_target runs with the base repository's token: only read the PR
+    # through the API, never check out or run its code.
+    permissions:
+      pull-requests: read
     steps:
       - uses: amannn/action-semantic-pull-request@0723387faaf9b38adef4775cd42cfd5155ed6017 # v5.5.3
         env:

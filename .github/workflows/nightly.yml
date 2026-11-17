@@ -24,9 +24,13 @@ jobs:
           - ./.github/tests/single_l2.yaml
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    permissions:
+      contents: read
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup environment
         uses: ./.github/workflows/actions/setup-environment
@@ -49,7 +53,7 @@ jobs:
 
       - name: Notify
         if: (cancelled() || failure()) && env.discord_webhook_set == 'true'
-        uses: Ilshidur/action-discord@d2594079a10f1d6739ee50a2471f0ca57418b554 # dependabot/npm_and_yarn/axios-1.3.4-08d9328
+        uses: Ilshidur/action-discord@d2594079a10f1d6739ee50a2471f0ca57418b554 # 0.4.0
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
@@ -57,9 +61,14 @@ jobs:
 
   run_with_external_l1_args:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup environment
         uses: ./.github/workflows/actions/setup-environment

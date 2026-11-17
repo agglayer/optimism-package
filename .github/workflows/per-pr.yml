@@ -2,8 +2,11 @@ name: CI
 
 on:
   push:
-    branches: [overlay/**]
+    branches: [main]
   pull_request:
+
+permissions:
+  contents: read
 
 concurrency:
   group: "${{ github.workflow_ref }}-${{ github.head_ref }}"
@@ -23,7 +26,9 @@ jobs:
     timeout-minutes: 45
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup environment
         uses: ./.github/workflows/actions/setup-environment
@@ -37,9 +42,12 @@ jobs:
   run_without_args:
     name: Run kurtosis without arguments
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup environment
         uses: ./.github/workflows/actions/setup-environment
@@ -55,9 +63,12 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup environment
         uses: ./.github/workflows/actions/setup-environment
@@ -68,9 +79,12 @@ jobs:
   test:
     name: Unit tests
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup environment
         uses: ./.github/workflows/actions/setup-environment

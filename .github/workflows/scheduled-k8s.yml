@@ -11,5 +11,7 @@ concurrency:
 jobs:
   run_k8s_test:
     name: Run k8s tests
+    permissions:
+      contents: read
     uses: ./.github/workflows/reusable-run-k8s.yml
     secrets: inherit
