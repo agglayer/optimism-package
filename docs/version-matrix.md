@@ -76,7 +76,7 @@ Tools pinned in [`mise.toml`](https://github.com/agglayer/optimism-package/blob/
 | just          | [1.59.0](https://github.com/casey/just/releases/tag/1.59.0)                     | [1.59.0](https://github.com/casey/just/releases/tag/1.59.0)                     | ✅ up to date |
 | kurtosis      | [1.23.0](https://github.com/kurtosis-tech/kurtosis/releases/tag/1.23.0)         | [1.23.0](https://github.com/kurtosis-tech/kurtosis/releases/tag/1.23.0)         | ✅ up to date |
 | kurtosis-lint | [0.0.7](https://github.com/ethereum-optimism/kurtosis-lint/releases/tag/v0.0.7) | [0.0.7](https://github.com/ethereum-optimism/kurtosis-lint/releases/tag/v0.0.7) | ✅ up to date |
-| kurtosis-test | [0.0.10](https://github.com/leovct/kurtosis-test/releases/tag/v0.0.10)          | [0.0.10](https://github.com/leovct/kurtosis-test/releases/tag/v0.0.10)          | ✅ up to date |
+| kurtosis-test | [0.0.11](https://github.com/leovct/kurtosis-test/releases/tag/v0.0.11)          | [0.0.11](https://github.com/leovct/kurtosis-test/releases/tag/v0.0.11)          | ✅ up to date |
 | yq            | [4.54.3](https://github.com/mikefarah/yq/releases/tag/v4.54.3)                  | [4.54.3](https://github.com/mikefarah/yq/releases/tag/v4.54.3)                  | ✅ up to date |
 
 ## Kurtosis packages
