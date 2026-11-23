@@ -72,7 +72,7 @@ Tools pinned in [`mise.toml`](https://github.com/agglayer/optimism-package/blob/
 
 | Tool          | Pinned version                                                                  | Latest stable version                                                           | Status        |
 | ------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------- |
-| foundry       | [1.9.0](https://github.com/foundry-rs/foundry/releases/tag/v1.9.0)              | [1.9.0](https://github.com/foundry-rs/foundry/releases/tag/v1.9.0)              | ✅ up to date |
+| foundry       | [1.10.0](https://github.com/foundry-rs/foundry/releases/tag/v1.10.0)            | [1.10.0](https://github.com/foundry-rs/foundry/releases/tag/v1.10.0)            | ✅ up to date |
 | just          | [1.59.0](https://github.com/casey/just/releases/tag/1.59.0)                     | [1.59.0](https://github.com/casey/just/releases/tag/1.59.0)                     | ✅ up to date |
 | kurtosis      | [1.23.0](https://github.com/kurtosis-tech/kurtosis/releases/tag/1.23.0)         | [1.23.0](https://github.com/kurtosis-tech/kurtosis/releases/tag/1.23.0)         | ✅ up to date |
 | kurtosis-lint | [0.0.7](https://github.com/ethereum-optimism/kurtosis-lint/releases/tag/v0.0.7) | [0.0.7](https://github.com/ethereum-optimism/kurtosis-lint/releases/tag/v0.0.7) | ✅ up to date |
@@ -87,7 +87,7 @@ External Kurtosis packages the package depends on. Versions are pinned in the [`
 
 | Package                                                                                    | Pinned version                                                                                                | Latest stable version                                                                                                | Status        |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ------------- |
-| [github.com/ethpandaops/ethereum-package](https://github.com/ethpandaops/ethereum-package) | [d3014d6d23d6](https://github.com/ethpandaops/ethereum-package/tree/d3014d6d23d683362025b9e23a0d69de49e77cca) | [HEAD (d3014d6d23d6)](https://github.com/ethpandaops/ethereum-package/tree/d3014d6d23d683362025b9e23a0d69de49e77cca) | ✅ up to date |
+| [github.com/ethpandaops/ethereum-package](https://github.com/ethpandaops/ethereum-package) | [35147d10dd57](https://github.com/ethpandaops/ethereum-package/tree/35147d10dd57f2dc00f5bde753f4338580c2f059) | [HEAD (35147d10dd57)](https://github.com/ethpandaops/ethereum-package/tree/35147d10dd57f2dc00f5bde753f4338580c2f059) | ✅ up to date |
 
 ### Additional
 
