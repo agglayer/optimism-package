@@ -54,7 +54,7 @@ runs:
 
     - name: Store kurtosis logs
       if: ${{ always() }}
-      uses: actions/upload-artifact@v4.6.2
+      uses: actions/upload-artifact@v7.0.2
       with:
         name: kurtosis-dump-${{ inputs.enclave }}-${{ steps.create-artifact-key.outputs.artifact-key }}
         path: ./.kurtosis-dump/enclaves/
