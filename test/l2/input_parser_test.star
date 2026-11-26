@@ -73,7 +73,7 @@ def test_l2_input_parser_defaults(plan):
 
     _default_batcher_params = struct(
         extra_params=[],
-        image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-batcher:v1.18.1",
+        image="us-docker.pkg.dev/oplabs-tools-artifacts/images/op-batcher:v1.19.0",
         max_channel_duration=1,
         ports={
             _net.HTTP_PORT_NAME: _net.port(number=8548),
@@ -104,7 +104,7 @@ def test_l2_input_parser_defaults(plan):
     )
 
     _default_proxyd_params = struct(
-        image="us-docker.pkg.dev/oplabs-tools-artifacts/images/proxyd:v4.36.0",
+        image="us-docker.pkg.dev/oplabs-tools-artifacts/images/proxyd:v4.37.0",
         extra_params=[],
         ports={
             _net.HTTP_PORT_NAME: _net.port(number=8080),
