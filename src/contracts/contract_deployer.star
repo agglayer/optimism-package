@@ -1,7 +1,9 @@
 ENVRC_PATH = "/workspace/optimism/.envrc"
 FACTORY_DEPLOYER_ADDRESS = "0x3fAB184622Dc19b6109349B94811493BF2a45362"
 FACTORY_ADDRESS = "0x4e59b44847b379578588920cA78FbF26c0B4956C"
-DEFAULT_SP1_VERIFIER = "0x000000000000000000000000000000000000dEaD"
+# op-deployer only checks that the SP1 verifier has code. Devnets never submit ZK proofs,
+# so the create2 factory, which op-deployer already needs on the L1, stands in for it.
+DEFAULT_SP1_VERIFIER = FACTORY_ADDRESS
 # raw tx data for deploying Create2Factory contract to L1
 FACTORY_DEPLOYER_CODE = "0xf8a58085174876e800830186a08080b853604580600e600039806000f350fe7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe03601600081602082378035828234f58015156039578182fd5b8082525050506014600cf31ba02222222222222222222222222222222222222222222222222222222222222222a02222222222222222222222222222222222222222222222222222222222222222"
 
@@ -134,8 +136,8 @@ def _build_global_deploy_overrides(optimism_args):
     absolute_prestate = ""
     overrides = optimism_args.op_contract_deployer_params.overrides
 
-    # op-deployer v0.10.0 requires an SP1 verifier on any L1 other than mainnet and
-    # Sepolia. Devnets never submit ZK proofs, so a placeholder address is enough.
+    # op-deployer v0.10.0 requires an SP1 verifier contract on any L1 other than
+    # mainnet and Sepolia.
     global_overrides = {
         "sp1Verifier": overrides.get("sp1Verifier", DEFAULT_SP1_VERIFIER),
     }
