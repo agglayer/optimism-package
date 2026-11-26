@@ -438,8 +438,11 @@ def test_build_deployment_intent_no_global_overrides(plan):
         optimism_args, l1_artifacts_locator, l2_artifacts_locator, altda_args
     )
 
-    # Test that no global deploy overrides are set when there's no fault game prestate
-    expect.eq("globalDeployOverrides" in intent, False)
+    # Without a fault game prestate, only the default SP1 verifier is overridden
+    expect.eq(
+        intent["globalDeployOverrides"],
+        {"sp1Verifier": contract_deployer.DEFAULT_SP1_VERIFIER},
+    )
 
 
 def test_build_deployment_intent_multiple_chains_different_configs(plan):
