@@ -105,6 +105,7 @@ def test_build_global_deploy_overrides_with_prestate(plan):
     expect.eq(
         global_overrides,
         {
+            "sp1Verifier": contract_deployer.DEFAULT_SP1_VERIFIER,
             "dangerouslyAllowCustomDisputeParameters": True,
             "faultGameAbsolutePrestate": "0x123abc",
         },
@@ -122,7 +123,23 @@ def test_build_global_deploy_overrides_without_prestate(plan):
     ) = contract_deployer._build_global_deploy_overrides(optimism_args)
 
     expect.eq(absolute_prestate, "")
-    expect.eq(global_overrides, None)
+    expect.eq(global_overrides, {"sp1Verifier": contract_deployer.DEFAULT_SP1_VERIFIER})
+
+
+def test_build_global_deploy_overrides_custom_sp1_verifier(plan):
+    optimism_args = struct(
+        op_contract_deployer_params=struct(
+            overrides={"sp1Verifier": "0x0000000000000000000000000000000000000001"}
+        )
+    )
+
+    (_, global_overrides) = contract_deployer._build_global_deploy_overrides(
+        optimism_args
+    )
+
+    expect.eq(
+        global_overrides, {"sp1Verifier": "0x0000000000000000000000000000000000000001"}
+    )
 
 
 def test_build_hardfork_schedule_single_chain(plan):
@@ -421,8 +438,11 @@ def test_build_deployment_intent_no_global_overrides(plan):
         optimism_args, l1_artifacts_locator, l2_artifacts_locator, altda_args
     )
 
-    # Test that no global deploy overrides are set when there's no fault game prestate
-    expect.eq("globalDeployOverrides" in intent, False)
+    # Without a fault game prestate, only the default SP1 verifier is overridden
+    expect.eq(
+        intent["globalDeployOverrides"],
+        {"sp1Verifier": contract_deployer.DEFAULT_SP1_VERIFIER},
+    )
 
 
 def test_build_deployment_intent_multiple_chains_different_configs(plan):

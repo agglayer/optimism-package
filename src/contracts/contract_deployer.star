@@ -7,7 +7,10 @@ FACTORY_DEPLOYER_CODE = "0xf8a58085174876e800830186a08080b853604580600e600039806
 FUND_SCRIPT_FILEPATH = "../../static_files/scripts"
 
 utils = import_module("../util.star")
+_constants = import_module("../package_io/constants.star")
 _filter = import_module("../util/filter.star")
+
+DEFAULT_SP1_VERIFIER = _constants.MOCK_SP1_VERIFIER_ADDRESS
 
 ethereum_package_genesis_constants = import_module(
     "github.com/ethpandaops/ethereum-package/src/prelaunch_data_generator/genesis_constants/genesis_constants.star"
@@ -131,19 +134,18 @@ def _build_global_deploy_overrides(optimism_args):
         Tuple of (absolute_prestate, global_deploy_overrides_dict or None)
     """
     absolute_prestate = ""
-    global_overrides = None
+    overrides = optimism_args.op_contract_deployer_params.overrides
 
-    if (
-        "faultGameAbsolutePrestate"
-        in optimism_args.op_contract_deployer_params.overrides
-    ):
-        absolute_prestate = optimism_args.op_contract_deployer_params.overrides[
-            "faultGameAbsolutePrestate"
-        ]
-        global_overrides = {
-            "dangerouslyAllowCustomDisputeParameters": True,
-            "faultGameAbsolutePrestate": absolute_prestate,
-        }
+    # op-deployer v0.10.0 requires an SP1 verifier contract on any L1 other than
+    # mainnet and Sepolia.
+    global_overrides = {
+        "sp1Verifier": overrides.get("sp1Verifier", DEFAULT_SP1_VERIFIER),
+    }
+
+    if "faultGameAbsolutePrestate" in overrides:
+        absolute_prestate = overrides["faultGameAbsolutePrestate"]
+        global_overrides["dangerouslyAllowCustomDisputeParameters"] = True
+        global_overrides["faultGameAbsolutePrestate"] = absolute_prestate
 
     return absolute_prestate, global_overrides
 

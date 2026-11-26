@@ -393,7 +393,7 @@ def default_ethereum_package_network_params():
             # Fast L1 blocks keep the op-deployer apply under the 180s exec timeout
             "seconds_per_slot": 2,
             "genesis_delay": 5,
-            # Preload the Arachnid CREATE2 deployer
+            # Preload the Arachnid CREATE2 deployer and the mock SP1 verifier
             "additional_preloaded_contracts": json.encode(
                 {
                     "0x4e59b44847b379578588920cA78FbF26c0B4956C": {
@@ -401,7 +401,13 @@ def default_ethereum_package_network_params():
                         "code": "0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe03601600081602082378035828234f58015156039578182fd5b8082525050506014600cf3",
                         "storage": {},
                         "nonce": "1",
-                    }
+                    },
+                    constants.MOCK_SP1_VERIFIER_ADDRESS: {
+                        "balance": "0ETH",
+                        "code": constants.MOCK_SP1_VERIFIER_CODE,
+                        "storage": {},
+                        "nonce": "1",
+                    },
                 }
             ),
         },

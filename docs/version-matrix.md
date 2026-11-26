@@ -21,14 +21,14 @@ The package runs the L1 with the ethereum-package default images. These are the 
 
 What kurtosis-cdk deploys through this package: the default L2 clients, the services every chain gets and the deployer.
 
-| Component   | Deployed version                                                                           | Latest stable version                                                                    | Status        |
-| ----------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- | ------------- |
-| op-batcher  | [1.18.1](https://github.com/ethereum-optimism/optimism/releases/tag/op-batcher/v1.18.1)    | [1.18.1](https://github.com/ethereum-optimism/optimism/releases/tag/op-batcher/v1.18.1)  | ✅ up to date |
-| op-deployer | [0.9.0-cdk](https://github.com/ethereum-optimism/optimism/releases/tag/op-deployer/v0.9.0) | [0.9.0](https://github.com/ethereum-optimism/optimism/releases/tag/op-deployer/v0.9.0)   | ✅ up to date |
-| op-node     | [1.20.2](https://github.com/ethereum-optimism/optimism/releases/tag/op-node/v1.20.2)       | [1.20.2](https://github.com/ethereum-optimism/optimism/releases/tag/op-node/v1.20.2)     | ✅ up to date |
-| op-proposer | [1.17.1](https://github.com/ethereum-optimism/optimism/releases/tag/op-proposer/v1.17.1)   | [1.17.1](https://github.com/ethereum-optimism/optimism/releases/tag/op-proposer/v1.17.1) | ✅ up to date |
-| op-reth     | [2.9.0](https://github.com/ethereum-optimism/optimism/releases/tag/op-reth/v2.9.0)         | [2.9.0](https://github.com/ethereum-optimism/optimism/releases/tag/op-reth/v2.9.0)       | ✅ up to date |
-| proxyd      | [4.36.0](https://github.com/ethereum-optimism/infra/releases/tag/proxyd/v4.36.0)           | [4.36.0](https://github.com/ethereum-optimism/infra/releases/tag/proxyd/v4.36.0)         | ✅ up to date |
+| Component   | Deployed version                                                                             | Latest stable version                                                                    | Status        |
+| ----------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ------------- |
+| op-batcher  | [1.19.0](https://github.com/ethereum-optimism/optimism/releases/tag/op-batcher/v1.19.0)      | [1.19.0](https://github.com/ethereum-optimism/optimism/releases/tag/op-batcher/v1.19.0)  | ✅ up to date |
+| op-deployer | [0.10.0-cdk](https://github.com/ethereum-optimism/optimism/releases/tag/op-deployer/v0.10.0) | [0.10.0](https://github.com/ethereum-optimism/optimism/releases/tag/op-deployer/v0.10.0) | ✅ up to date |
+| op-node     | [1.21.0](https://github.com/ethereum-optimism/optimism/releases/tag/op-node/v1.21.0)         | [1.21.0](https://github.com/ethereum-optimism/optimism/releases/tag/op-node/v1.21.0)     | ✅ up to date |
+| op-proposer | [1.17.1](https://github.com/ethereum-optimism/optimism/releases/tag/op-proposer/v1.17.1)     | [1.17.1](https://github.com/ethereum-optimism/optimism/releases/tag/op-proposer/v1.17.1) | ✅ up to date |
+| op-reth     | [2.10.0](https://github.com/ethereum-optimism/optimism/releases/tag/op-reth/v2.10.0)         | [2.10.0](https://github.com/ethereum-optimism/optimism/releases/tag/op-reth/v2.10.0)     | ✅ up to date |
+| proxyd      | [4.37.0](https://github.com/ethereum-optimism/infra/releases/tag/proxyd/v4.37.0)             | [4.37.0](https://github.com/ethereum-optimism/infra/releases/tag/proxyd/v4.37.0)         | ✅ up to date |
 
 ### Not tracked
 
@@ -87,7 +87,7 @@ External Kurtosis packages the package depends on. Versions are pinned in the [`
 
 | Package                                                                                    | Pinned version                                                                                                | Latest stable version                                                                                                | Status        |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ------------- |
-| [github.com/ethpandaops/ethereum-package](https://github.com/ethpandaops/ethereum-package) | [35147d10dd57](https://github.com/ethpandaops/ethereum-package/tree/35147d10dd57f2dc00f5bde753f4338580c2f059) | [HEAD (35147d10dd57)](https://github.com/ethpandaops/ethereum-package/tree/35147d10dd57f2dc00f5bde753f4338580c2f059) | ✅ up to date |
+| [github.com/ethpandaops/ethereum-package](https://github.com/ethpandaops/ethereum-package) | [eb4af7ea4048](https://github.com/ethpandaops/ethereum-package/tree/eb4af7ea40480bf237c0dcda2ec7a8aaef9e4665) | [HEAD (eb4af7ea4048)](https://github.com/ethpandaops/ethereum-package/tree/eb4af7ea40480bf237c0dcda2ec7a8aaef9e4665) | ✅ up to date |
 
 ### Additional
 
